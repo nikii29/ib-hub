@@ -1,0 +1,3008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IB Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #0c0c14;
+      --bg2:   #13131f;
+      --bg3:   #1a1a28;
+      --border: rgba(255,255,255,0.07);
+      --text:  #e8e8f0;
+      --muted: #6b6b8a;
+      --accent:#6366f1;
+      --accent-light:#818cf8;
+      --g1: #f59e0b;
+      --g2: #10b981;
+      --g3: #3b82f6;
+      --g4: #8b5cf6;
+      --g5: #ef4444;
+      --g6: #ec4899;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hidden { display: none !important; }
+
+    /* ══════════════════════════════════════
+       ONBOARDING
+    ══════════════════════════════════════ */
+    #onboarding {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 20px 60px;
+    }
+
+    .ob-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .ob-title {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .ob-sub {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      max-width: 380px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    /* counter bar */
+    .ob-counter-bar {
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding: 12px 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .ob-counter-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .ob-counter-text span {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .ob-counter-slots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .slot {
+      width: 24px;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .slot.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* groups */
+    .ob-groups {
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ob-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ob-group-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ob-group-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .ob-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--muted);
+    }
+
+    .ob-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* subject chip */
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      cursor: pointer;
+      transition: all 0.17s;
+      user-select: none;
+    }
+
+    .chip:hover:not(.disabled) {
+      border-color: rgba(255,255,255,0.14);
+      background: var(--bg3);
+    }
+
+    .chip.selected {
+      border-color: var(--chip-color);
+      background: color-mix(in srgb, var(--chip-color) 12%, var(--bg2));
+    }
+
+    .chip.disabled:not(.selected) {
+      opacity: 0.28;
+      cursor: not-allowed;
+    }
+
+    .chip-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .chip.selected .chip-name {
+      color: #fff;
+    }
+
+    .chip-level {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: var(--bg3);
+      color: var(--muted);
+      transition: all 0.17s;
+    }
+
+    .chip.selected .chip-level {
+      background: var(--chip-color);
+      color: #fff;
+    }
+
+    .chip-level.ns {
+      /* slightly more prominent for Nivel Superior */
+    }
+
+    .ob-footer {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 13px 40px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ob-footer-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,20,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-light);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .btn-ghost {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+
+    /* ══════════════════════════════════════
+       DASHBOARD
+    ══════════════════════════════════════ */
+    #dashboard { padding: 40px 24px; max-width: 1060px; margin: 0 auto; }
+
+    .dash-title { font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin-bottom: 6px; }
+    .dash-sub   { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .subject-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.11);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    }
+
+    .card-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-group {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 8px;
+    }
+
+    .card-name {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .card-level-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
+
+    /* ══════════════════════════════════════
+       SUBJECT VIEW
+    ══════════════════════════════════════ */
+    #subject-view { padding: 32px 24px; max-width: 900px; margin: 0 auto; }
+
+    .sv-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s;
+      margin-bottom: 24px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+    }
+
+    .sv-back:hover { color: var(--text); }
+
+    .sv-header {
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sv-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 8px;
+    }
+
+    .sv-title { font-size: clamp(22px, 4vw, 34px); font-weight: 700; }
+
+    .sv-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 7px;
+      background: var(--bg3);
+    }
+
+    .syllabus-note {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .syllabus-note .green-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 26px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 9px;
+      border: none;
+      background: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active { background: var(--bg3); color: var(--text); font-weight: 600; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Notes */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 11px;
+    }
+
+    .note-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .note-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-1px); }
+
+    .note-icon { font-size: 20px; margin-bottom: 8px; }
+    .note-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .note-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* Papers */
+    .papers-warning {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 13px;
+      color: #fbbf24;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .papers-warning strong { color: #f59e0b; }
+
+    .papers-list { display: flex; flex-direction: column; gap: 7px; }
+
+    .papers-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 12px 0 6px 2px;
+    }
+
+    .paper-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .paper-item.stale { opacity: 0.32; }
+
+    .paper-session { font-size: 13px; font-weight: 600; }
+
+    .paper-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .paper-tag.valid   { background: rgba(16,185,129,0.15); color: #34d399; }
+    .paper-tag.invalid { background: rgba(239,68,68,0.12);  color: #f87171; }
+
+    .paper-links { display: flex; gap: 5px; }
+
+    .paper-link {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: var(--bg3);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .paper-link:hover { color: var(--text); }
+
+    /* Tips */
+    .tips-list { display: flex; flex-direction: column; gap: 11px; }
+
+    .tip-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .tip-author {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .tip-text { font-size: 14px; line-height: 1.6; }
+
+    /* Flashcards */
+    .fc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .fc-progress { font-size: 13px; color: var(--muted); }
+
+    .fc-nav { display: flex; gap: 7px; }
+
+    .fc-btn {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.15s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fc-btn:hover:not(:disabled) { border-color: rgba(255,255,255,0.15); }
+    .fc-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .fc-wrapper { perspective: 1000px; max-width: 540px; margin: 0 auto; }
+
+    .flashcard {
+      width: 100%;
+      aspect-ratio: 5/3;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .flashcard.flipped { transform: rotateY(180deg); }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+      backface-visibility: hidden;
+    }
+
+    .fc-front { background: var(--bg2); }
+    .fc-back  { background: var(--bg3); transform: rotateY(180deg); }
+
+    .fc-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .fc-content { font-size: clamp(14px, 2vw, 17px); font-weight: 500; line-height: 1.55; }
+
+    .fc-hint { text-align: center; font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--muted);
+    }
+
+    .empty-state h3 { font-size: 15px; color: var(--text); margin-bottom: 8px; }
+    .empty-state p  { font-size: 13px; line-height: 1.5; }
+
+    @media (max-width: 560px) {
+      .tabs { flex-wrap: wrap; }
+      .tab-btn { flex: none; width: calc(50% - 2px); }
+      .paper-item { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── Pruebas ── */
+    .prueba-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .prueba-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .prueba-card:hover {
+      border-color: rgba(255,255,255,0.13);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+    }
+
+    .prueba-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .prueba-icon { font-size: 22px; }
+
+    .prueba-weight {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg3);
+      color: var(--muted);
+    }
+
+    .prueba-name { font-size: 15px; font-weight: 700; }
+
+    .prueba-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    .prueba-meta {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .prueba-tag {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Prueba detail view */
+    .prueba-detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+      margin-bottom: 20px;
+      transition: color 0.15s;
+    }
+
+    .prueba-detail-back:hover { color: var(--text); }
+
+    .prueba-detail-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prueba-detail-icon { font-size: 30px; }
+
+    .prueba-detail-title { font-size: 20px; font-weight: 700; }
+
+    .prueba-detail-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* File sections */
+    .file-section { margin-bottom: 24px; }
+
+    .file-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .file-list { display: flex; flex-direction: column; gap: 7px; }
+
+    .file-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.15s;
+    }
+
+    .file-item:hover { border-color: rgba(255,255,255,0.11); }
+
+    .file-left { display: flex; align-items: center; gap: 10px; }
+
+    .file-type-icon { font-size: 18px; flex-shrink: 0; }
+
+    .file-name { font-size: 13px; font-weight: 500; }
+
+    .file-ext { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .file-open-btn {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 7px;
+      background: var(--bg3);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.15s;
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+
+    .file-open-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+
+    /* Grade boundaries */
+    .gb-section { margin-bottom: 24px; }
+
+    .gb-table-wrap { overflow-x: auto; }
+
+    .gb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .gb-table th, .gb-table td {
+      padding: 9px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gb-table th {
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: var(--bg2);
+    }
+
+    .gb-table td { background: var(--bg2); }
+
+    .gb-table tr:last-child td { border-bottom: none; }
+
+    .gb-grade {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .gb-7 { color: #34d399; }
+    .gb-6 { color: #6ee7b7; }
+    .gb-5 { color: #93c5fd; }
+    .gb-4 { color: #a5b4fc; }
+    .gb-3 { color: #fbbf24; }
+    .gb-2 { color: #fb923c; }
+    .gb-1 { color: #f87171; }
+
+    .gb-placeholder {
+      background: var(--bg2);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Prueba tips */
+    .prueba-tips-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .prueba-papers-list { display: flex; flex-direction: column; gap: 7px; }
+
+    /* ── Apuntes tab ── */
+    .notes-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .notes-prueba-group { margin-bottom: 22px; }
+
+    .notes-prueba-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .notes-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .notes-divider-line { flex: 1; height: 1px; background: var(--border); }
+
+    .notes-divider-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .personal-files-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+
+    .personal-file-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .personal-file-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .personal-file-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .btn-delete {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(239,68,68,0.1);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.2);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .btn-delete:hover { background: rgba(239,68,68,0.2); }
+
+    .upload-zone-personal {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .upload-zone-personal:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ ONBOARDING ═══════════════ -->
+<div id="onboarding">
+  <div class="ob-logo">IB Hub</div>
+  <h1 class="ob-title">Selecciona tus asignaturas</h1>
+  <p class="ob-sub">Elige las 6 materias que cursas este año. Solo verás los recursos relevantes para ti.</p>
+
+  <div class="ob-counter-bar">
+    <div class="ob-counter-text">
+      <span id="counter-num">0</span> / 6 asignaturas seleccionadas
+    </div>
+    <div class="ob-counter-slots" id="counter-slots">
+      <div class="slot" id="slot-0"></div>
+      <div class="slot" id="slot-1"></div>
+      <div class="slot" id="slot-2"></div>
+      <div class="slot" id="slot-3"></div>
+      <div class="slot" id="slot-4"></div>
+      <div class="slot" id="slot-5"></div>
+    </div>
+  </div>
+
+  <div class="ob-groups" id="ob-groups"></div>
+
+  <div class="ob-footer">
+    <button class="btn-primary" id="save-btn" disabled onclick="saveAndEnter()">Empezar →</button>
+    <span class="ob-footer-note">Puedes cambiar tus asignaturas en cualquier momento.</span>
+  </div>
+</div>
+
+<!-- ═══════════════ APP ═══════════════ -->
+<div id="app" class="hidden">
+  <nav>
+    <div class="nav-logo">IB Hub</div>
+    <div class="nav-right">
+      <button class="btn-ghost" onclick="showDashboard()">Dashboard</button>
+      <button class="btn-ghost" onclick="changeSubjects()">Cambiar asignaturas</button>
+    </div>
+  </nav>
+
+  <div id="dashboard">
+    <div class="dash-title">Mis asignaturas</div>
+    <div class="dash-sub" id="dash-sub"></div>
+    <div class="dash-grid" id="dash-grid"></div>
+  </div>
+
+  <div id="subject-view" class="hidden">
+    <button class="sv-back" onclick="showDashboard()">← Volver</button>
+    <div class="sv-header">
+      <div class="sv-group-label" id="sv-group-label"></div>
+      <div class="sv-title" id="sv-title"></div>
+      <div class="sv-meta">
+        <span class="badge" id="sv-level-badge"></span>
+        <span class="syllabus-note">
+          <span class="green-dot"></span>
+          <span id="sv-syllabus"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('notes',this)">📄 Apuntes</button>
+      <button class="tab-btn" onclick="switchTab('pruebas',this)">📋 Pruebas</button>
+      <button class="tab-btn" onclick="switchTab('flashcards',this)">🃏 Flashcards</button>
+    </div>
+
+    <div id="tab-notes"      class="tab-panel active"></div>
+    <div id="tab-pruebas"    class="tab-panel"></div>
+    <div id="tab-flashcards" class="tab-panel"></div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════
+//  SCHOOL SUBJECTS  (exact list, fixed levels)
+// ════════════════════════════════════════════════
+
+const GROUPS = [
+  {
+    id: "g1", label: "Grupo 1 — Lengua A", color: "#f59e0b",
+    subjects: [
+      { id: "spa_a_ns",  name: "Español A",  level: "NS" },
+      { id: "eng_a_ns",  name: "Inglés A",   level: "NS" },
+    ]
+  },
+  {
+    id: "g2", label: "Grupo 2 — Adquisición de Lengua", color: "#10b981",
+    subjects: [
+      { id: "eng_b_ns",  name: "Inglés B",   level: "NS" },
+      { id: "spa_b_ns",  name: "Español B",  level: "NS" },
+      { id: "ger_b_ns",  name: "Alemán B",   level: "NS" },
+    ]
+  },
+  {
+    id: "g3", label: "Grupo 3 — Individuos y Sociedades", color: "#3b82f6",
+    subjects: [
+      { id: "phil_nm",   name: "Filosofía",           level: "NM" },
+      { id: "bm_nm",     name: "Business Management", level: "NM" },
+      { id: "history_nm",name: "Historia",            level: "NM" },
+    ]
+  },
+  {
+    id: "g4", label: "Grupo 4 — Ciencias", color: "#8b5cf6",
+    subjects: [
+      { id: "cs_nm",      name: "Computer Science", level: "NM" },
+      { id: "chem_nm",    name: "Química",          level: "NM" },
+      { id: "sas_nm",     name: "SAS",              level: "NM" },
+      { id: "physics_nm", name: "Física",           level: "NM" },
+      { id: "sports_nm",  name: "Sports",           level: "NM" },
+    ]
+  },
+  {
+    id: "g5", label: "Grupo 5 — Matemáticas", color: "#ef4444",
+    subjects: [
+      { id: "mai_nm",     name: "MAI",            level: "NM" },
+      { id: "mae_nm",     name: "MAE",            level: "NM" },
+      { id: "mae_ns",     name: "MAE",            level: "NS" },
+      { id: "mae_eng_nm", name: "MAE (Inglés)",   level: "NM" },
+    ]
+  },
+  {
+    id: "g6", label: "Grupo 6 — Electiva", color: "#ec4899",
+    subjects: [
+      { id: "bm_ns",      name: "Gestión Empresarial", level: "NS" },
+      { id: "physics_ns", name: "Física",              level: "NS" },
+      { id: "va_ns",      name: "Artes Visuales",      level: "NS" },
+      { id: "bio_ns",     name: "Biología",            level: "NS" },
+      { id: "gp_ns",      name: "Global Politics",     level: "NS" },
+    ]
+  }
+]
+
+// flat lookup: id → { ...subject, groupId, groupLabel, groupColor }
+const SUBJECT_MAP = {}
+GROUPS.forEach(g => {
+  g.subjects.forEach(s => {
+    SUBJECT_MAP[s.id] = { ...s, groupId: g.id, groupLabel: g.label, groupColor: g.color }
+  })
+})
+
+// ════════════════════════════════════════════════
+//  CONTENT DATA  per subject
+// ════════════════════════════════════════════════
+
+const CONTENT = {
+
+  // ── Español A NS ──
+  spa_a_ns: {
+    syllabus: "Syllabus vigente desde 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Español A NS",
+        text: "Para el Paper 1 (análisis de texto no visto), estructura tu respuesta: primero el contexto (tipo de texto, emisor, receptor, propósito), luego analiza los recursos literarios con ejemplos directos del texto. Nunca resumas — analiza." },
+      { author: "Estudiante IB · Español A NS",
+        text: "El Oral Individual pide conectar una obra literaria con un texto de los medios a través de un 'global issue'. Prepara 3-4 global issues con citas concretas para cada obra; así puedes adaptar según el texto que te salga." },
+      { author: "Consejo general",
+        text: "Aprende de memoria los nombres técnicos de los recursos: anáfora, polisíndeton, hipérbaton, sinécdoque… Usarlos correctamente en el análisis sube la nota de 'lenguaje y estilo'." },
+    ],
+    flashcards: [
+      { q: "¿Qué es la anáfora?", a: "Figura retórica de repetición: se repite una o varias palabras al inicio de versos o frases sucesivas. Refuerza la emoción y el ritmo. Ej: 'No hay extensión más grande que mi herida... No hay extensión más grande que mi herida'." },
+      { q: "¿Qué es el eje sintagmático vs. paradigmático?", a: "Sintagmático: relaciones entre elementos que se combinan en la cadena del habla (horizontal). Paradigmático: relaciones de sustitución entre elementos equivalentes que no aparecen juntos (vertical)." },
+      { q: "¿Qué evalúa el criterio A en el Paper 1?", a: "Comprensión e interpretación: en qué medida el estudiante demuestra entender el contenido, el significado y las implicaciones del texto." },
+      { q: "¿Qué es el narrador heterodiegético?", a: "Narrador en tercera persona que no participa en la historia como personaje. Puede ser omnisciente (todo lo sabe) o limitado (conoce solo la perspectiva de un personaje)." },
+    ],
+    notes: [
+      { icon: "✍️", title: "Análisis textual", desc: "Recursos literarios, tipos de texto, registro" },
+      { icon: "📖", title: "Obras literarias", desc: "Resúmenes, temas, personajes, análisis" },
+      { icon: "🎙️", title: "Oral Individual", desc: "Estructura, global issues, cómo conectar obras" },
+      { icon: "📝", title: "Paper 2 — Ensayo", desc: "Comparación de obras, argumentación literaria" },
+    ]
+  },
+
+  // ── Inglés A NS ──
+  eng_a_ns: {
+    syllabus: "Syllabus vigente desde 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · English A NS",
+        text: "In Paper 1, use the TADPOLE framework: Theme, Audience, Diction, Purpose, Organization, Language, Effect. It stops you from just summarizing and forces real analysis." },
+      { author: "Estudiante IB · English A NS",
+        text: "For the Individual Oral, pick a global issue that genuinely connects to BOTH your literary work and the body of work — don't force it. Examiners can tell when the connection is superficial." },
+    ],
+    flashcards: [
+      { q: "What is enjambment?", a: "Continuation of a sentence beyond the end of a line or stanza without a grammatical pause. It creates flow, urgency, or can subvert expectations when the new line recontextualizes the previous." },
+      { q: "Difference between theme and motif", a: "Theme: central idea or message explored in the work. Motif: a recurring element (symbol, image, word, situation) that reinforces or develops the theme." },
+      { q: "What does 'evaluate' mean in IB command terms?", a: "Make an appraisal by weighing up the strengths and limitations of evidence and arguments, then form a conclusion — don't just describe both sides." },
+    ],
+    notes: [
+      { icon: "📖", title: "Literary analysis", desc: "Devices, narrative structure, genre, voice" },
+      { icon: "✍️", title: "Paper 1 — Unseen", desc: "Prose & poetry analysis strategies" },
+      { icon: "📝", title: "Paper 2 — Essay", desc: "Comparative essay structure, linking works" },
+      { icon: "🎙️", title: "Individual Oral", desc: "Global issue, extract selection, structure" },
+    ]
+  },
+
+  // ── Inglés B NS ──
+  eng_b_ns: {
+    syllabus: "Syllabus vigente desde 2020",
+    validFrom: "Mayo 2020",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2019 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · English B NS",
+        text: "Paper 2 at HL includes literary texts. Treat them like English A — analyze language and style, not just content. Quoting specific lines makes a huge difference." },
+      { author: "Consejo general",
+        text: "For the Individual Oral (15 min), practice the first 2 minutes without notes — that's when you introduce your stimulus and make a global claim. Avoid memorizing a script; use a bullet-point outline." },
+    ],
+    flashcards: [
+      { q: "Formal vs. informal register in English", a: "Formal: complete sentences, technical vocabulary, no contractions, passive voice, hedging language. Informal: contractions, colloquialisms, short sentences, direct address (you/I)." },
+      { q: "What is a discursive essay structure?", a: "Introduction (thesis) → Point 1 (evidence + analysis) → Point 2 → Counterargument → Rebuttal → Conclusion restating thesis with nuance." },
+    ],
+    notes: [
+      { icon: "✍️", title: "Tipos de texto escritos", desc: "Carta formal, artículo, ensayo, blog, informe" },
+      { icon: "👂", title: "Listening & Reading", desc: "Estrategias de comprensión, inferencia" },
+      { icon: "📚", title: "HL: Literary Works", desc: "Análisis literario para Paper 2" },
+      { icon: "🗣️", title: "Individual Oral", desc: "Estructura, stimulus, global issue" },
+    ]
+  },
+
+  // ── Español B NS ──
+  spa_b_ns: {
+    syllabus: "Syllabus vigente desde 2020",
+    validFrom: "Mayo 2020",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2019 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Español B NS",
+        text: "Para el Paper 1 (comprensión lectora), lee primero las preguntas y luego el texto. Así sabes qué buscar. Las respuestas suelen estar en orden en el texto." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el subjuntivo en español?", a: "Modo verbal que expresa duda, deseo, emoción, o situaciones hipotéticas. Se usa en subordinadas introducidas por verbos de querer, dudar, esperar, temer, y conjunciones como 'para que', 'aunque', 'cuando' (futuro)." },
+    ],
+    notes: [
+      { icon: "✍️", title: "Producción escrita", desc: "Tipos de texto: ensayo, carta, artículo, blog" },
+      { icon: "📖", title: "Comprensión lectora", desc: "Estrategias Paper 1, vocabulario en contexto" },
+      { icon: "📚", title: "Obras literarias (NS)", desc: "Análisis para Paper 2" },
+      { icon: "🗣️", title: "Oral Individual", desc: "Presentación, preguntas, global issue" },
+    ]
+  },
+
+  // ── Alemán B NS ──
+  ger_b_ns: {
+    syllabus: "Syllabus vigente desde 2020",
+    validFrom: "Mayo 2020",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2019 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Alemán B NS",
+        text: "El alemán tiene cuatro casos (Nominativ, Akkusativ, Dativ, Genitiv). Los errores de declinación son los más comunes en Paper 2 — repasa las terminaciones de artículos cada semana." },
+      { author: "Consejo general",
+        text: "Escucha podcasts o series en alemán (Deutsche Welle tiene contenido graduado por nivel). La exposición auditiva mejora el Oral más que estudiar listas de vocabulario." },
+    ],
+    flashcards: [
+      { q: "¿Cuándo se usa el Konjunktiv II?", a: "Para expresar situaciones hipotéticas, deseos irreales y el estilo indirecto educado. Ej: 'Ich würde gerne reisen' (Me gustaría viajar). Con 'wenn' para condicionales." },
+      { q: "Diferencia Perfekt vs. Präteritum", a: "Perfekt: forma conversacional del pasado, se usa en alemán hablado y escrito informal. Präteritum: pasado narrativo, se usa en textos escritos, noticias, literatura. Excepciones: sein/haben/modales usan Präteritum siempre." },
+    ],
+    notes: [
+      { icon: "📖", title: "Gramática alemana", desc: "Casos, declinaciones, conjugaciones, Konjunktiv" },
+      { icon: "✍️", title: "Producción escrita", desc: "Tipos de texto formales e informales" },
+      { icon: "📚", title: "Obras literarias (NS)", desc: "Textos literarios para Paper 2" },
+      { icon: "🗣️", title: "Oral Individual", desc: "Estructura y preparación del oral" },
+    ]
+  },
+
+  // ── Filosofía NM ──
+  phil_nm: {
+    syllabus: "Syllabus vigente desde 2016 (actualizado 2022)",
+    validFrom: "Mayo 2016",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+    ],
+    tips: [
+      { author: "Estudiante IB · Filosofía NM",
+        text: "Para el Paper 1, usa la estructura: 1) Presenta la pregunta filosófica, 2) Expón la tesis de un filósofo con sus argumentos, 3) Contraargumenta con otro filósofo, 4) Tu juicio razonado. Citar filósofos con nombre y texto específico sube mucho la nota." },
+      { author: "Estudiante IB · Filosofía NM",
+        text: "El IA (Philosophical Analysis) es sobre un texto no filosófico (noticia, película, anuncio…). Elige un texto que genuinamente te invite a preguntas filosóficas profundas, no el más fácil de analizar." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el imperativo categórico de Kant?", a: "Principio moral universal: 'Actúa solo según aquella máxima que puedas querer que se convierta en ley universal'. La moralidad no depende de consecuencias sino del deber racional." },
+      { q: "Diferencia entre utilitarismo de actos y de reglas", a: "Actos: cada acción individual debe maximizar la utilidad total. Reglas: se siguen reglas que, si se aplicaran universalmente, maximizarían la utilidad (más predecible y equitativo)." },
+      { q: "¿Qué es el problema mente-cuerpo (Descartes)?", a: "El dualismo cartesiano postula que mente y cuerpo son sustancias distintas (res cogitans / res extensa). El problema: cómo interactúan si son de naturaleza diferente (problema de la interacción)." },
+      { q: "¿Qué es la navaja de Ockham?", a: "Principio de parsimonia: entre explicaciones igualmente válidas, la más simple (con menos supuestos) debe preferirse. No multipliques entidades sin necesidad." },
+    ],
+    notes: [
+      { icon: "🤔", title: "Core Theme: Ser humano", desc: "Identidad, libertad, consciencia, mortalidad" },
+      { icon: "⚖️", title: "Ética", desc: "Utilitarismo, deontología, virtud, metaética" },
+      { icon: "🌍", title: "Filosofía política", desc: "Justicia, poder, derechos, contrato social" },
+      { icon: "📄", title: "IA — Philosophical Analysis", desc: "Criterios, estructura, ejemplos de textos" },
+    ]
+  },
+
+  // ── Business Management NM ──
+  bm_nm: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2022",
+    validFrom: "Mayo 2022",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+      { s: "Mayo 2021 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · BM NM",
+        text: "Para preguntas de evaluación (6 pts), usa el esquema: Ventaja 1 + evidencia del caso → Desventaja 1 + evidencia → Conclusión justificada. Sin referencia al caso de la pregunta, la respuesta no llega al nivel máximo." },
+      { author: "Estudiante IB · BM NM",
+        text: "Aprende los acrónimos clave: SWOT, PEST, SMART, BCG Matrix, Ansoff Matrix. Son marcos de análisis que puedes aplicar a cualquier caso — saber cuándo usar cada uno es la clave." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el flujo de caja vs. beneficio?", a: "Flujo de caja: movimiento real de dinero que entra y sale del negocio en un período. Beneficio: ingresos menos costes (incluye ventas a crédito no cobradas). Una empresa puede tener beneficio pero problemas de caja." },
+      { q: "¿Qué es el análisis DAFO/SWOT?", a: "Herramienta estratégica: Debilidades y Fortalezas (factores internos) + Amenazas y Oportunidades (factores externos). Ayuda a definir estrategias combinando los cuatro elementos." },
+      { q: "¿Qué es el punto de equilibrio?", a: "Nivel de ventas en que los ingresos totales igualan los costes totales (beneficio = 0). Fórmula: Punto de equilibrio = Costes fijos / (Precio unitario − Coste variable unitario)." },
+    ],
+    notes: [
+      { icon: "🏢", title: "Organización y RR.HH.", desc: "Estructuras, motivación, liderazgo, cultura" },
+      { icon: "💰", title: "Finanzas", desc: "Flujo de caja, beneficios, ratios, financiación" },
+      { icon: "📊", title: "Marketing", desc: "Las 4P, investigación de mercado, segmentación" },
+      { icon: "⚙️", title: "Operaciones", desc: "Producción, calidad, cadena de suministro" },
+    ]
+  },
+
+  // ── Historia NM ──
+  history_nm: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2025",
+    validFrom: "Mayo 2025",
+    papers: [
+      { s: "Mayo 2025",  ok: true },
+      { s: "Nov 2024",   ok: false },
+      { s: "Mayo 2024",  ok: false },
+      { s: "Nov 2023",   ok: false },
+      { s: "Mayo 2023",  ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Historia NM",
+        text: "El Paper 1 tiene análisis de fuentes — usa el esquema OPVL (Origin, Purpose, Value, Limitation) de forma precisa. La 'Limitation' debe ser específica al contexto histórico, no genérica ('es subjetivo')." },
+      { author: "Estudiante IB · Historia NM",
+        text: "Para el Paper 2 (ensayo), empieza con una tesis clara y defendible, no con una pregunta retórica. Los marcadores usan: P (Point) → E (Evidence) → E (Explanation) → L (Link to question)." },
+    ],
+    flashcards: [
+      { q: "¿Qué evalúa el criterio A del Paper 1 de Historia?", a: "Comprensión: el estudiante demuestra entender el significado y contexto de las fuentes, identificando el mensaje central y las ideas implícitas." },
+      { q: "Causas de la Primera Guerra Mundial — MAIN", a: "Militarismo (carrera armamentística), Alianzas (Triple Alianza vs Entente), Imperialismo (rivalidades coloniales), Nacionalismo (especialmente en los Balcanes)." },
+      { q: "¿Qué fue la Solución Final (Endlösung)?", a: "Plan nazi para el exterminio sistemático de judíos europeos y otras minorías, implementado desde 1942. Resultó en el asesinato de aproximadamente 6 millones de judíos durante el Holocausto." },
+    ],
+    notes: [
+      { icon: "📜", title: "Paper 1 — Fuentes", desc: "Análisis OPVL, tipos de fuentes, contexto" },
+      { icon: "🌍", title: "Paper 2 — Temas mundiales", desc: "Guerras, regímenes autoritarios, derechos civiles" },
+      { icon: "📖", title: "IA — Investigación histórica", desc: "Pregunta de investigación, fuentes, evaluación" },
+      { icon: "🗺️", title: "Historia regional", desc: "Europa / Américas en el siglo XX" },
+    ]
+  },
+
+  // ── Computer Science NM ──
+  cs_nm: {
+    syllabus: "Syllabus vigente (posible revisión en curso)",
+    validFrom: "Mayo 2014",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+    ],
+    tips: [
+      { author: "Estudiante IB · CS NM",
+        text: "El Paper 2 pide pseudocódigo del IB, no Python ni Java. Estudia la notación exacta del IB desde el principio — los examinadores no aceptan otras sintaxis aunque sean correctas lógicamente." },
+      { author: "Estudiante IB · CS NM",
+        text: "Para el dossier (IA), empieza en Year 1 y documenta cada decisión de diseño con capturas de pantalla. La sección de 'Criterion B' (design) es donde más estudiantes pierden puntos por no ser específicos." },
+    ],
+    flashcards: [
+      { q: "¿Qué es la recursividad?", a: "Función que se llama a sí misma con un subproblema más simple, hasta alcanzar el caso base. Útil para estructuras jerárquicas. Requiere un caso base para no crear bucle infinito." },
+      { q: "Diferencia entre pila (stack) y cola (queue)", a: "Pila: LIFO (Last In, First Out) — el último en entrar es el primero en salir. Cola: FIFO (First In, First Out) — el primero en entrar es el primero en salir." },
+      { q: "¿Qué es la complejidad O(n²)?", a: "El tiempo de ejecución crece cuadráticamente con el tamaño de la entrada. Típico de algoritmos con bucles anidados como Bubble Sort. Para entradas grandes, es mucho menos eficiente que O(n log n)." },
+    ],
+    notes: [
+      { icon: "💾", title: "Sistemas y arquitectura", desc: "CPU, memoria, redes, protocolos, SO" },
+      { icon: "🔁", title: "Algoritmos y estructuras", desc: "Ordenación, búsqueda, pilas, colas, árboles" },
+      { icon: "🏗️", title: "Programación OOP", desc: "Clases, objetos, herencia, polimorfismo, IB pseudocode" },
+      { icon: "📋", title: "IA — Dossier", desc: "Criterios A-F, estructura, capturas, testing" },
+    ]
+  },
+
+  // ── Química NM ──
+  chem_nm: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2025",
+    validFrom: "Mayo 2025",
+    papers: [
+      { s: "Mayo 2025",  ok: true },
+      { s: "Nov 2024",   ok: false },
+      { s: "Mayo 2024",  ok: false },
+      { s: "Nov 2023",   ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Química NM",
+        text: "El nuevo syllabus 2025 integra la estequiometría en todos los temas — no es una unidad separada. Practica cálculos estequiométricos en contextos de equilibrio, electroquímica y ácidos desde el principio." },
+      { author: "Estudiante IB · Química NM",
+        text: "Para el Paper 1 (MCQ), lee todas las opciones antes de elegir. Química tiene opciones muy similares diseñadas para confundir. Proceso de eliminación funciona muy bien." },
+    ],
+    flashcards: [
+      { q: "¿Qué establece la Ley de Hess?", a: "El cambio de entalpía de una reacción es independiente de la ruta seguida: solo depende del estado inicial y final. Permite calcular ΔH de reacciones que no se pueden medir directamente." },
+      { q: "Principio de Le Chatelier", a: "Si un sistema en equilibrio es perturbado (cambio en concentración, temperatura o presión), el equilibrio se desplaza para contrarrestar la perturbación." },
+      { q: "Diferencia entre enlace covalente polar y apolar", a: "Polar: diferencia de electronegatividad entre los átomos crea un dipolo eléctrico (ej: H₂O, HCl). Apolar: electrones compartidos de forma simétrica (ej: H₂, CH₄, CO₂ lineal)." },
+    ],
+    notes: [
+      { icon: "⚛️", title: "Estructura atómica y enlace", desc: "Modelos, orbitales, tipos de enlace, VSEPR" },
+      { icon: "⚖️", title: "Estequiometría y equilibrio", desc: "Mol, cálculos, Kc, Le Chatelier" },
+      { icon: "🔋", title: "Electroquímica", desc: "Pilas, electrolisis, potenciales estándar" },
+      { icon: "🧪", title: "IA — Experimento", desc: "Diseño, análisis de errores, evaluación" },
+    ]
+  },
+
+  // ── SAS NM ──
+  sas_nm: {
+    syllabus: "Consulta la guía oficial con tu profesor",
+    validFrom: "Verifica con tu profesor",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+    ],
+    tips: [
+      { author: "Consejo general",
+        text: "Consulta con tu profesor los past papers válidos para el syllabus que estáis siguiendo, ya que SAS puede tener versiones locales o denominaciones distintas según el colegio." },
+    ],
+    flashcards: [
+      { q: "¿Qué significa 'evaluate' en el IB?", a: "Hacer un juicio valorado sobre la fortaleza y debilidad de evidencia y argumentos, llegando a una conclusión justificada." },
+    ],
+    notes: [
+      { icon: "📚", title: "Apuntes por tema", desc: "Sube tus apuntes para tenerlos siempre disponibles" },
+      { icon: "📋", title: "IA / Evaluación interna", desc: "Guía, criterios, ejemplos" },
+    ]
+  },
+
+  // ── Física NM ──
+  physics_nm: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2025",
+    validFrom: "Mayo 2025",
+    papers: [
+      { s: "Mayo 2025",  ok: true },
+      { s: "Nov 2024",   ok: false },
+      { s: "Mayo 2024",  ok: false },
+      { s: "Nov 2023",   ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Física NM",
+        text: "Cada fórmula del data booklet tiene condiciones de aplicabilidad. Antes de usarla pregúntate: ¿se cumple la condición? (¿rozamiento despreciable? ¿campo uniforme?). Esto evita errores conceptuales que sí se penalizan." },
+      { author: "Estudiante IB · Física NM",
+        text: "Los análisis gráficos son clave en el IA. Practica linearizar gráficos (ej: cambiar y=ax² a Y=aX graficando y vs. x²) y calcular pendientes con incertidumbres." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el momento lineal?", a: "p = mv. Cantidad de movimiento de un cuerpo. Se conserva en sistemas aislados (sin fuerzas externas netas). El impulso es el cambio de momento: J = Δp = FΔt." },
+      { q: "Primera Ley de la Termodinámica", a: "ΔU = Q − W. El cambio en energía interna del sistema es igual al calor absorbido menos el trabajo realizado por el sistema. Principio de conservación de la energía." },
+      { q: "¿Qué es la interferencia constructiva?", a: "Cuando dos ondas se superponen en fase (diferencia de camino = nλ), las amplitudes se suman: amplitud resultante = A₁ + A₂. Produce máximos de intensidad." },
+    ],
+    notes: [
+      { icon: "🌀", title: "Mecánica", desc: "Cinemática, fuerzas, trabajo, energía, momentum" },
+      { icon: "🌊", title: "Ondas y óptica", desc: "Ondas mecánicas, sonido, luz, interferencia" },
+      { icon: "⚡", title: "Electricidad y magnetismo", desc: "Campos, circuitos, inducción" },
+      { icon: "☢️", title: "Física moderna", desc: "Cuántica, nuclear, relatividad especial" },
+    ]
+  },
+
+  // ── Sports NM ──
+  sports_nm: {
+    syllabus: "Syllabus SEHS vigente desde 2014",
+    validFrom: "Mayo 2016",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+    ],
+    tips: [
+      { author: "Estudiante IB · Sports NM",
+        text: "El IA de Sports (SEHS) tiene 3 partes: diseño, análisis y evaluación. Elige un aspecto deportivo que puedas medir fácilmente con equipamiento escolar — no compliques el experimento innecesariamente." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el VO₂ máx?", a: "Volumen máximo de oxígeno que el cuerpo puede consumir por minuto por kilogramo de peso corporal durante ejercicio máximo. Es el principal indicador de capacidad aeróbica." },
+      { q: "Diferencia entre fibras musculares tipo I y tipo II", a: "Tipo I (lentas): alta resistencia a la fatiga, metabolismo aeróbico, ideales para resistencia. Tipo II (rápidas): contracción potente y rápida, fatigan antes, metabolismo glucolítico, ideales para sprints y fuerza." },
+    ],
+    notes: [
+      { icon: "🏃", title: "Anatomía y fisiología", desc: "Sistema muscular, cardiovascular, respiratorio" },
+      { icon: "⚡", title: "Energía y ejercicio", desc: "Sistemas energéticos, metabolismo, VO₂ máx" },
+      { icon: "🧠", title: "Psicología del deporte", desc: "Motivación, estrés, rendimiento" },
+      { icon: "🔬", title: "IA — Experimento", desc: "Diseño, análisis estadístico, evaluación" },
+    ]
+  },
+
+  // ── MAI NM ──
+  mai_nm: {
+    syllabus: "Syllabus actual — primer examen Mayo 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Nov 2022",   ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · MAI NM",
+        text: "MAI NM es con calculadora en todos los papers. Aprende a usar la GDC (TI o Casio) para listas, regresión, tablas de distribución y resolver ecuaciones — puede ahorrarte mucho tiempo en el examen." },
+      { author: "Estudiante IB · MAI NM",
+        text: "Estudia bien los tests estadísticos: chi-cuadrado, t-test, correlación de Pearson. En el Paper 2 siempre hay preguntas de estadística inferencial y debes saber qué test aplicar según el contexto." },
+    ],
+    flashcards: [
+      { q: "¿Qué mide la correlación de Pearson (r)?", a: "La fuerza y dirección de la relación lineal entre dos variables. Va de −1 a +1. r=+1 es correlación positiva perfecta, r=−1 es negativa perfecta, r≈0 indica sin correlación lineal." },
+      { q: "¿Qué es la distribución normal?", a: "Distribución continua simétrica en forma de campana, caracterizada por μ (media) y σ (desviación estándar). El 68% de datos cae dentro de μ±σ; el 95% dentro de μ±2σ." },
+      { q: "¿Qué es un test chi-cuadrado de independencia?", a: "Prueba si existe asociación entre dos variables categóricas. Si p-valor < nivel de significancia (ej: 0.05), se rechaza H₀ de independencia — hay evidencia de asociación." },
+    ],
+    notes: [
+      { icon: "📊", title: "Estadística y probabilidad", desc: "Distribuciones, regresión, inferencia, chi²" },
+      { icon: "🔢", title: "Números y álgebra", desc: "Secuencias, finanzas, logaritmos, GDC" },
+      { icon: "📐", title: "Geometría y trigonometría", desc: "Voronoi, trigonometría, geometría 3D" },
+      { icon: "📈", title: "Cálculo (aplicado)", desc: "Derivadas e integrales con GDC, modelos" },
+    ]
+  },
+
+  // ── MAE NM ──
+  mae_nm: {
+    syllabus: "Syllabus actual — primer examen Mayo 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Nov 2022",   ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · MAE NM",
+        text: "El Paper 1 es sin calculadora — practica aritmética exacta con fracciones, raíces y logaritmos. Los errores en Paper 1 suelen ser de cálculo, no de concepto, así que practica velocidad." },
+      { author: "Estudiante IB · MAE NM",
+        text: "En cálculo diferencial, la regla de la cadena y la regla del producto son las más examinadas. Practica derivar funciones compuestas hasta que sea automático." },
+    ],
+    flashcards: [
+      { q: "¿Qué es la derivada de una función?", a: "Mide la tasa de cambio instantánea. f'(x) = lim[h→0] (f(x+h)−f(x))/h. Geométricamente es la pendiente de la tangente en ese punto." },
+      { q: "Regla de la cadena", a: "Si y = f(g(x)), entonces dy/dx = f'(g(x)) · g'(x). Se aplica para derivar funciones compuestas." },
+      { q: "¿Qué es una serie geométrica infinita?", a: "Suma S∞ = a/(1−r), válida cuando |r|<1. Si |r|≥1, la serie diverge (no tiene suma finita)." },
+      { q: "¿Cuándo tiene máximo o mínimo una función?", a: "En un punto crítico donde f'(x) = 0. Si f''(x) < 0 es máximo local; si f''(x) > 0 es mínimo local. Verificar también los extremos del intervalo." },
+    ],
+    notes: [
+      { icon: "📐", title: "Álgebra y funciones", desc: "Polinomios, logaritmos, exponenciales, secuencias" },
+      { icon: "📊", title: "Trigonometría", desc: "Funciones trigonométricas, identidades, ecuaciones" },
+      { icon: "∂", title: "Cálculo diferencial", desc: "Límites, derivadas, optimización" },
+      { icon: "∫", title: "Cálculo integral", desc: "Técnicas de integración, área, volumen" },
+    ]
+  },
+
+  // ── MAE NS ──
+  mae_ns: {
+    syllabus: "Syllabus actual — primer examen Mayo 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Nov 2022",   ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · MAE NS",
+        text: "MAE NS tiene números complejos, series de Maclaurin, ecuaciones diferenciales y pruebas formales. En los 'proofs', cada paso debe estar justificado — no puedes saltarte pasos aunque sean obvios." },
+      { author: "Estudiante IB · MAE NS",
+        text: "Para el Paper 3 (NS), las preguntas son largas e interconectadas. Si te bloqueas en una parte, salta a la siguiente — muchas veces puedes usar el resultado dado en la siguiente pregunta aunque no hayas demostrado la anterior." },
+    ],
+    flashcards: [
+      { q: "Fórmula de Euler", a: "e^(iθ) = cos θ + i sin θ. Conecta la función exponencial con las trigonométricas. Caso especial: e^(iπ) + 1 = 0 (identidad de Euler)." },
+      { q: "¿Qué es la serie de Maclaurin?", a: "Expansión de una función como serie de potencias alrededor de x=0: f(x) = f(0) + f'(0)x + f''(0)x²/2! + ... Válida dentro del radio de convergencia." },
+      { q: "Integral por partes", a: "∫u dv = uv − ∫v du. Útil para integrales producto de funciones (ej: ∫x·eˣdx). Regla LIATE para elegir u: Logarítmica, Inversa trig., Algebraica, Trigonométrica, Exponencial." },
+    ],
+    notes: [
+      { icon: "🔢", title: "Números complejos", desc: "Forma cartesiana y polar, forma de Euler, raíces" },
+      { icon: "∞", title: "Series y sucesiones", desc: "Convergencia, Maclaurin, series de potencias" },
+      { icon: "∫", title: "Cálculo avanzado", desc: "Integración avanzada, EDO, campos de pendientes" },
+      { icon: "📊", title: "Estadística inferencial", desc: "Distribuciones, estimación, tests de hipótesis" },
+    ]
+  },
+
+  // ── MAE (Inglés) NM ──
+  mae_eng_nm: {
+    syllabus: "Syllabus actual — primer examen Mayo 2021",
+    validFrom: "Mayo 2021",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2021",  ok: true },
+      { s: "Mayo 2020 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · MAE (Inglés) NM",
+        text: "El contenido es idéntico a MAE NM pero el examen es en inglés. Asegúrate de conocer el vocabulario matemático en inglés: 'differentiate', 'hence', 'show that', 'factorise', 'asymptote'…" },
+      { author: "Consejo general",
+        text: "'Hence' en una pregunta significa que debes usar el resultado de la parte anterior. 'Hence or otherwise' te da libertad de método. Leer las instrucciones en inglés con precisión es clave." },
+    ],
+    flashcards: [
+      { q: "¿Qué significa 'show that' en MAE en inglés?", a: "Debes demostrar el resultado dado, mostrando cada paso claramente. El resultado final ya está escrito en la pregunta — el objetivo es la deducción, no la respuesta." },
+      { q: "¿Qué significa 'hence' en un examen de IB Math?", a: "Debes usar el resultado obtenido en la parte inmediatamente anterior para resolver la siguiente parte. No puedes usar un método distinto sin perder puntos." },
+      { q: "¿Qué es la derivada de una función? (en inglés)", a: "The derivative f'(x) measures the instantaneous rate of change of f at x. Geometrically, it represents the gradient of the tangent to the curve at that point." },
+    ],
+    notes: [
+      { icon: "📐", title: "Algebra & Functions", desc: "Polynomials, logarithms, sequences, series" },
+      { icon: "📊", title: "Trigonometry", desc: "Trig functions, identities, equations" },
+      { icon: "∂", title: "Differential Calculus", desc: "Limits, derivatives, optimization, chain rule" },
+      { icon: "∫", title: "Integral Calculus", desc: "Integration techniques, area, volume" },
+    ]
+  },
+
+  // ── Gestión Empresarial NS ──
+  bm_ns: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2022",
+    validFrom: "Mayo 2022",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+      { s: "Mayo 2021 y anteriores", ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Gestión Empresarial NS",
+        text: "NS tiene el Paper 3 (caso de estudio) que se publica antes del examen. Léelo con antelación, analiza la empresa en profundidad y prepara argumentos pro/contra para las decisiones estratégicas que presenta." },
+      { author: "Estudiante IB · Gestión Empresarial NS",
+        text: "Para preguntas de evaluación, siempre cierra con un juicio justificado. 'Depende del contexto' sin explicar de qué depende no da puntos. Sé específico: 'En el caso de [empresa], recomendaría X porque…'" },
+    ],
+    flashcards: [
+      { q: "¿Qué es el margen de contribución?", a: "Precio de venta unitario − Coste variable unitario. Indica cuánto contribuye cada unidad vendida a cubrir los costes fijos y generar beneficio." },
+      { q: "¿Qué es la Matriz de Ansoff?", a: "Marco estratégico de 4 opciones de crecimiento: Penetración de mercado (producto existente, mercado existente), Desarrollo de producto, Desarrollo de mercado, Diversificación." },
+      { q: "¿Qué es el ratio de liquidez corriente?", a: "Activo corriente / Pasivo corriente. Mide la capacidad de la empresa para pagar sus deudas a corto plazo. Un ratio > 1 indica que puede cubrir las deudas con activos líquidos." },
+    ],
+    notes: [
+      { icon: "🏢", title: "Organización y RR.HH.", desc: "Cultura, motivación, liderazgo, estructuras" },
+      { icon: "💰", title: "Finanzas (avanzado NS)", desc: "Ratios, análisis de inversión, financiación" },
+      { icon: "📊", title: "Marketing y estrategia", desc: "Segmentación, posicionamiento, Ansoff, Porter" },
+      { icon: "📁", title: "Paper 3 — Caso de estudio", desc: "Empresa del año, análisis estratégico" },
+    ]
+  },
+
+  // ── Física NS ──
+  physics_ns: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2025",
+    validFrom: "Mayo 2025",
+    papers: [
+      { s: "Mayo 2025",  ok: true },
+      { s: "Nov 2024",   ok: false },
+      { s: "Mayo 2024",  ok: false },
+      { s: "Nov 2023",   ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Física NS",
+        text: "NS incluye temas de física de partículas, relatividad y astrofísica. Para relatividad especial, trabaja siempre con los postulados como punto de partida y deduce las consecuencias — no memorices fórmulas sin entenderlas." },
+      { author: "Estudiante IB · Física NS",
+        text: "En el Paper 3 (NS) puedes elegir entre opciones. Lee bien los enunciados de los temas opcionales antes del examen y elige el que mejor dominas — no el que suena más interesante el día del examen." },
+    ],
+    flashcards: [
+      { q: "¿Qué postula la relatividad especial de Einstein?", a: "1) Las leyes de la física son iguales en todos los marcos de referencia inerciales. 2) La velocidad de la luz en el vacío es constante para todos los observadores, independientemente del movimiento de la fuente." },
+      { q: "Dilatación temporal (relatividad especial)", a: "Un reloj en movimiento va más lento que uno en reposo. Δt' = γΔt₀, donde γ = 1/√(1−v²/c²). El tiempo propio Δt₀ se mide en el marco del reloj en reposo." },
+      { q: "¿Qué es la fusión nuclear?", a: "Proceso en que dos núcleos ligeros se unen para formar un núcleo más pesado, liberando energía. Ocurre en las estrellas (fusión de hidrógeno → helio). Requiere temperatura y presión extremas para superar la barrera coulombiana." },
+    ],
+    notes: [
+      { icon: "🌀", title: "Mecánica avanzada", desc: "Momento angular, oscilaciones, fluidos" },
+      { icon: "⚡", title: "Electromagnetismo avanzado", desc: "Inducción, Maxwell, ondas EM" },
+      { icon: "💫", title: "Física moderna y relatividad", desc: "Cuántica, relatividad especial, partículas" },
+      { icon: "🌌", title: "Astrofísica (opción NS)", desc: "Estrellas, cosmología, Doppler, Hubble" },
+    ]
+  },
+
+  // ── Artes Visuales NS ──
+  va_ns: {
+    syllabus: "Syllabus vigente desde 2016",
+    validFrom: "Mayo 2016",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+    ],
+    tips: [
+      { author: "Estudiante IB · Artes Visuales NS",
+        text: "El proceso journal (cuaderno de artista) debe mostrar evolución real: bocetos fallidos, cambios de dirección, reflexiones sobre el proceso. Los examinadores penalizan los journals 'demasiado perfectos' que no muestran proceso real." },
+      { author: "Estudiante IB · Artes Visuales NS",
+        text: "Para el comparative study, conecta las obras de artistas diferentes a través de un concepto o formal element, no solo por tema. La calidad del análisis formal (línea, composición, color, espacio…) es lo que sube la nota." },
+    ],
+    flashcards: [
+      { q: "¿Qué son los elementos formales en arte?", a: "Componentes visuales básicos: línea, forma, color, textura, espacio, valor (claro-oscuro), tono. Son las 'herramientas' del artista para componer y expresar." },
+      { q: "¿Qué es el Comparative Study en Artes Visuales IB?", a: "Análisis comparativo de obras de 2-3 artistas, explorando similitudes/diferencias en intención, técnica y contexto cultural. Debe demostrar comprensión cultural y análisis formal." },
+    ],
+    notes: [
+      { icon: "📒", title: "Process Journal", desc: "Registro del proceso creativo, bocetos, reflexiones" },
+      { icon: "🎨", title: "Comparative Study", desc: "Análisis formal, contexto cultural, conexiones" },
+      { icon: "🖼️", title: "Exhibition", desc: "Curatoría, declaración del artista, presentación" },
+      { icon: "🔍", title: "Análisis de obra", desc: "Elementos formales, movimientos artísticos, contexto" },
+    ]
+  },
+
+  // ── Biología NS ──
+  bio_ns: {
+    syllabus: "Nuevo syllabus — primer examen Mayo 2025",
+    validFrom: "Mayo 2025",
+    papers: [
+      { s: "Mayo 2025",  ok: true },
+      { s: "Nov 2024",   ok: false },
+      { s: "Mayo 2024",  ok: false },
+      { s: "Nov 2023",   ok: false },
+    ],
+    tips: [
+      { author: "Estudiante IB · Biología NS",
+        text: "El nuevo syllabus 2025 hace mucho énfasis en el 'inquiry toolkit' y en la naturaleza de la ciencia. En el IA, muestra comprensión del proceso científico, no solo resultados limpios." },
+      { author: "Estudiante IB · Biología NS",
+        text: "Para esquemas de metabolismo (respiración, fotosíntesis), dibújalos a mano varias veces. NS incluye las rutas completas del ciclo de Krebs y la cadena de transporte de electrones — entiéndelas, no las memorices." },
+    ],
+    flashcards: [
+      { q: "¿Cuáles son los productos del ciclo de Krebs?", a: "Por cada acetil-CoA: 3 NADH, 1 FADH₂, 1 ATP (o GTP), 2 CO₂. El ciclo ocurre dos veces por glucosa (dos acetil-CoA)." },
+      { q: "Diferencia entre mitosis y meiosis", a: "Mitosis: 1 división → 2 células diploides idénticas (crecimiento y reparación). Meiosis: 2 divisiones → 4 células haploides genéticamente distintas (reproducción sexual, recombinación)." },
+      { q: "¿Qué es la homeostasis?", a: "Mantenimiento de condiciones internas estables (temperatura, pH, glucosa en sangre…) a través de mecanismos de retroalimentación negativa. Esencial para el funcionamiento celular." },
+    ],
+    notes: [
+      { icon: "🔬", title: "Bioquímica y célula", desc: "Moléculas orgánicas, organelos, membrana, transporte" },
+      { icon: "🧬", title: "Genética y herencia", desc: "ADN, expresión génica, herencia, biotecnología" },
+      { icon: "🌿", title: "Ecología y evolución", desc: "Ecosistemas, biodiversidad, selección natural" },
+      { icon: "🫀", title: "Fisiología animal y vegetal", desc: "Sistemas del cuerpo humano, transporte en plantas" },
+    ]
+  },
+
+  // ── Global Politics NS ──
+  gp_ns: {
+    syllabus: "Syllabus vigente desde 2017",
+    validFrom: "Mayo 2017",
+    papers: [
+      { s: "Mayo 2024",  ok: true },
+      { s: "Nov 2023",   ok: true },
+      { s: "Mayo 2023",  ok: true },
+      { s: "Mayo 2022",  ok: true },
+    ],
+    tips: [
+      { author: "Estudiante IB · Global Politics NS",
+        text: "El Engagement Activity (IA) debe demostrar participación real en política global, no solo escribir sobre ella. Documentar el proceso con evidencias (fotos, correos, resultados) desde el principio — no lo reconstructes al final." },
+      { author: "Estudiante IB · Global Politics NS",
+        text: "Usa casos de estudio actuales en los Papers. Los examinadores valoran la capacidad de aplicar conceptos a eventos reales y recientes. Lee noticias de política internacional regularmente." },
+    ],
+    flashcards: [
+      { q: "¿Qué es el realismo en relaciones internacionales?", a: "Teoría que ve el sistema internacional como anárquico, donde los estados son los actores principales y buscan maximizar su poder y seguridad. El interés nacional prevalece sobre valores morales o cooperación." },
+      { q: "¿Qué es el multilateralismo?", a: "Coordinación de políticas entre tres o más estados basada en principios compartidos. Contraste con unilateralismo (actuar solo) y bilateralismo (acuerdos entre dos estados)." },
+      { q: "¿Qué es el R2P (Responsabilidad de Proteger)?", a: "Principio de la ONU (2005) que afirma que la soberanía implica responsabilidad: si un estado no protege a sus ciudadanos de crímenes masivos, la comunidad internacional tiene el deber de intervenir." },
+    ],
+    notes: [
+      { icon: "🌍", title: "Conceptos clave", desc: "Poder, soberanía, interdependencia, justicia, derechos" },
+      { icon: "⚔️", title: "Paz y conflicto", desc: "Causas de guerra, resolución, seguridad humana" },
+      { icon: "⚖️", title: "Derechos humanos", desc: "Sistemas internacionales, violaciones, intervención" },
+      { icon: "📋", title: "Engagement Activity (IA)", desc: "Guía, criterios, documentación del proceso" },
+    ]
+  },
+
+}
+
+// ════════════════════════════════════════════════
+//  PRUEBAS  (assessments per subject)
+// ════════════════════════════════════════════════
+
+const F  = 'prueba1-espanol-a/'   // folder shorthand for Español A P1 files
+const F2 = 'prueba2-espanol-a/'   // folder shorthand for Español A P2 files
+
+const PRUEBAS = {
+
+  spa_a_ns: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📄', weight: '35%', duration: '90 min',
+      desc: 'Análisis de texto no visto (prosa o poesía). Sin obras estudiadas previamente.',
+      tips: [
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Lee primero el texto completo sin anotar nada. En la segunda lectura, marca recursos, estructura y tono. Empieza el comentario siempre con localización y contexto — nunca vayas directo al análisis sin situar el texto.' },
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Los examinadores penalizan el parafraseo. Cada párrafo debe tener: recurso literario identificado + cita exacta del texto + efecto que produce en el lector. Sin los tres, no llega a la banda alta.' },
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Para poesía, analiza siempre la métrica y el ritmo aunque sea brevemente. Muchos estudiantes se olvidan y pierden puntos en el criterio de "lenguaje y estilo".' },
+      ],
+      gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true },
+        { s: 'Nov 2023',  ok: true },
+        { s: 'Mayo 2023', ok: true },
+        { s: 'Mayo 2022', ok: true },
+        { s: 'Mayo 2021', ok: true },
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [
+        { type: 'guia',    name: 'Guía para el comentario de texto literario', folder: F, path: 'GUÍA PARA EL  COMENTARIO DE TEXTO LITERARIO (1).pdf' },
+        { type: 'guia',    name: 'Fase 1: Localización y contextualización',   folder: F, path: 'Fase_1-Localización_Prueba1.pdf' },
+        { type: 'guia',    name: 'Guión para el comentario',                    folder: F, path: 'GUIÓN (COMENTARIO).docx' },
+        { type: 'guia',    name: 'Plantilla: comentario de texto lírico',       folder: F, path: 'PLANTILLA-COMENT.TEXT.Lírico_1.4_autor_desconoc.docx' },
+        { type: 'recurso', name: 'Guía de métrica y versificación',             folder: F, path: 'MÉTRICA.pdf' },
+        { type: 'recurso', name: 'Presentación general Prueba 1',               folder: F, path: 'Presentación de PowerPoint.pdf' },
+        { type: 'consejo', name: 'Consejos de elaboración — 2º IB',             folder: F, path: 'CONSEJOS_ELABORACIÓN_PRUEBA-1.2ºIB.pdf' },
+        { type: 'recurso', name: 'Apuntes: géneros periodísticos',                folder: F, path: 'local.pdf' },
+        { type: 'ejemplo', name: 'Ejemplo resuelto 2',                          folder: F, path: 'local (1).pdf' },
+        { type: 'ejemplo', name: 'Ejemplo: ¿Tú no conoces aquel sitio?',        folder: F, path: '¿Tií no conoces aquel sitio.pdf' },
+        { type: 'recurso', name: 'Apuntes: tópicos literarios',                  folder: F, path: 'r (1).pdf' },
+      ],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '35%', duration: '90 min',
+      desc: 'Ensayo comparativo sobre dos obras literarias estudiadas en clase.',
+      tips: [
+        { author: 'Estudiante IB · Español A NS',
+          text: 'No hagas dos análisis separados y los pegues al final — la comparación debe estar integrada párrafo a párrafo. Usa conectores comparativos: "a diferencia de", "de manera similar", "mientras que".' },
+      ],
+      gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true },
+        { s: 'Nov 2023',  ok: true },
+        { s: 'Mayo 2023', ok: true },
+        { s: 'Mayo 2021', ok: true },
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [
+        { type: 'guia',    name: 'Agenda — cómo estructurar el ensayo',         folder: F2, path: 'Agenda.pdf' },
+        { type: 'guia',    name: 'Guía para el comentario de texto literario',  folder: F2, path: 'GUÍA PARA EL  COMENTARIO DE TEXTO LITERARIO (1).pdf' },
+        { type: 'guia',    name: 'Guía IB: Lengua A Literatura 2019–2021',      folder: F2, path: 'LLENGUA A_ LITERATURA  2019-2021.pdf' },
+        { type: 'recurso', name: 'Apuntes: género narrativo',                   folder: F2, path: 'GÉNERO NARRATIVO.pdf' },
+        { type: 'recurso', name: 'Apuntes: narrador y punto de vista',          folder: F2, path: 'NARRADOR O PUNTO DE VISTA.pdf' },
+        { type: 'recurso', name: 'Presentación del profesor',                   folder: F2, path: 'Presentación de PowerPoint.pdf' },
+        { type: 'recurso', name: 'Apuntes generales',                           folder: F2, path: 'local.pdf' },
+        { type: 'recurso', name: 'Como agua para chocolate (texto)',            folder: F2, path: 'COMO AGUA PARA EL CHOCOLATE.pdf' },
+        { type: 'ejemplo', name: 'Ejemplo: examen Paper 1 (Mayo 2014)',         folder: F2, path: '—3— M14_1_AXSPA.pdf' },
+      ],
+    },
+    {
+      id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '30%', duration: '15 min + 5 min',
+      desc: 'Presentación de un extracto de obra literaria conectado con un texto de los medios a través de un global issue.',
+      tips: [
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Prepara 3–4 global issues con citas concretas para cada obra. El día del oral, adaptas el que mejor conecta con el texto de los medios que te salga — no intentes improvisar el global issue.' },
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Los primeros 2 minutos son los más importantes: presentas el extracto, el texto de los medios y tu global issue. Practica ese arranque hasta que salga solo.' },
+      ],
+      gradeBoundaries: null,
+      papers: [],
+      files: [],
+    },
+  ],
+
+  eng_a_ns: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '📄', weight: '35%', duration: '90 min',
+      desc: 'Unseen text analysis — prose or poetry not previously studied.',
+      tips: [
+        { author: 'Student IB · English A NS',
+          text: 'Use TADPOLE: Theme, Audience, Diction, Purpose, Organization, Language, Effect. It stops you from summarizing and forces real analysis of how the writer achieves their purpose.' },
+      ],
+      gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '35%', duration: '90 min',
+      desc: 'Comparative essay on two literary works studied in class.',
+      tips: [
+        { author: 'Student IB · English A NS',
+          text: 'Integrate the comparison throughout — don\'t write about one work then the other. Use a clear, arguable thesis in your introduction, not a question.' },
+      ],
+      gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '30%', duration: '15 min + 5 min',
+      desc: 'Present an extract from a literary work connected to a non-literary body of work through a global issue.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  eng_b_ns: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '📖', weight: '25%', duration: '75 min',
+      desc: 'Reading comprehension — three texts from different text types.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '90 min',
+      desc: 'Written production — one text from a choice of three prompts.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '25%', duration: '15 min',
+      desc: 'Oral based on a visual stimulus connected to one of the five themes.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'HL Essay', icon: '📋', weight: '25%', duration: '~1500 palabras',
+      desc: 'Literary essay on one of the two HL literary works studied.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  spa_b_ns: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📖', weight: '25%', duration: '75 min',
+      desc: 'Comprensión lectora — tres textos de distintos tipos.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '25%', duration: '90 min',
+      desc: 'Producción escrita — un texto a partir de tres opciones.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '25%', duration: '15 min',
+      desc: 'Oral con estímulo visual relacionado con uno de los cinco temas.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'HL Essay', icon: '📋', weight: '25%', duration: '~1500 palabras',
+      desc: 'Ensayo literario sobre una de las dos obras NS estudiadas.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  ger_b_ns: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '📖', weight: '25%', duration: '75 min',
+      desc: 'Leseverstehen — drei Texte verschiedener Textsorten.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '90 min',
+      desc: 'Schriftliche Produktion — ein Text aus drei Aufgaben.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '25%', duration: '15 min',
+      desc: 'Mündliche Prüfung mit Bildimpuls zu einem der fünf Themen.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'HL Essay', icon: '📋', weight: '25%', duration: '~1500 Wörter',
+      desc: 'Literarischer Aufsatz über ein NS-Werk.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  phil_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '🤔', weight: '40%', duration: '90 min',
+      desc: 'Preguntas cortas y largas sobre temas filosóficos del Core y opciones.',
+      tips: [
+        { author: 'Estudiante IB · Filosofía NM',
+          text: 'Estructura: presenta la pregunta → expón la posición de un filósofo con argumentos → contraargumenta con otro → emite tu juicio razonado. Citar filósofos con nombre y obra concreta sube mucho la nota.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '30%', duration: '90 min',
+      desc: 'Ensayo filosófico largo sobre un tema elegido.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Philosophical Analysis', icon: '📋', weight: '30%', duration: '~2000 palabras',
+      desc: 'Análisis filosófico de un texto no filosófico (noticia, película, publicidad…).',
+      tips: [
+        { author: 'Estudiante IB · Filosofía NM',
+          text: 'Elige un texto que genere preguntas filosóficas genuinamente interesantes, no el más fácil de analizar. Un buen texto source hace que el análisis fluya solo.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  bm_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📊', weight: '35%', duration: '75 min',
+      desc: 'Caso de estudio basado en datos — preguntas de respuesta corta y extendida.',
+      tips: [
+        { author: 'Estudiante IB · BM NM',
+          text: 'Para preguntas de evaluación (6 pts) siempre: argumento a favor + evidencia del caso → argumento en contra + evidencia → conclusión justificada. Sin referencia al caso real, la respuesta no llega al nivel máximo.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '40%', duration: '90 min',
+      desc: 'Preguntas basadas en datos de un estímulo no visto.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA', icon: '📋', weight: '25%', duration: '~2000 palabras',
+      desc: 'Investigación sobre una empresa o problema empresarial real.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  history_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📜', weight: '30%', duration: '60 min',
+      desc: 'Análisis de fuentes históricas (OPVL) sobre un tema prescristo.',
+      tips: [
+        { author: 'Estudiante IB · Historia NM',
+          text: 'La "Limitation" de una fuente debe ser específica al contexto histórico, no genérica. "Es subjetivo" no da puntos. Di por qué su subjetividad concreta limita su valor para este tema específico.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '45%', duration: '90 min',
+      desc: 'Dos ensayos sobre temas mundiales prescritos del syllabus.',
+      tips: [
+        { author: 'Estudiante IB · Historia NM',
+          text: 'Empieza con una tesis clara y defendible, no con una pregunta retórica ni con "A lo largo de la historia…". Los marcadores usan: P (Point) → E (Evidence) → E (Explanation) → L (Link).' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Investigación Histórica', icon: '📋', weight: '25%', duration: '~2200 palabras',
+      desc: 'Investigación histórica sobre una pregunta de investigación propia.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  cs_nm: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '🖥️', weight: '45%', duration: '90 min',
+      desc: 'Teoría: sistemas, redes, organización de datos, OOP, resumen.',
+      tips: [
+        { author: 'Estudiante IB · CS NM',
+          text: 'El pseudocódigo del IB tiene su propia sintaxis. Estúdiala desde el principio — los examinadores no aceptan Python, Java ni ningún otro lenguaje, aunque la lógica sea correcta.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '💻', weight: '25%', duration: '60 min',
+      desc: 'Programación orientada a objetos y algoritmos en pseudocódigo IB.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Dossier', icon: '📋', weight: '30%', duration: 'Proyecto completo',
+      desc: 'Solución software documentada con criterios A–F.',
+      tips: [
+        { author: 'Estudiante IB · CS NM',
+          text: 'El criterio B (Design) es donde más puntos se pierden. Documenta cada decisión de diseño con capturas y justificaciones. "Hice X porque es mejor que Y" vale mucho más que solo mostrar que X funciona.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  chem_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '🔬', weight: '36%', duration: '90 min',
+      desc: 'Parte A: MCQ de opción múltiple. Parte B: análisis de datos experimental.',
+      tips: [
+        { author: 'Estudiante IB · Química NM',
+          text: 'En la MCQ, lee todas las opciones antes de marcar. Las opciones incorrectas están diseñadas para confundir a quien no lee con atención. Proceso de eliminación funciona muy bien.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
+      desc: 'Preguntas cortas y de respuesta extendida — cálculos y preguntas conceptuales.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Experimento', icon: '🧪', weight: '20%', duration: '10 horas',
+      desc: 'Investigación experimental diseñada por el alumno — análisis de errores incluido.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  physics_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '⚡', weight: '36%', duration: '90 min',
+      desc: 'Parte A: MCQ. Parte B: análisis de datos experimental.',
+      tips: [
+        { author: 'Estudiante IB · Física NM',
+          text: 'Antes de aplicar una fórmula del data booklet, verifica que se cumplen sus condiciones (rozamiento despreciable, campo uniforme…). Aplicar la fórmula correcta en el contexto incorrecto es error conceptual.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
+      desc: 'Preguntas cortas y de respuesta extendida — cálculos y explicaciones.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Experimento', icon: '🔩', weight: '20%', duration: '10 horas',
+      desc: 'Investigación experimental con análisis de incertidumbres.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  physics_ns: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '⚡', weight: '36%', duration: '90 min',
+      desc: 'Parte A: MCQ. Parte B: análisis de datos experimental.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
+      desc: 'Preguntas cortas y de respuesta extendida.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p3', name: 'Prueba 3', icon: '🌌', weight: 'NS only',  duration: '60 min',
+      desc: 'Opción NS elegida: Física de partículas, Astrofísica, Electromagnetismo, o Medicina.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Experimento', icon: '🔩', weight: '20%', duration: '10 horas',
+      desc: 'Investigación experimental con análisis de incertidumbres.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  sports_nm: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '🏃', weight: '30%', duration: '60 min',
+      desc: 'Short-answer questions on anatomy, physiology and psychology.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '30%', duration: '60 min',
+      desc: 'Extended response questions on training, nutrition and performance.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Investigation', icon: '📋', weight: '40%', duration: '~2000 words',
+      desc: 'Practical investigation designed and evaluated by the student.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  sas_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📄', weight: '—', duration: '—',
+      desc: 'Consulta con tu profesor los detalles específicos de esta prueba.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'Evaluación Interna', icon: '📋', weight: '—', duration: '—',
+      desc: 'Evaluación interna — consulta los criterios con tu profesor.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  mai_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '📊', weight: '30%', duration: '90 min',
+      desc: 'Con calculadora (GDC). Preguntas cortas y de respuesta extendida.',
+      tips: [
+        { author: 'Estudiante IB · MAI NM',
+          text: 'MAI usa calculadora en todos los papers. Aprende a usar la GDC para listas, regresión, distribuciones y resolver ecuaciones — puede ahorrarte 20 minutos en el examen.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '90 min',
+      desc: 'Con calculadora (GDC). Preguntas largas con partes conectadas.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
+      desc: 'Investigación matemática personal sobre un tema de interés propio.',
+      tips: [
+        { author: 'Estudiante IB · MAI NM',
+          text: 'Elige un tema que genuinamente te interese: conectar matemáticas con deporte, música, economía… Los examinadores notan cuando hay pasión real en la exploración.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  mae_nm: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '🧮', weight: '30%', duration: '90 min',
+      desc: 'Sin calculadora — álgebra, funciones, cálculo y trigonometría.',
+      tips: [
+        { author: 'Estudiante IB · MAE NM',
+          text: 'Paper 1 es sin calculadora. Practica aritmética exacta con fracciones, raíces y logaritmos regularmente — los errores de cálculo en P1 son el error más común.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '90 min',
+      desc: 'Con calculadora (GDC). Problemas aplicados y preguntas largas.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
+      desc: 'Investigación matemática personal sobre un tema elegido.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  mae_ns: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '🧮', weight: '30%', duration: '120 min',
+      desc: 'Sin calculadora — incluye demostración formal, números complejos y series.',
+      tips: [
+        { author: 'Estudiante IB · MAE NS',
+          text: 'En los "proofs" (demostraciones), justifica cada paso. Saltar pasos aunque sean obvios puede costar el punto de method. Escribe más de lo que crees necesario.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '120 min',
+      desc: 'Con calculadora (GDC). Preguntas largas e interconectadas.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p3', name: 'Prueba 3', icon: '🔢', weight: '20%', duration: '60 min',
+      desc: 'Sin calculadora. Dos preguntas largas e interconectadas (NS only).',
+      tips: [
+        { author: 'Estudiante IB · MAE NS',
+          text: 'En P3, si te bloqueas en una parte, continúa con la siguiente — muchas preguntas usan el resultado dado ("hence") aunque no lo hayas demostrado tú. No te quedes atascado.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
+      desc: 'Investigación matemática personal.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  mae_eng_nm: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '🧮', weight: '30%', duration: '90 min',
+      desc: 'Non-calculator — algebra, functions, calculus and trigonometry.',
+      tips: [
+        { author: 'Student IB · MAE (English) NM',
+          text: '"Hence" means use the previous result. "Hence or otherwise" gives freedom of method. Read every instruction precisely — misreading command words is a very common mistake.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '📈', weight: '30%', duration: '90 min',
+      desc: 'GDC allowed — extended problems and applications.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Exploration', icon: '📋', weight: '20%', duration: '~12 pages',
+      desc: 'Personal mathematical investigation on a chosen topic.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  bm_ns: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '📊', weight: '25%', duration: '75 min',
+      desc: 'Structured questions based on a seen case study.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '75 min',
+      desc: 'Extended responses based on an unseen stimulus.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p3', name: 'Paper 3', icon: '📁', weight: '25%', duration: '60 min',
+      desc: 'Pre-released case study — strategic analysis and recommendations (NS only).',
+      tips: [
+        { author: 'Student IB · Business Management NS',
+          text: 'Read the pre-released case study weeks before the exam. Analyse the company deeply and prepare arguments for/against the strategic decisions it faces.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA', icon: '📋', weight: '25%', duration: '~2000 words',
+      desc: 'Research project on a real business issue.', tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  va_ns: [
+    {
+      id: 'cs', name: 'Comparative Study', icon: '🔍', weight: '20%', duration: '~20 screens',
+      desc: 'Análisis comparativo de obras de 2–3 artistas en relación a un concepto.',
+      tips: [
+        { author: 'Estudiante IB · Artes Visuales NS',
+          text: 'Conecta las obras a través de elementos formales (línea, composición, color…) y contexto cultural, no solo por el tema superficial. "Ambos pintan personas" no es una comparación válida.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'pp', name: 'Process Portfolio', icon: '📒', weight: '40%', duration: 'Continuo',
+      desc: 'Registro del proceso creativo — experimentos, desarrollo y reflexión.',
+      tips: [
+        { author: 'Estudiante IB · Artes Visuales NS',
+          text: 'Los examinadores penalizan los portfolios demasiado perfectos. Incluye bocetos fallidos, cambios de dirección y reflexiones honestas sobre lo que no funcionó y por qué.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ex', name: 'Exhibition', icon: '🖼️', weight: '40%', duration: '8–11 obras NS',
+      desc: 'Exposición final de obras originales con declaración del artista.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  bio_ns: [
+    {
+      id: 'p1', name: 'Prueba 1', icon: '🔬', weight: '36%', duration: '90 min',
+      desc: 'Parte A: MCQ. Parte B: análisis de datos experimental.',
+      tips: [
+        { author: 'Estudiante IB · Biología NS',
+          text: 'El nuevo syllabus (2025) hace énfasis en el "inquiry toolkit". En la Parte B de P1, demuestra comprensión del proceso científico, no solo los resultados.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
+      desc: 'Preguntas cortas y de respuesta extendida.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ia', name: 'IA — Investigación', icon: '🧫', weight: '20%', duration: '10 horas',
+      desc: 'Investigación experimental diseñada por el alumno.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+  gp_ns: [
+    {
+      id: 'p1', name: 'Paper 1', icon: '🌍', weight: '30%', duration: '75 min',
+      desc: 'Source-based questions on a global political issue.',
+      tips: [], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'p2', name: 'Paper 2', icon: '✍️', weight: '45%', duration: '90 min',
+      desc: 'Extended essay on prescribed global political topics.',
+      tips: [
+        { author: 'Student IB · Global Politics NS',
+          text: 'Use current, real-world case studies in your essays. Examiners reward the ability to apply political concepts to recent events — read international news regularly.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+    {
+      id: 'ea', name: 'Engagement Activity', icon: '📋', weight: '25%', duration: '~2000 words',
+      desc: 'Documentación de una participación real en política global.',
+      tips: [
+        { author: 'Student IB · Global Politics NS',
+          text: 'Document the process from the start — photos, emails, outcomes. You cannot reconstruct evidence at the end. The examiner needs to see genuine engagement, not just writing about it.' },
+      ], gradeBoundaries: null, papers: [], files: [],
+    },
+  ],
+
+}
+
+// ════════════════════════════════════════════════
+//  GRADE BOUNDARIES  (November 2025, overall final)
+// ════════════════════════════════════════════════
+
+// Format: { session, 7, 6, 5, 4, 3, 2, 1 }  — values are "from–to" strings
+const GB = (session, g7, g6, g5, g4, g3, g2, g1) =>
+  [{ session, 7: g7, 6: g6, 5: g5, 4: g4, 3: g3, 2: g2, 1: g1 }]
+
+const GRADE_BOUNDARIES = {
+  // ── Grupo 1 ──
+  spa_a_ns:   GB('Nov 2025 · Español A: Lit HL',  '82–100','68–81','54–67','41–53','29–40','15–28','0–14'),
+  eng_a_ns:   GB('Nov 2025 · English A: Lit HL',  '79–100','67–78','54–66','41–53','28–40','14–27','0–13'),
+
+  // ── Grupo 2 ──
+  eng_b_ns:   GB('Nov 2025 · English B HL',       '89–100','71–88','54–70','37–53','25–36','12–24','0–11'),
+  spa_b_ns:   GB('Nov 2025 · Spanish B SL*',      '82–100','68–81','54–67','40–53','27–39','13–26','0–12'),
+  ger_b_ns:   GB('Nov 2025 · German B HL',        '81–100','67–80','53–66','39–52','23–38','11–22','0–10'),
+
+  // ── Grupo 3 ──
+  phil_nm:    GB('Nov 2025 · Philosophy SL',      '80–100','65–79','49–64','34–48','22–33','10–21','0–9'),
+  bm_nm:      GB('Nov 2025 · Business Mgmt SL',   '82–100','70–81','57–69','45–56','33–44','17–32','0–16'),
+  history_nm: GB('Nov 2025 · History SL',         '76–100','63–75','51–62','38–50','28–37','14–27','0–13'),
+
+  // ── Grupo 4 ──
+  cs_nm:      GB('Nov 2025 · Computer Science SL','73–100','64–72','55–63','45–54','32–44','15–31','0–14'),
+  chem_nm:    GB('Nov 2025 · Chemistry SL',       '76–100','66–75','55–65','44–54','28–43','15–27','0–14'),
+  physics_nm: GB('Nov 2025 · Physics SL',         '69–100','58–68','45–57','34–44','23–33','13–22','0–12'),
+  sports_nm:  GB('Nov 2025 · Sports Ex Sci SL',   '81–100','67–80','53–66','39–52','24–38','14–23','0–13'),
+
+  // ── Grupo 5 ──
+  mai_nm:     GB('Nov 2025 · Math AI SL',         '80–100','67–79','53–66','39–52','26–38','13–25','0–12'),
+  mae_nm:     GB('Nov 2025 · Math AA SL',         '80–100','67–79','54–66','41–53','27–40','13–26','0–12'),
+  mae_ns:     GB('Nov 2025 · Math AA HL',         '78–100','64–77','49–63','34–48','26–33','13–25','0–12'),
+  mae_eng_nm: GB('Nov 2025 · Math AA SL',         '80–100','67–79','54–66','41–53','27–40','13–26','0–12'),
+
+  // ── Grupo 6 ──
+  bm_ns:      GB('Nov 2025 · Business Mgmt HL',   '72–100','62–71','51–61','40–50','27–39','13–26','0–12'),
+  physics_ns: GB('Nov 2025 · Physics HL',         '70–100','57–69','46–56','34–45','22–33','14–21','0–13'),
+  va_ns:      GB('Nov 2025 · Visual Arts HL',     '81–100','66–80','53–65','39–52','20–38','10–19','0–9'),
+  bio_ns:     GB('Nov 2025 · Biology HL',         '78–100','65–77','51–64','38–50','24–37','14–23','0–13'),
+  gp_ns:      GB('Nov 2025 · Global Politics HL', '72–100','60–71','47–59','35–46','22–34','10–21','0–9'),
+}
+// * Spanish B HL not available in Nov 2025 boundaries (< 100 candidates); SL shown as reference.
+
+// ════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════
+
+const MAX = 6
+let selected = {}   // { id: true }
+let currentId = null
+let fcIdx = 0
+
+// ════════════════════════════════════════════════
+//  BOOT
+// ════════════════════════════════════════════════
+
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('ib_subjects_v2')
+  if (saved) {
+    selected = JSON.parse(saved)
+    enterApp()
+  } else {
+    buildOnboarding()
+  }
+})
+
+// ════════════════════════════════════════════════
+//  ONBOARDING
+// ════════════════════════════════════════════════
+
+function buildOnboarding() {
+  const container = document.getElementById('ob-groups')
+  container.innerHTML = ''
+
+  GROUPS.forEach(g => {
+    const section = document.createElement('div')
+    section.className = 'ob-group'
+    section.innerHTML = `
+      <div class="ob-group-header">
+        <div class="ob-group-dot" style="background:${g.color}"></div>
+        <span class="ob-group-label">${g.label}</span>
+      </div>
+      <div class="ob-chips">
+        ${g.subjects.map(s => chipHTML(s, g.color)).join('')}
+      </div>
+    `
+    container.appendChild(section)
+  })
+}
+
+function chipHTML(s, color) {
+  return `
+    <div class="chip" id="chip-${s.id}" style="--chip-color:${color}"
+         onclick="toggleSubject('${s.id}')">
+      <span class="chip-name">${s.name}</span>
+      <span class="chip-level ${s.level === 'NS' ? 'ns' : ''}">${s.level}</span>
+    </div>
+  `
+}
+
+function groupOfSubject(id) {
+  return GROUPS.find(g => g.subjects.some(s => s.id === id))
+}
+
+function toggleSubject(id) {
+  if (selected[id]) {
+    // deselect
+    delete selected[id]
+  } else {
+    // deselect any other subject already selected in the same group
+    const group = groupOfSubject(id)
+    if (group) {
+      group.subjects.forEach(s => { delete selected[s.id] })
+    }
+    selected[id] = true
+  }
+
+  updateChipUI()
+  updateCounter()
+}
+
+function updateChipUI() {
+  GROUPS.forEach(g => {
+    const groupHasSelection = g.subjects.some(s => !!selected[s.id])
+    g.subjects.forEach(s => {
+      const el = document.getElementById(`chip-${s.id}`)
+      if (!el) return
+      const isSel = !!selected[s.id]
+      el.classList.toggle('selected', isSel)
+      // disable other chips in this group if one is already selected
+      el.classList.toggle('disabled', groupHasSelection && !isSel)
+    })
+  })
+
+  document.getElementById('save-btn').disabled = Object.keys(selected).length === 0
+}
+
+function updateCounter() {
+  const count = Object.keys(selected).length
+  document.getElementById('counter-num').textContent = count
+  for (let i = 0; i < MAX; i++) {
+    document.getElementById(`slot-${i}`).classList.toggle('filled', i < count)
+  }
+}
+
+function saveAndEnter() {
+  localStorage.setItem('ib_subjects_v2', JSON.stringify(selected))
+  enterApp()
+}
+
+// ════════════════════════════════════════════════
+//  APP
+// ════════════════════════════════════════════════
+
+function enterApp() {
+  document.getElementById('onboarding').classList.add('hidden')
+  document.getElementById('app').classList.remove('hidden')
+  buildDashboard()
+}
+
+function changeSubjects() {
+  localStorage.removeItem('ib_subjects_v2')
+  selected = {}
+  document.getElementById('app').classList.add('hidden')
+  document.getElementById('onboarding').classList.remove('hidden')
+  buildOnboarding()
+  updateChipUI()
+  updateCounter()
+}
+
+function buildDashboard() {
+  const grid = document.getElementById('dash-grid')
+  grid.innerHTML = ''
+  const count = Object.keys(selected).length
+  document.getElementById('dash-sub').textContent =
+    `${count} asignatura${count !== 1 ? 's' : ''} — haz clic para ver recursos.`
+
+  Object.keys(selected).forEach(id => {
+    const info = SUBJECT_MAP[id]
+    if (!info) return
+    const card = document.createElement('div')
+    card.className = 'subject-card'
+    card.innerHTML = `
+      <div class="card-top-bar" style="background:${info.groupColor}"></div>
+      <div class="card-group" style="color:${info.groupColor}">${info.groupLabel}</div>
+      <div class="card-name">${info.name}</div>
+      <div class="card-level-badge" style="background:${info.groupColor}20;color:${info.groupColor}">${info.level}</div>
+      <div class="card-stats">
+        <span class="stat"><span class="stat-dot"></span>Apuntes</span>
+        <span class="stat"><span class="stat-dot"></span>Papers</span>
+        <span class="stat"><span class="stat-dot"></span>Flashcards</span>
+      </div>
+    `
+    card.onclick = () => openSubject(id)
+    grid.appendChild(card)
+  })
+}
+
+function showDashboard() {
+  document.getElementById('dashboard').style.display = ''
+  document.getElementById('subject-view').classList.add('hidden')
+}
+
+// ════════════════════════════════════════════════
+//  SUBJECT VIEW
+// ════════════════════════════════════════════════
+
+function openSubject(id) {
+  currentId = id
+  fcIdx = 0
+
+  document.getElementById('dashboard').style.display = 'none'
+  const sv = document.getElementById('subject-view')
+  sv.classList.remove('hidden')
+
+  const info = SUBJECT_MAP[id]
+  const data = CONTENT[id] || {}
+
+  document.getElementById('sv-group-label').style.color = info.groupColor
+  document.getElementById('sv-group-label').textContent = info.groupLabel
+  document.getElementById('sv-title').textContent = info.name
+  document.getElementById('sv-level-badge').textContent = info.level === 'NS' ? 'Nivel Superior' : 'Nivel Medio'
+  document.getElementById('sv-level-badge').style.background = info.groupColor + '22'
+  document.getElementById('sv-level-badge').style.color = info.groupColor
+  document.getElementById('sv-syllabus').textContent = data.syllabus || 'Consulta la guía oficial'
+
+  // reset tabs
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
+  document.querySelectorAll('.tab-btn')[0].classList.add('active')
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'))
+  document.getElementById('tab-notes').classList.add('active')
+
+  renderNotes(id)
+  renderPruebas(id, info)
+  renderFlashcards(data, info)
+}
+
+// ── Notes ──
+// ── Notes ──
+function renderNotes(subjectId) {
+  const panel = document.getElementById('tab-notes')
+  const pruebas = PRUEBAS[subjectId] || []
+
+  // Collect all teacher files grouped by prueba
+  const groups = pruebas
+    .filter(p => p.files && p.files.length > 0)
+    .map(p => ({ name: p.name, icon: p.icon, files: p.files }))
+
+  const fileTypeIcons = { pdf: '📄', docx: '📝', pptx: '📊', default: '📎' }
+  function fIcon(path) { const e = path.split('.').pop().toLowerCase(); return fileTypeIcons[e] || fileTypeIcons.default }
+  function fExt(path)  { return path.split('.').pop().toUpperCase() }
+
+  const teacherHtml = groups.length > 0 ? groups.map(g => `
+    <div class="notes-prueba-group">
+      <div class="notes-prueba-label">${g.icon} ${g.name}</div>
+      <div class="file-list">
+        ${g.files.map(f => {
+          const href = (f.folder || '') + encodeURIComponent(f.path)
+          return `
+            <div class="file-item">
+              <div class="file-left">
+                <span class="file-type-icon">${fIcon(f.path)}</span>
+                <div>
+                  <div class="file-name">${f.name}</div>
+                  <div class="file-ext">${fExt(f.path)}</div>
+                </div>
+              </div>
+              <a class="file-open-btn" href="${href}" target="_blank">Abrir</a>
+            </div>
+          `
+        }).join('')}
+      </div>
+    </div>
+  `).join('') : `<p style="color:var(--muted);font-size:13px">No hay apuntes del profesor disponibles aún.</p>`
+
+  panel.innerHTML = `
+    <div class="notes-section-title">📚 Apuntes del profesor</div>
+    ${teacherHtml}
+
+    <div class="notes-divider">
+      <div class="notes-divider-line"></div>
+      <span class="notes-divider-label">Mis apuntes</span>
+      <div class="notes-divider-line"></div>
+    </div>
+
+    <div class="personal-files-list" id="personal-files-list"></div>
+
+    <div class="upload-zone-personal" id="upload-zone"
+         onclick="document.getElementById('personal-file-input').click()"
+         ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
+         ondragleave="this.style.borderColor=''"
+         ondrop="handleFileDrop(event,'${subjectId}')">
+      📎 Arrastra aquí o haz clic para añadir tus apuntes
+      <br><span style="font-size:11px">PDF, Word, imágenes — se guardan en tu navegador</span>
+      <input type="file" id="personal-file-input" style="display:none" multiple
+             onchange="handleFileSelect(event,'${subjectId}')">
+    </div>
+  `
+
+  loadPersonalFiles(subjectId)
+}
+
+// ── Pruebas ──
+function renderPruebas(subjectId, info) {
+  const panel = document.getElementById('tab-pruebas')
+  const pruebas = PRUEBAS[subjectId] || []
+
+  if (!pruebas.length) {
+    panel.innerHTML = `<div class="empty-state"><h3>Pruebas próximamente</h3><p>Estamos preparando la información de las pruebas para esta asignatura.</p></div>`
+    return
+  }
+
+  // Grade boundaries block
+  const gb = GRADE_BOUNDARIES[subjectId]
+  let gbBlock = ''
+  if (gb && gb.length) {
+    const row = gb[0]
+    gbBlock = `
+      <div style="margin-bottom:24px">
+        <div class="file-section-title" style="margin-bottom:10px">📊 Grade Boundaries Finales</div>
+        <div class="gb-table-wrap">
+          <table class="gb-table">
+            <thead><tr>
+              <th style="text-align:left">Sesión</th>
+              <th class="gb-1">1</th><th class="gb-2">2</th><th class="gb-3">3</th>
+              <th class="gb-4">4</th><th class="gb-5">5</th><th class="gb-6">6</th><th class="gb-7">7</th>
+            </tr></thead>
+            <tbody><tr>
+              <td style="text-align:left;font-size:12px;color:var(--muted)">${row.session}</td>
+              <td><span class="gb-grade gb-1">${row[1]}</span></td>
+              <td><span class="gb-grade gb-2">${row[2]}</span></td>
+              <td><span class="gb-grade gb-3">${row[3]}</span></td>
+              <td><span class="gb-grade gb-4">${row[4]}</span></td>
+              <td><span class="gb-grade gb-5">${row[5]}</span></td>
+              <td><span class="gb-grade gb-6">${row[6]}</span></td>
+              <td><span class="gb-grade gb-7">${row[7]}</span></td>
+            </tr></tbody>
+          </table>
+        </div>
+      </div>
+    `
+  }
+
+  panel.innerHTML = gbBlock + `
+    <div class="file-section-title" style="margin-bottom:10px">📋 Pruebas</div>
+    <div class="prueba-grid">
+      ${pruebas.map(p => `
+        <div class="prueba-card" onclick="openPrueba('${subjectId}','${p.id}')">
+          <div class="prueba-card-top">
+            <span class="prueba-icon">${p.icon}</span>
+            ${p.weight ? `<span class="prueba-weight">${p.weight}</span>` : ''}
+          </div>
+          <div class="prueba-name">${p.name}</div>
+          <div class="prueba-desc">${p.desc}</div>
+          <div class="prueba-meta">
+            ${p.duration ? `<span class="prueba-tag">⏱ ${p.duration}</span>` : ''}
+            ${p.files && p.files.length ? `<span class="prueba-tag">📎 ${p.files.length} archivo${p.files.length !== 1 ? 's' : ''}</span>` : ''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `
+}
+
+function openPrueba(subjectId, pruebaId) {
+  const prueba = (PRUEBAS[subjectId] || []).find(p => p.id === pruebaId)
+  const info   = SUBJECT_MAP[subjectId]
+  if (!prueba) return
+
+  const panel = document.getElementById('tab-pruebas')
+
+  // Group files by type
+  const fileGroups = {
+    guia:    { label: 'Guías y plantillas', icon: '📋', files: [] },
+    recurso: { label: 'Recursos',           icon: '📚', files: [] },
+    consejo: { label: 'Consejos',           icon: '💡', files: [] },
+    ejemplo: { label: 'Ejemplos resueltos', icon: '✅', files: [] },
+  }
+  ;(prueba.files || []).forEach(f => {
+    const g = fileGroups[f.type] || fileGroups.recurso
+    g.files.push(f)
+  })
+
+  const fileTypeIcons = { pdf: '📄', docx: '📝', pptx: '📊', default: '📎' }
+  function fileIcon(path) {
+    const ext = path.split('.').pop().toLowerCase()
+    return fileTypeIcons[ext] || fileTypeIcons.default
+  }
+  function fileExt(path) { return path.split('.').pop().toUpperCase() }
+
+  // Past papers section
+  const papers = prueba.papers || []
+  const validPapers   = papers.filter(p => p.ok)
+  const invalidPapers = papers.filter(p => !p.ok)
+
+  // Grade boundaries
+  const gb = prueba.gradeBoundaries
+  let gbHtml = ''
+  if (gb && gb.length) {
+    gbHtml = `
+      <div class="gb-table-wrap">
+        <table class="gb-table">
+          <thead><tr>
+            <th>Sesión</th>
+            <th class="gb-7">7</th><th class="gb-6">6</th><th class="gb-5">5</th>
+            <th class="gb-4">4</th><th class="gb-3">3</th><th class="gb-2">2</th><th class="gb-1">1</th>
+          </tr></thead>
+          <tbody>
+            ${gb.map(row => `<tr>
+              <td style="font-weight:600;text-align:left">${row.session}</td>
+              <td>${row[7] || '—'}</td><td>${row[6] || '—'}</td><td>${row[5] || '—'}</td>
+              <td>${row[4] || '—'}</td><td>${row[3] || '—'}</td><td>${row[2] || '—'}</td><td>${row[1] || '—'}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    `
+  } else {
+    gbHtml = `<div class="gb-placeholder">Grade boundaries próximamente — se añadirán cuando estén disponibles.</div>`
+  }
+
+  const filesHtml = Object.values(fileGroups)
+    .filter(g => g.files.length > 0)
+    .map(g => `
+      <div class="file-section">
+        <div class="file-section-title">${g.icon} ${g.label}</div>
+        <div class="file-list">
+          ${g.files.map(f => {
+            const folder = f.folder || ''
+            const href = folder + encodeURIComponent(f.path)
+            return `
+              <div class="file-item">
+                <div class="file-left">
+                  <span class="file-type-icon">${fileIcon(f.path)}</span>
+                  <div>
+                    <div class="file-name">${f.name}</div>
+                    <div class="file-ext">${fileExt(f.path)}</div>
+                  </div>
+                </div>
+                <a class="file-open-btn" href="${href}" target="_blank">Abrir</a>
+              </div>
+            `
+          }).join('')}
+        </div>
+      </div>
+    `).join('')
+
+  const papersHtml = papers.length ? `
+    <div class="file-section">
+      <div class="file-section-title">📝 Past Papers</div>
+      ${papers.some(p => !p.ok) ? `
+        <div class="papers-warning" style="margin-bottom:12px">
+          ⚠️ <strong>Atención al syllabus.</strong> Solo son válidos desde <strong>${(CONTENT[subjectId] || {}).validFrom || '?'}</strong>.
+        </div>` : ''}
+      <div class="prueba-papers-list">
+        ${validPapers.map(p => pruebapaperRow(p, info)).join('')}
+        ${invalidPapers.length ? invalidPapers.map(p => pruebapaperRow(p, info)).join('') : ''}
+      </div>
+    </div>
+  ` : ''
+
+  const tipsHtml = (prueba.tips || []).length ? `
+    <div class="file-section">
+      <div class="file-section-title">💡 Consejos específicos</div>
+      <div class="prueba-tips-list">
+        ${(prueba.tips || []).map(t => `
+          <div class="tip-card">
+            <div class="tip-author">${t.author}</div>
+            <div class="tip-text">${t.text}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : ''
+
+  panel.innerHTML = `
+    <button class="prueba-detail-back" onclick="renderPruebas('${subjectId}', SUBJECT_MAP['${subjectId}'])">← Volver a pruebas</button>
+    <div class="prueba-detail-header">
+      <div class="prueba-detail-icon">${prueba.icon}</div>
+      <div>
+        <div class="prueba-detail-title">${prueba.name}</div>
+        <div class="prueba-detail-sub">
+          ${prueba.weight   ? `<span>⚖️ ${prueba.weight}</span>` : ''}
+          ${prueba.duration ? `<span>⏱ ${prueba.duration}</span>` : ''}
+        </div>
+      </div>
+    </div>
+
+    ${filesHtml}
+    ${tipsHtml}
+
+    <div class="file-section">
+      <div class="file-section-title">📊 Grade Boundaries</div>
+      ${gbHtml}
+    </div>
+
+    ${papersHtml}
+  `
+}
+
+function pruebapaperRow(p, info) {
+  return `
+    <div class="paper-item ${p.ok ? '' : 'stale'}">
+      <div class="paper-session">${p.s}</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="paper-tag ${p.ok ? 'valid' : 'invalid'}">${p.ok ? '✓ Válido' : '✗ Desactualizado'}</span>
+        ${p.ok && p.links ? p.links.map(l =>
+          `<a class="paper-link" href="${l.url}" target="_blank">${l.label}</a>`
+        ).join('') : ''}
+      </div>
+    </div>
+  `
+}
+
+// ── Flashcards ──
+function renderFlashcards(data, info) {
+  const panel = document.getElementById('tab-flashcards')
+  const cards = data.flashcards || []
+
+  if (!cards.length) {
+    panel.innerHTML = `<div class="empty-state"><h3>Flashcards próximamente</h3><p>Estamos preparando las flashcards para esta asignatura.</p></div>`
+    return
+  }
+
+  fcIdx = Math.max(0, Math.min(fcIdx, cards.length - 1))
+  const card = cards[fcIdx]
+
+  panel.innerHTML = `
+    <div class="fc-controls">
+      <div class="fc-progress">Carta ${fcIdx + 1} de ${cards.length}</div>
+      <div class="fc-nav">
+        <button class="fc-btn" onclick="moveCard(-1)" ${fcIdx === 0 ? 'disabled' : ''}>←</button>
+        <button class="fc-btn" onclick="moveCard(1)"  ${fcIdx === cards.length - 1 ? 'disabled' : ''}>→</button>
+      </div>
+    </div>
+    <div class="fc-wrapper">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face fc-front">
+          <div class="fc-label">Pregunta</div>
+          <div class="fc-content">${card.q}</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-label">Respuesta</div>
+          <div class="fc-content">${card.a}</div>
+        </div>
+      </div>
+    </div>
+    <p class="fc-hint">Haz clic en la carta para ver la respuesta</p>
+  `
+}
+
+function moveCard(dir) {
+  const info = SUBJECT_MAP[currentId]
+  const data = CONTENT[currentId] || {}
+  fcIdx += dir
+  renderFlashcards(data, info)
+}
+
+// ── Tabs ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'))
+  btn.classList.add('active')
+  document.getElementById(`tab-${name}`).classList.add('active')
+}
+
+// ════════════════════════════════════════════════
+//  PERSONAL FILES  (IndexedDB)
+// ════════════════════════════════════════════════
+
+let _db = null
+
+function openDB() {
+  if (_db) return Promise.resolve(_db)
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('IBHub', 1)
+    req.onupgradeneeded = e => {
+      const db = e.target.result
+      if (!db.objectStoreNames.contains('files')) {
+        db.createObjectStore('files', { keyPath: 'id', autoIncrement: true })
+        // index by subjectId for fast lookup
+      }
+    }
+    req.onsuccess = e => { _db = e.target.result; resolve(_db) }
+    req.onerror   = e => reject(e.target.error)
+  })
+}
+
+async function savePersonalFile(subjectId, file) {
+  const db = await openDB()
+  const blob = file
+  const meta = { subjectId, name: file.name, size: file.size, type: file.type, date: Date.now(), blob }
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('files', 'readwrite')
+    tx.objectStore('files').add(meta).onsuccess = e => resolve(e.target.result)
+    tx.onerror = e => reject(e.target.error)
+  })
+}
+
+async function getPersonalFiles(subjectId) {
+  const db = await openDB()
+  return new Promise((resolve, reject) => {
+    const tx  = db.transaction('files', 'readonly')
+    const req = tx.objectStore('files').getAll()
+    req.onsuccess = e => resolve(e.target.result.filter(f => f.subjectId === subjectId))
+    req.onerror   = e => reject(e.target.error)
+  })
+}
+
+async function deletePersonalFile(id) {
+  const db = await openDB()
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction('files', 'readwrite')
+    tx.objectStore('files').delete(id).onsuccess = resolve
+    tx.onerror = e => reject(e.target.error)
+  })
+}
+
+async function openPersonalFile(id) {
+  const db = await openDB()
+  const record = await new Promise((resolve, reject) => {
+    const tx  = db.transaction('files', 'readonly')
+    const req = tx.objectStore('files').get(id)
+    req.onsuccess = e => resolve(e.target.result)
+    req.onerror   = e => reject(e.target.error)
+  })
+  if (!record) return
+  const url = URL.createObjectURL(record.blob)
+  window.open(url, '_blank')
+  // revoke after a short delay
+  setTimeout(() => URL.revokeObjectURL(url), 10000)
+}
+
+async function loadPersonalFiles(subjectId) {
+  const list = document.getElementById('personal-files-list')
+  if (!list) return
+  try {
+    const files = await getPersonalFiles(subjectId)
+    if (!files.length) { list.innerHTML = ''; return }
+
+    const fmt = bytes => bytes < 1024*1024
+      ? (bytes/1024).toFixed(0) + ' KB'
+      : (bytes/(1024*1024)).toFixed(1) + ' MB'
+
+    const fileTypeIcons = { 'application/pdf': '📄', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '📝', default: '📎' }
+    const fIcon = type => fileTypeIcons[type] || (type.startsWith('image') ? '🖼️' : fileTypeIcons.default)
+
+    list.innerHTML = files.map(f => `
+      <div class="personal-file-item">
+        <div class="file-left">
+          <span class="file-type-icon">${fIcon(f.type)}</span>
+          <div>
+            <div class="file-name">${f.name}</div>
+            <div class="personal-file-meta">${fmt(f.size)} · Añadido ${new Date(f.date).toLocaleDateString('es-ES')}</div>
+          </div>
+        </div>
+        <div class="personal-file-actions">
+          <button class="file-open-btn" onclick="openPersonalFile(${f.id})">Abrir</button>
+          <button class="btn-delete" onclick="removePersonalFile(${f.id},'${subjectId}')">Eliminar</button>
+        </div>
+      </div>
+    `).join('')
+  } catch(e) {
+    list.innerHTML = `<p style="color:var(--muted);font-size:12px">Error al cargar archivos: ${e.message}</p>`
+  }
+}
+
+async function removePersonalFile(id, subjectId) {
+  await deletePersonalFile(id)
+  loadPersonalFiles(subjectId)
+}
+
+async function handleFileSelect(event, subjectId) {
+  const files = Array.from(event.target.files)
+  for (const file of files) await savePersonalFile(subjectId, file)
+  event.target.value = ''
+  loadPersonalFiles(subjectId)
+}
+
+async function handleFileDrop(event, subjectId) {
+  event.preventDefault()
+  document.getElementById('upload-zone').style.borderColor = ''
+  const files = Array.from(event.dataTransfer.files)
+  for (const file of files) await savePersonalFile(subjectId, file)
+  loadPersonalFiles(subjectId)
+}
+</script>
+</body>
+</html>

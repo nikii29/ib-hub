@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicole Maccari — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080f;
+      --bg2: #0d0d1a;
+      --purple: #7c3aed;
+      --purple-light: #a855f7;
+      --cyan: #06b6d4;
+      --cyan-light: #67e8f9;
+      --white: #f0f0ff;
+      --gray: #8888aa;
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(255,255,255,0.07);
+      --glow-purple: 0 0 40px rgba(124,58,237,0.3);
+      --glow-cyan: 0 0 40px rgba(6,182,212,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── CANVAS BACKGROUND ── */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(8,8,15,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── SECTIONS BASE ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(6,182,212,0.3);
+      background: rgba(6,182,212,0.05);
+      color: var(--cyan);
+      font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name .first { color: var(--white); }
+
+    .hero-name .last {
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      color: var(--purple-light);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-desc {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--gray);
+      transition: all 0.3s;
+    }
+
+    .tag:hover {
+      border-color: var(--purple);
+      color: var(--purple-light);
+      background: rgba(124,58,237,0.08);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.2s;
+      box-shadow: var(--glow-purple);
+    }
+
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-outline {
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Hero avatar */
+    .hero-avatar {
+      position: relative;
+      width: 220px; height: 220px;
+      flex-shrink: 0;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--purple), var(--cyan), var(--purple));
+      animation: spin 6s linear infinite;
+    }
+
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.2));
+      border: 2px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      z-index: 1;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      font-size: 1.05rem;
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      margin-bottom: 1rem;
+      border-radius: 2px;
+    }
+
+    /* ── EDUCATION SECTION ── */
+    #educacion {
+      padding: 7rem 2rem;
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .edu-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-4px);
+      box-shadow: var(--glow-purple);
+    }
+
+    .edu-card:hover::before { opacity: 1; }
+
+    .edu-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(6,182,212,0.04));
+      border-color: rgba(124,58,237,0.2);
+    }
+
+    .edu-card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .edu-card-school {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-card-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .edu-card-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .grade-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .grade-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .grade-badge.high {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: #34d399;
+    }
+
+    .grade-badge.mid {
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--purple-light);
+    }
+
+    .grade-badge.info {
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.3);
+      color: var(--cyan);
+    }
+
+    /* Notas visual */
+    .subject-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .subject-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .subject-name {
+      font-size: 0.85rem;
+      color: var(--gray);
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .subject-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .subject-bar {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      animation: bar-grow 1.2s cubic-bezier(.4,0,.2,1) both;
+      animation-play-state: paused;
+    }
+
+    .subject-bar.animated { animation-play-state: running; }
+
+    @keyframes bar-grow {
+      from { width: 0; }
+    }
+
+    .subject-score {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--white);
+      width: 36px;
+      text-align: right;
+    }
+
+    /* ── COURSES ── */
+    #cursos {
+      padding: 7rem 2rem;
+      background: linear-gradient(180deg, transparent, rgba(124,58,237,0.03), transparent);
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%);
+      pointer-events: none;
+      transition: all 0.5s;
+    }
+
+    .course-card:hover {
+      border-color: rgba(6,182,212,0.3);
+      transform: translateY(-5px);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .course-card:hover::after {
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(6,182,212,0.12), transparent 70%);
+    }
+
+    .course-platform {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .course-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .course-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: var(--purple-light);
+    }
+
+    .course-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .course-year {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── UNIVERSITY ── */
+    #universidad {
+      padding: 7rem 2rem;
+    }
+
+    .uni-hero {
+      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 24px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .uni-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(124,58,237,0.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .uni-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6,182,212,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .uni-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .uni-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse-dot 2s infinite;
+    }
+
+    .uni-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .uni-degree {
+      font-size: 1.1rem;
+      color: var(--purple-light);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .uni-detail {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .uni-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .uni-stat {
+      text-align: center;
+      padding: 1.25rem 1.75rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      min-width: 140px;
+    }
+
+    .uni-stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .uni-stat-label {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+
+    /* ── CONTACT ── */
+    #contacto {
+      padding: 7rem 2rem 5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card:hover {
+      border-color: rgba(124,58,237,0.4);
+      transform: translateY(-3px);
+      box-shadow: var(--glow-purple);
+    }
+
+    .contact-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .contact-icon.email { background: rgba(124,58,237,0.15); }
+    .contact-icon.github { background: rgba(255,255,255,0.05); }
+
+    .contact-info-label {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      font-size: 1.25rem;
+      color: var(--gray);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .contact-card:hover .contact-arrow {
+      color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--card-border);
+      color: rgba(255,255,255,0.2);
+      font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    footer span {
+      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── CURSOR GLOW ── */
+    .cursor-glow {
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.06), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: left 0.15s, top 0.15s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .edu-card.featured { grid-column: 1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .uni-hero { grid-template-columns: 1fr; }
+      .uni-stats { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">NM_</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#educacion">Educación</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#universidad">Universidad</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Disponible · Barcelona, España
+        </div>
+        <h1 class="hero-name">
+          <span class="first">Nicole</span><br>
+          <span class="last">Maccari</span>
+        </h1>
+        <p class="hero-role">// Future Computer Scientist</p>
+        <p class="hero-desc">
+          Tengo 18 años y me apasiona la programación, los videojuegos y el deporte.
+          Combino disciplina de la pista de voleibol con curiosidad infinita frente al teclado —
+          siempre buscando aprender, construir y mejorar.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">🏐 Voleibol</span>
+          <span class="tag">🎮 Videojuegos</span>
+          <span class="tag">💻 Programación</span>
+          <span class="tag">🌍 Bilingüe</span>
+          <span class="tag">🚀 En formación</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#educacion" class="btn-primary">Ver mi trayectoria</a>
+          <a href="#contacto" class="btn-outline">Contactar</a>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-ring"></div>
+        <div class="avatar-inner">🧑‍💻</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section id="educacion">
+    <div class="container">
+      <p class="section-label reveal">/ Formación académica</p>
+      <div class="divider reveal"></div>
+      <h2 class="section-title reveal">Mi <span>educación</span></h2>
+      <p class="section-subtitle reveal">Bachillerato internacional con notas medias-altas, en un entorno multicultural y exigente.</p>
+
+      <div class="edu-grid">
+        <!-- Main school card -->
+        <div class="edu-card featured reveal">
+          <div class="edu-card-icon">🏫</div>
+          <div class="edu-card-school">Àgora Sant Cugat International School</div>
+          <div class="edu-card-period">SANT CUGAT DEL VALLÈS · 2006 – 2026</div>
+          <p class="edu-card-desc">
+            Escuela internacional con currículum bilingüe (español / inglés).
+            Formación integral con enfoque en ciencias, tecnología y comunicación intercultural.
+            Bachillerato con notas medias-altas de forma consistente.
+          </p>
+          <div class="grade-badges">
+            <span class="grade-badge high">Nota media alta</span>
+            <span class="grade-badge info">Bilingüe EN/ES</span>
+            <span class="grade-badge mid">Internacional</span>
+          </div>
+        </div>
+
+        <!-- Materias destacadas -->
+        <div class="edu-card reveal reveal-delay-1">
+          <div class="edu-card-icon">📊</div>
+          <div class="edu-card-school">Materias destacadas</div>
+          <div class="edu-card-period">RENDIMIENTO POR ASIGNATURA</div>
+          <div class="subject-list">
+            <div class="subject-item">
+              <span class="subject-name">Tecnología</span>
+              <div class="subject-bar-wrap">
+                <div class="subject-bar" style="width:92%"></div>
+              </div>
+              <span class="subject-score">9.2</span>
+            </div>
+            <div class="subject-item">
+              <span class="subject-name">Matemáticas</span>
+              <div class="subject-bar-wrap">
+                <div class="subject-bar" style="width:87%"></div>
+              </div>
+              <span class="subject-score">8.7</span>
+            </div>
+            <div class="subject-item">
+              <span class="subject-name">Inglés</span>
+              <div class="subject-bar-wrap">
+                <div class="subject-bar" style="width:90%"></div>
+              </div>
+              <span class="subject-score">9.0</span>
+            </div>
+            <div class="subject-item">
+              <span class="subject-name">Informática</span>
+              <div class="subject-bar-wrap">
+                <div class="subject-bar" style="width:95%"></div>
+              </div>
+              <span class="subject-score">9.5</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logros -->
+        <div class="edu-card reveal reveal-delay-2">
+          <div class="edu-card-icon">🏅</div>
+          <div class="edu-card-school">Perfil académico</div>
+          <div class="edu-card-period">DESTACADOS</div>
+          <p class="edu-card-desc">Trayectoria sólida y constante en un entorno internacional de alta exigencia.</p>
+          <div class="grade-badges">
+            <span class="grade-badge high">Constancia</span>
+            <span class="grade-badge mid">Trabajo en equipo</span>
+            <span class="grade-badge info">Pensamiento crítico</span>
+            <span class="grade-badge high">Proactividad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="container">
+      <p class="section-label reveal">/ Formación técnica</p>
+      <div class="divider reveal"></div>
+      <h2 class="section-title reveal">Cursos de <span>programación</span></h2>
+      <p class="section-subtitle reveal">Aprendizaje práctico a través de plataformas especializadas — del juego al código, y del código a la web.</p>
+
+      <div class="courses-grid">
+        <!-- Curso videojuegos -->
+        <div class="course-card reveal reveal-delay-1">
+          <span class="course-year">2024</span>
+          <span class="course-icon">🎮</span>
+          <div class="course-platform">Kodland</div>
+          <div class="course-title">Desarrollo de Videojuegos</div>
+          <p class="course-desc">
+            Curso intensivo de creación de videojuegos desde cero. Lógica de juego,
+            física básica, diseño de niveles y mecánicas de interacción.
+            Proyectos propios desarrollados durante el curso.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pygame</span>
+            <span class="tech-tag">Game Design</span>
+            <span class="tech-tag">Lógica de programación</span>
+          </div>
+        </div>
+
+        <!-- Curso web -->
+        <div class="course-card reveal reveal-delay-2">
+          <span class="course-year">2024</span>
+          <span class="course-icon">🌐</span>
+          <div class="course-platform">Kodland</div>
+          <div class="course-title">Desarrollo Web</div>
+          <p class="course-desc">
+            Fundamentos del desarrollo web moderno. Estructura, estilo e interactividad
+            en páginas web. Desde maquetación hasta lógica del lado del cliente.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Diseño Web</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSIDAD -->
+  <section id="universidad">
+    <div class="container">
+      <p class="section-label reveal">/ Próximos pasos</p>
+      <div class="divider reveal"></div>
+      <h2 class="section-title reveal">Mi <span>futuro</span> académico</h2>
+      <p class="section-subtitle reveal">El siguiente capítulo de mi formación, donde convergen la tecnología y la visión global.</p>
+
+      <div class="uni-hero reveal">
+        <div>
+          <div class="uni-label">Matrícula confirmada · 2026</div>
+          <div class="uni-name">La Salle — URL</div>
+          <div class="uni-degree">Grado en Computer Science Internacional</div>
+          <p class="uni-detail">
+            Empiezo en La Salle (Universitat Ramon Llull) el grado de Computer Science
+            con enfoque internacional — un programa que combina ingeniería del software,
+            inteligencia artificial, redes y visión global del sector tecnológico.
+            El siguiente paso natural después de años aprendiendo a programar por iniciativa propia.
+          </p>
+        </div>
+        <div class="uni-stats">
+          <div class="uni-stat">
+            <div class="uni-stat-value">2026</div>
+            <div class="uni-stat-label">Año de inicio</div>
+          </div>
+          <div class="uni-stat">
+            <div class="uni-stat-value">4y</div>
+            <div class="uni-stat-label">Duración</div>
+          </div>
+          <div class="uni-stat">
+            <div class="uni-stat-value">BCN</div>
+            <div class="uni-stat-label">Barcelona</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <p class="section-label reveal">/ Conectemos</p>
+      <div class="divider reveal"></div>
+      <h2 class="section-title reveal">¿Hablamos?</h2>
+      <p class="section-subtitle reveal">Siempre abierta a colaboraciones, proyectos y nuevas oportunidades. No dudes en escribirme.</p>
+
+      <div class="contact-grid">
+        <a href="mailto:nicole291208@gmail.com" class="contact-card reveal reveal-delay-1">
+          <div class="contact-icon email">✉️</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">nicole291208@gmail.com</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="#" class="contact-card reveal reveal-delay-2">
+          <div class="contact-icon github">💻</div>
+          <div>
+            <div class="contact-info-label">Proyectos</div>
+            <div class="contact-info-value">Ver mis proyectos web</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Diseñado & construido por <span>Nicole Maccari</span> · 2026</p>
+  </footer>
+
+  <script>
+    // ── PARTICLE CANVAS BACKGROUND ──
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = randomBetween(0, W);
+        this.y = randomBetween(0, H);
+        this.size = randomBetween(0.5, 1.5);
+        this.speedX = randomBetween(-0.15, 0.15);
+        this.speedY = randomBetween(-0.2, -0.05);
+        this.alpha = randomBetween(0.1, 0.5);
+        this.color = Math.random() > 0.5 ? '124,58,237' : '6,182,212';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.y < 0 || this.x < 0 || this.x > W) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+    // Draw grid
+    function drawGrid() {
+      ctx.strokeStyle = 'rgba(124,58,237,0.04)';
+      ctx.lineWidth = 1;
+      const spacing = 60;
+      for (let x = 0; x < W; x += spacing) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = 0; y < H; y += spacing) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      drawGrid();
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // ── CURSOR GLOW ──
+    const glow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // animate bars too
+          entry.target.querySelectorAll('.subject-bar').forEach(bar => {
+            bar.classList.add('animated');
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Also check initially visible elements
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) {
+        el.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>
