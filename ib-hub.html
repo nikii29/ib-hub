@@ -910,17 +910,50 @@
       margin-bottom: 10px;
     }
 
-    .notes-prueba-group { margin-bottom: 22px; }
+    .notes-folder { margin-bottom: 12px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 
-    .notes-prueba-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 7px;
+    .notes-folder-header {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
+      padding: 13px 16px;
+      cursor: pointer;
+      background: var(--card);
+      user-select: none;
+      transition: background 0.15s;
     }
+    .notes-folder-header:hover { background: var(--hover); }
+
+    .notes-folder-icon { font-size: 18px; }
+
+    .notes-folder-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .notes-folder-count {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .notes-folder-arrow {
+      font-size: 11px;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
+    .notes-folder.open .notes-folder-arrow { transform: rotate(90deg); }
+
+    .notes-folder-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .notes-folder.open .notes-folder-body { display: block; }
 
     .notes-divider {
       display: flex;
@@ -1795,7 +1828,7 @@ const PRUEBAS = {
         { author: 'Estudiante IB · Español A NS',
           text: 'Para poesía, analiza siempre la métrica y el ritmo aunque sea brevemente. Muchos estudiantes se olvidan y pierden puntos en el criterio de "lenguaje y estilo".' },
       ],
-      gradeBoundaries: null,
+      gradeBoundaries: [{ session: 'Nov 2025 · sobre 40 pts', 7:'30–40', 6:'25–29', 5:'20–24', 4:'15–19', 3:'10–14', 2:'5–9', 1:'0–4' }],
       papers: [
         { s: 'Mayo 2024', ok: true },
         { s: 'Nov 2023',  ok: true },
@@ -1819,13 +1852,13 @@ const PRUEBAS = {
       ],
     },
     {
-      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '35%', duration: '90 min',
+      id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '25%', duration: '90 min',
       desc: 'Ensayo comparativo sobre dos obras literarias estudiadas en clase.',
       tips: [
         { author: 'Estudiante IB · Español A NS',
           text: 'No hagas dos análisis separados y los pegues al final — la comparación debe estar integrada párrafo a párrafo. Usa conectores comparativos: "a diferencia de", "de manera similar", "mientras que".' },
       ],
-      gradeBoundaries: null,
+      gradeBoundaries: [{ session: 'Nov 2025 · sobre 30 pts', 7:'25–30', 6:'20–24', 5:'15–19', 4:'10–14', 3:'6–9', 2:'3–5', 1:'0–2' }],
       papers: [
         { s: 'Mayo 2024', ok: true },
         { s: 'Nov 2023',  ok: true },
@@ -1846,7 +1879,19 @@ const PRUEBAS = {
       ],
     },
     {
-      id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '30%', duration: '15 min + 5 min',
+      {
+      id: 'ensayo', name: 'Ensayo HL', icon: '📝', weight: '20%', duration: '~1200 palabras',
+      desc: 'Ensayo formal sobre una obra o cuerpo de obras del programa de lecturas. Se desarrolla durante el curso.',
+      tips: [
+        { author: 'Estudiante IB · Español A NS',
+          text: 'Elige una pregunta concreta y defendible — cuanto más específica, más fácil argumentar. Una pregunta vaga produce un ensayo vago. Trabájala con tu profesora antes de empezar a escribir.' },
+      ],
+      gradeBoundaries: [{ session: 'Nov 2025 · sobre 20 pts', 7:'18–20', 6:'15–17', 5:'13–14', 4:'10–12', 3:'7–9', 2:'4–6', 1:'0–3' }],
+      papers: [],
+      files: [],
+    },
+    {
+      id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '20%', duration: '15 min + 5 min',
       desc: 'Presentación de un extracto de obra literaria conectado con un texto de los medios a través de un global issue.',
       tips: [
         { author: 'Estudiante IB · Español A NS',
@@ -1854,7 +1899,7 @@ const PRUEBAS = {
         { author: 'Estudiante IB · Español A NS',
           text: 'Los primeros 2 minutos son los más importantes: presentas el extracto, el texto de los medios y tu global issue. Practica ese arranque hasta que salga solo.' },
       ],
-      gradeBoundaries: null,
+      gradeBoundaries: [{ session: 'Nov 2025 · sobre 40 pts', 7:'34–40', 6:'29–33', 5:'24–28', 4:'19–23', 3:'13–18', 2:'7–12', 1:'0–6' }],
       papers: [],
       files: [],
     },
@@ -2360,6 +2405,23 @@ const GRADE_BOUNDARIES = {
 }
 // * Spanish B HL not available in Nov 2025 boundaries (< 100 candidates); SL shown as reference.
 
+// Per-subject component boundaries (for subjects with detailed per-prueba data)
+const COMPONENT_BOUNDARIES = {
+  spa_a_ns: {
+    session: 'Nov 2025 · Español A: Literatura NS',
+    components: ['Prueba 1 (/40)', 'Prueba 2 (/30)', 'Ensayo HL (/20)', 'Oral (/40)', 'Final (%)'],
+    rows: [
+      { grade: 7, marks: ['30–40','25–30','18–20','34–40','80–100'] },
+      { grade: 6, marks: ['25–29','20–24','15–17','29–33','66–79']  },
+      { grade: 5, marks: ['20–24','15–19','13–14','24–28','53–65']  },
+      { grade: 4, marks: ['15–19','10–14','10–12','19–23','39–52']  },
+      { grade: 3, marks: ['10–14','6–9',  '7–9',  '13–18','25–38'] },
+      { grade: 2, marks: ['5–9',  '3–5',  '4–6',  '7–12', '12–24'] },
+      { grade: 1, marks: ['0–4',  '0–2',  '0–3',  '0–6',  '0–11']  },
+    ]
+  }
+}
+
 // ════════════════════════════════════════════════
 //  STATE
 // ════════════════════════════════════════════════
@@ -2569,25 +2631,32 @@ function renderNotes(subjectId) {
   function fIcon(path) { const e = path.split('.').pop().toLowerCase(); return fileTypeIcons[e] || fileTypeIcons.default }
   function fExt(path)  { return path.split('.').pop().toUpperCase() }
 
-  const teacherHtml = groups.length > 0 ? groups.map(g => `
-    <div class="notes-prueba-group">
-      <div class="notes-prueba-label">${g.icon} ${g.name}</div>
-      <div class="file-list">
-        ${g.files.map(f => {
-          const href = (f.folder || '') + encodeURIComponent(f.path)
-          return `
-            <div class="file-item">
-              <div class="file-left">
-                <span class="file-type-icon">${fIcon(f.path)}</span>
-                <div>
-                  <div class="file-name">${f.name}</div>
-                  <div class="file-ext">${fExt(f.path)}</div>
+  const teacherHtml = groups.length > 0 ? groups.map((g, i) => `
+    <div class="notes-folder${i === 0 ? ' open' : ''}" id="folder-${i}">
+      <div class="notes-folder-header" onclick="toggleFolder('folder-${i}')">
+        <span class="notes-folder-icon">📁</span>
+        <span class="notes-folder-name">${g.name}</span>
+        <span class="notes-folder-count">${g.files.length} archivo${g.files.length !== 1 ? 's' : ''}</span>
+        <span class="notes-folder-arrow">▶</span>
+      </div>
+      <div class="notes-folder-body">
+        <div class="file-list" style="padding:8px 0">
+          ${g.files.map(f => {
+            const href = (f.folder || '') + encodeURIComponent(f.path)
+            return `
+              <div class="file-item">
+                <div class="file-left">
+                  <span class="file-type-icon">${fIcon(f.path)}</span>
+                  <div>
+                    <div class="file-name">${f.name}</div>
+                    <div class="file-ext">${fExt(f.path)}</div>
+                  </div>
                 </div>
+                <a class="file-open-btn" href="${href}" target="_blank">Abrir</a>
               </div>
-              <a class="file-open-btn" href="${href}" target="_blank">Abrir</a>
-            </div>
-          `
-        }).join('')}
+            `
+          }).join('')}
+        </div>
       </div>
     </div>
   `).join('') : `<p style="color:var(--muted);font-size:13px">No hay apuntes del profesor disponibles aún.</p>`
@@ -2629,10 +2698,33 @@ function renderPruebas(subjectId, info) {
     return
   }
 
-  // Grade boundaries block
+  // Grade boundaries block — use component table if available, otherwise simple overall table
+  const cb = COMPONENT_BOUNDARIES[subjectId]
   const gb = GRADE_BOUNDARIES[subjectId]
   let gbBlock = ''
-  if (gb && gb.length) {
+  if (cb) {
+    const gradeColors = ['','gb-1','gb-2','gb-3','gb-4','gb-5','gb-6','gb-7']
+    gbBlock = `
+      <div style="margin-bottom:24px">
+        <div class="file-section-title" style="margin-bottom:6px">📊 Grade Boundaries por Componente</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px">${cb.session}</div>
+        <div class="gb-table-wrap">
+          <table class="gb-table">
+            <thead><tr>
+              <th style="text-align:center">Nota</th>
+              ${cb.components.map(c => `<th style="font-size:11px;white-space:nowrap">${c}</th>`).join('')}
+            </tr></thead>
+            <tbody>
+              ${cb.rows.map(r => `<tr>
+                <td><span class="gb-grade ${gradeColors[r.grade]}">${r.grade}</span></td>
+                ${r.marks.map(m => `<td style="font-size:12px">${m}</td>`).join('')}
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `
+  } else if (gb && gb.length) {
     const row = gb[0]
     gbBlock = `
       <div style="margin-bottom:24px">
@@ -2673,7 +2765,6 @@ function renderPruebas(subjectId, info) {
           <div class="prueba-desc">${p.desc}</div>
           <div class="prueba-meta">
             ${p.duration ? `<span class="prueba-tag">⏱ ${p.duration}</span>` : ''}
-            ${p.files && p.files.length ? `<span class="prueba-tag">📎 ${p.files.length} archivo${p.files.length !== 1 ? 's' : ''}</span>` : ''}
           </div>
         </div>
       `).join('')}
@@ -2805,7 +2896,6 @@ function openPrueba(subjectId, pruebaId) {
       </div>
     </div>
 
-    ${filesHtml}
     ${tipsHtml}
 
     <div class="file-section">
@@ -2994,6 +3084,10 @@ async function handleFileSelect(event, subjectId) {
   for (const file of files) await savePersonalFile(subjectId, file)
   event.target.value = ''
   loadPersonalFiles(subjectId)
+}
+
+function toggleFolder(id) {
+  document.getElementById(id).classList.toggle('open')
 }
 
 async function handleFileDrop(event, subjectId) {

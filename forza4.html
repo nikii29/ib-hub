@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forza 4</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #e94560, #f5a623);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #status {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      height: 30px;
+      transition: all 0.3s;
+    }
+
+    .player-indicator {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 6px;
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    #board-wrapper {
+      background: #16213e;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(7, 70px);
+      grid-template-rows: repeat(6, 70px);
+      gap: 8px;
+    }
+
+    .cell {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #0f3460;
+      cursor: pointer;
+      transition: transform 0.1s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+      background: #1a4a7a;
+    }
+
+    .cell.red {
+      background: radial-gradient(circle at 35% 35%, #ff6b6b, #e94560);
+      box-shadow: 0 0 12px rgba(233, 69, 96, 0.6);
+      cursor: default;
+    }
+
+    .cell.yellow {
+      background: radial-gradient(circle at 35% 35%, #ffe66d, #f5a623);
+      box-shadow: 0 0 12px rgba(245, 166, 35, 0.6);
+      cursor: default;
+    }
+
+    .cell.winning {
+      animation: pulse 0.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); box-shadow: 0 0 12px currentColor; }
+      to   { transform: scale(1.12); box-shadow: 0 0 24px currentColor; }
+    }
+
+    @keyframes drop {
+      from { transform: translateY(-400px); }
+      to   { transform: translateY(0); }
+    }
+
+    .cell.drop {
+      animation: drop 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    #controls {
+      margin-top: 24px;
+      display: flex;
+      gap: 16px;
+    }
+
+    button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    button:hover { transform: scale(1.05); opacity: 0.9; }
+
+    #btn-restart {
+      background: linear-gradient(135deg, #e94560, #f5a623);
+      color: white;
+    }
+
+    #scoreboard {
+      margin-top: 20px;
+      display: flex;
+      gap: 40px;
+      font-size: 1rem;
+    }
+
+    .score-box {
+      text-align: center;
+      background: #16213e;
+      padding: 10px 24px;
+      border-radius: 10px;
+    }
+
+    .score-box .label { font-size: 0.8rem; opacity: 0.7; margin-bottom: 4px; }
+    .score-box .value { font-size: 1.8rem; font-weight: bold; }
+    .score-box.red-score .value  { color: #e94560; }
+    .score-box.yellow-score .value { color: #f5a623; }
+  </style>
+</head>
+<body>
+
+<h1>Forza 4</h1>
+<div id="status"></div>
+
+<div id="board-wrapper">
+  <div id="board"></div>
+</div>
+
+<div id="controls">
+  <button id="btn-restart">Nuova Partita</button>
+</div>
+
+<div id="scoreboard">
+  <div class="score-box red-score">
+    <div class="label">Giocatore 1 (Rosso)</div>
+    <div class="value" id="score-red">0</div>
+  </div>
+  <div class="score-box yellow-score">
+    <div class="label">Giocatore 2 (Giallo)</div>
+    <div class="value" id="score-yellow">0</div>
+  </div>
+</div>
+
+<script>
+  const ROWS = 6, COLS = 7;
+  let board, currentPlayer, gameOver;
+  let scores = { red: 0, yellow: 0 };
+
+  const boardEl = document.getElementById('board');
+  const statusEl = document.getElementById('status');
+
+  function initGame() {
+    board = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+    currentPlayer = 'red';
+    gameOver = false;
+    renderBoard();
+    updateStatus();
+  }
+
+  function renderBoard() {
+    boardEl.innerHTML = '';
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        if (board[r][c]) cell.classList.add(board[r][c]);
+        cell.dataset.col = c;
+        cell.addEventListener('click', () => handleClick(c));
+        boardEl.appendChild(cell);
+      }
+    }
+  }
+
+  function handleClick(col) {
+    if (gameOver) return;
+
+    const row = getAvailableRow(col);
+    if (row === -1) return;
+
+    board[row][col] = currentPlayer;
+    renderBoard();
+
+    // Animazione caduta
+    const cellEl = boardEl.children[row * COLS + col];
+    cellEl.classList.add('drop');
+
+    const winner = checkWinner(row, col);
+    if (winner) {
+      highlightWinner(winner.cells);
+      scores[currentPlayer]++;
+      document.getElementById(`score-${currentPlayer}`).textContent = scores[currentPlayer];
+      statusEl.innerHTML = `<span class="player-indicator" style="background:${currentPlayer === 'red' ? '#e94560' : '#f5a623'}"></span> ${currentPlayer === 'red' ? 'Giocatore 1' : 'Giocatore 2'} vince!`;
+      gameOver = true;
+      return;
+    }
+
+    if (isBoardFull()) {
+      statusEl.textContent = 'Pareggio!';
+      gameOver = true;
+      return;
+    }
+
+    currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
+    updateStatus();
+  }
+
+  function getAvailableRow(col) {
+    for (let r = ROWS - 1; r >= 0; r--) {
+      if (!board[r][col]) return r;
+    }
+    return -1;
+  }
+
+  function checkWinner(row, col) {
+    const directions = [[0,1],[1,0],[1,1],[1,-1]];
+    const color = board[row][col];
+
+    for (const [dr, dc] of directions) {
+      const cells = [[row, col]];
+      for (let i = 1; i < 4; i++) {
+        const r = row + dr * i, c = col + dc * i;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === color) cells.push([r, c]);
+        else break;
+      }
+      for (let i = 1; i < 4; i++) {
+        const r = row - dr * i, c = col - dc * i;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === color) cells.push([r, c]);
+        else break;
+      }
+      if (cells.length >= 4) return { color, cells };
+    }
+    return null;
+  }
+
+  function highlightWinner(cells) {
+    for (const [r, c] of cells) {
+      boardEl.children[r * COLS + c].classList.add('winning');
+    }
+  }
+
+  function isBoardFull() {
+    return board[0].every(cell => cell !== null);
+  }
+
+  function updateStatus() {
+    const color = currentPlayer === 'red' ? '#e94560' : '#f5a623';
+    const name = currentPlayer === 'red' ? 'Giocatore 1 (Rosso)' : 'Giocatore 2 (Giallo)';
+    statusEl.innerHTML = `<span class="player-indicator" style="background:${color}"></span> Turno di ${name}`;
+  }
+
+  document.getElementById('btn-restart').addEventListener('click', initGame);
+
+  initGame();
+</script>
+</body>
+</html>
