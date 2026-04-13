@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IB Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1018,12 +1019,187 @@
     }
 
     .upload-zone-personal:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+
+    /* ══════════════════════════════════════
+       LOGIN SCREEN
+    ══════════════════════════════════════ */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: var(--bg);
+    }
+
+    .login-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+
+    .login-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .login-title {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .login-sub {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+      margin-bottom: 32px;
+      max-width: 300px;
+    }
+
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 24px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-google:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(99,102,241,0.35);
+    }
+
+    .btn-google:active { transform: translateY(0); }
+
+    .btn-google svg { flex-shrink: 0; }
+
+    .login-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ══════════════════════════════════════
+       NAV USER AVATAR
+    ══════════════════════════════════════ */
+    .nav-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .nav-avatar-initials {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-user-name {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-logout {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .btn-logout:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
   </style>
 </head>
 <body>
 
+<!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
+<div id="login-screen" style="display:none">
+  <div class="login-card">
+    <div class="login-logo">IB Hub</div>
+    <h1 class="login-title">Bienvenido</h1>
+    <p class="login-sub">Tus apuntes y asignaturas se guardan en tu cuenta</p>
+    <button class="btn-google" onclick="signInWithGoogle()">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+        <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+        <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+      </svg>
+      Continuar con Google
+    </button>
+  </div>
+</div>
+
 <!-- ═══════════════ ONBOARDING ═══════════════ -->
-<div id="onboarding">
+<div id="onboarding" style="display:none">
   <div class="ob-logo">IB Hub</div>
   <h1 class="ob-title">Selecciona tus asignaturas</h1>
   <p class="ob-sub">Elige las 6 materias que cursas este año. Solo verás los recursos relevantes para ti.</p>
@@ -1057,6 +1233,12 @@
     <div class="nav-right">
       <button class="btn-ghost" onclick="showDashboard()">Dashboard</button>
       <button class="btn-ghost" onclick="changeSubjects()">Cambiar asignaturas</button>
+      <div class="nav-user" id="nav-user" style="display:none">
+        <div class="nav-avatar-initials" id="nav-avatar-initials">?</div>
+        <img class="nav-avatar" id="nav-avatar-img" src="" alt="" style="display:none">
+        <span class="nav-user-name" id="nav-user-name"></span>
+        <button class="btn-logout" onclick="logout()">Salir</button>
+      </div>
     </div>
   </nav>
 
@@ -2432,6 +2614,51 @@ const COMPONENT_BOUNDARIES = {
 }
 
 // ════════════════════════════════════════════════
+//  SUPABASE INIT
+//
+//  SQL to run in Supabase SQL editor before using this app:
+//
+//  -- Table: users_data (stores subject selection per user)
+//  create table if not exists users_data (
+//    user_id uuid primary key references auth.users(id) on delete cascade,
+//    subjects jsonb not null default '{}',
+//    updated_at timestamptz default now()
+//  );
+//  alter table users_data enable row level security;
+//  create policy "Users can manage their own data"
+//    on users_data for all using (auth.uid() = user_id);
+//
+//  -- Table: personal_files (metadata for uploaded files)
+//  create table if not exists personal_files (
+//    id uuid primary key default gen_random_uuid(),
+//    user_id uuid references auth.users(id) on delete cascade,
+//    subject_id text not null,
+//    name text not null,
+//    size bigint,
+//    type text,
+//    date bigint,
+//    storage_path text not null,
+//    created_at timestamptz default now()
+//  );
+//  alter table personal_files enable row level security;
+//  create policy "Users can manage their own files"
+//    on personal_files for all using (auth.uid() = user_id);
+//
+//  -- Storage bucket: personal-files
+//  insert into storage.buckets (id, name, public) values ('personal-files', 'personal-files', false)
+//    on conflict do nothing;
+//  create policy "Users can manage their own storage files"
+//    on storage.objects for all using (
+//      bucket_id = 'personal-files' and (storage.foldername(name))[1] = auth.uid()::text
+//    );
+// ════════════════════════════════════════════════
+
+const _supabase = supabase.createClient(
+  'https://tbfcinauriqncaklyfdq.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiZmNpbmF1cmlxbmNha2x5ZmRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxMDMwNTUsImV4cCI6MjA5MTY3OTA1NX0.geSGn1RTTADVWMKCpIxHuf8yeOCb3JbmInPJ4t6_YLQ'
+)
+
+// ════════════════════════════════════════════════
 //  STATE
 // ════════════════════════════════════════════════
 
@@ -2439,20 +2666,155 @@ const MAX = 6
 let selected = {}   // { id: true }
 let currentId = null
 let fcIdx = 0
+let currentUser = null
+
+// ════════════════════════════════════════════════
+//  AUTH HELPERS
+// ════════════════════════════════════════════════
+
+async function signInWithGoogle() {
+  await _supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.href }
+  })
+}
+
+async function logout() {
+  await _supabase.auth.signOut()
+}
+
+function showLoginScreen() {
+  const ls = document.getElementById('login-screen')
+  ls.style.display = ''
+  ls.innerHTML = `
+    <div class="login-card">
+      <div class="login-logo">IB Hub</div>
+      <h1 class="login-title">Bienvenido</h1>
+      <p class="login-sub">Tus apuntes y asignaturas se guardan en tu cuenta</p>
+      <button class="btn-google" onclick="signInWithGoogle()">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+          <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+        </svg>
+        Continuar con Google
+      </button>
+    </div>
+  `
+  document.getElementById('onboarding').style.display = 'none'
+  document.getElementById('app').classList.add('hidden')
+  document.getElementById('nav-user').style.display = 'none'
+}
+
+function updateNavUser(user) {
+  const navUser = document.getElementById('nav-user')
+  if (!user) { navUser.style.display = 'none'; return }
+  navUser.style.display = 'flex'
+
+  const meta = user.user_metadata || {}
+  const name = meta.full_name || meta.name || user.email || ''
+  const avatar = meta.avatar_url || meta.picture || ''
+
+  document.getElementById('nav-user-name').textContent = name.split(' ')[0] || ''
+
+  const imgEl = document.getElementById('nav-avatar-img')
+  const initEl = document.getElementById('nav-avatar-initials')
+  if (avatar) {
+    imgEl.src = avatar
+    imgEl.style.display = ''
+    initEl.style.display = 'none'
+  } else {
+    const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?'
+    initEl.textContent = initials
+    initEl.style.display = ''
+    imgEl.style.display = 'none'
+  }
+}
 
 // ════════════════════════════════════════════════
 //  BOOT
 // ════════════════════════════════════════════════
 
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('ib_subjects_v2')
-  if (saved) {
-    selected = JSON.parse(saved)
+window.addEventListener('DOMContentLoaded', async () => {
+  // Show a brief loading state while checking auth
+  document.getElementById('login-screen').style.display = 'flex'
+  document.getElementById('login-screen').innerHTML = `
+    <div class="login-loading">
+      <div class="spinner"></div>
+      <span>Cargando...</span>
+    </div>
+  `
+
+  // Check existing session
+  const { data: { session } } = await _supabase.auth.getSession()
+  if (session) {
+    currentUser = session.user
+    await init()
+  } else {
+    // Restore full login screen
+    document.getElementById('login-screen').innerHTML = `
+      <div class="login-card">
+        <div class="login-logo">IB Hub</div>
+        <h1 class="login-title">Bienvenido</h1>
+        <p class="login-sub">Tus apuntes y asignaturas se guardan en tu cuenta</p>
+        <button class="btn-google" onclick="signInWithGoogle()">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+            <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Continuar con Google
+        </button>
+      </div>
+    `
+  }
+
+  // Listen for future auth changes
+  _supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      currentUser = session.user
+      await init()
+    } else if (event === 'SIGNED_OUT') {
+      currentUser = null
+      selected = {}
+      showLoginScreen()
+    }
+  })
+})
+
+async function init() {
+  updateNavUser(currentUser)
+  document.getElementById('login-screen').style.display = 'none'
+
+  // Try to load subjects from Supabase (fall back to localStorage while loading)
+  const localFallback = localStorage.getItem('ib_subjects_v2')
+  if (localFallback) {
+    selected = JSON.parse(localFallback)
+  }
+
+  try {
+    const { data, error } = await _supabase
+      .from('users_data')
+      .select('subjects')
+      .eq('user_id', currentUser.id)
+      .single()
+
+    if (!error && data && data.subjects && Object.keys(data.subjects).length > 0) {
+      selected = data.subjects
+    }
+  } catch (e) {
+    console.warn('Could not load subjects from Supabase, using localStorage fallback', e)
+  }
+
+  if (Object.keys(selected).length > 0) {
     enterApp()
   } else {
+    document.getElementById('onboarding').style.display = ''
     buildOnboarding()
   }
-})
+}
 
 // ════════════════════════════════════════════════
 //  ONBOARDING
@@ -2533,8 +2895,23 @@ function updateCounter() {
   }
 }
 
-function saveAndEnter() {
+async function saveAndEnter() {
+  // Save to localStorage as immediate fallback
   localStorage.setItem('ib_subjects_v2', JSON.stringify(selected))
+
+  // Save to Supabase
+  if (currentUser) {
+    try {
+      await _supabase.from('users_data').upsert({
+        user_id: currentUser.id,
+        subjects: selected,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' })
+    } catch (e) {
+      console.warn('Could not save subjects to Supabase', e)
+    }
+  }
+
   enterApp()
 }
 
@@ -2543,16 +2920,31 @@ function saveAndEnter() {
 // ════════════════════════════════════════════════
 
 function enterApp() {
-  document.getElementById('onboarding').classList.add('hidden')
+  document.getElementById('login-screen').style.display = 'none'
+  document.getElementById('onboarding').style.display = 'none'
   document.getElementById('app').classList.remove('hidden')
   buildDashboard()
 }
 
-function changeSubjects() {
+async function changeSubjects() {
   localStorage.removeItem('ib_subjects_v2')
   selected = {}
+
+  // Clear subjects in Supabase
+  if (currentUser) {
+    try {
+      await _supabase.from('users_data').upsert({
+        user_id: currentUser.id,
+        subjects: {},
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' })
+    } catch (e) {
+      console.warn('Could not clear subjects in Supabase', e)
+    }
+  }
+
   document.getElementById('app').classList.add('hidden')
-  document.getElementById('onboarding').classList.remove('hidden')
+  document.getElementById('onboarding').style.display = ''
   buildOnboarding()
   updateChipUI()
   updateCounter()
@@ -2983,9 +3375,10 @@ function switchTab(name, btn) {
 }
 
 // ════════════════════════════════════════════════
-//  PERSONAL FILES  (IndexedDB)
+//  PERSONAL FILES  (Supabase Storage + DB)
 // ════════════════════════════════════════════════
 
+/* --- IndexedDB backup (commented out) ---
 let _db = null
 
 function openDB() {
@@ -2996,26 +3389,22 @@ function openDB() {
       const db = e.target.result
       if (!db.objectStoreNames.contains('files')) {
         db.createObjectStore('files', { keyPath: 'id', autoIncrement: true })
-        // index by subjectId for fast lookup
       }
     }
     req.onsuccess = e => { _db = e.target.result; resolve(_db) }
     req.onerror   = e => reject(e.target.error)
   })
 }
-
-async function savePersonalFile(subjectId, file) {
+async function _idbSavePersonalFile(subjectId, file) {
   const db = await openDB()
-  const blob = file
-  const meta = { subjectId, name: file.name, size: file.size, type: file.type, date: Date.now(), blob }
+  const meta = { subjectId, name: file.name, size: file.size, type: file.type, date: Date.now(), blob: file }
   return new Promise((resolve, reject) => {
     const tx = db.transaction('files', 'readwrite')
     tx.objectStore('files').add(meta).onsuccess = e => resolve(e.target.result)
     tx.onerror = e => reject(e.target.error)
   })
 }
-
-async function getPersonalFiles(subjectId) {
+async function _idbGetPersonalFiles(subjectId) {
   const db = await openDB()
   return new Promise((resolve, reject) => {
     const tx  = db.transaction('files', 'readonly')
@@ -3024,8 +3413,7 @@ async function getPersonalFiles(subjectId) {
     req.onerror   = e => reject(e.target.error)
   })
 }
-
-async function deletePersonalFile(id) {
+async function _idbDeletePersonalFile(id) {
   const db = await openDB()
   return new Promise((resolve, reject) => {
     const tx = db.transaction('files', 'readwrite')
@@ -3033,8 +3421,7 @@ async function deletePersonalFile(id) {
     tx.onerror = e => reject(e.target.error)
   })
 }
-
-async function openPersonalFile(id) {
+async function _idbOpenPersonalFile(id) {
   const db = await openDB()
   const record = await new Promise((resolve, reject) => {
     const tx  = db.transaction('files', 'readonly')
@@ -3045,13 +3432,81 @@ async function openPersonalFile(id) {
   if (!record) return
   const url = URL.createObjectURL(record.blob)
   window.open(url, '_blank')
-  // revoke after a short delay
   setTimeout(() => URL.revokeObjectURL(url), 10000)
+}
+--- end IndexedDB backup --- */
+
+// ── Supabase Storage helpers ──
+
+async function savePersonalFile(subjectId, file) {
+  if (!currentUser) return
+  const uid = currentUser.id
+  const timestamp = Date.now()
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+  const storagePath = `${uid}/${subjectId}/${timestamp}_${safeName}`
+
+  // Upload blob to Supabase Storage
+  const { error: uploadError } = await _supabase.storage
+    .from('personal-files')
+    .upload(storagePath, file, { upsert: false })
+
+  if (uploadError) {
+    console.error('Storage upload error:', uploadError)
+    throw uploadError
+  }
+
+  // Save metadata to DB
+  const { error: dbError } = await _supabase.from('personal_files').insert({
+    user_id: uid,
+    subject_id: subjectId,
+    name: file.name,
+    size: file.size,
+    type: file.type,
+    date: timestamp,
+    storage_path: storagePath
+  })
+
+  if (dbError) {
+    console.error('DB insert error:', dbError)
+    throw dbError
+  }
+}
+
+async function getPersonalFiles(subjectId) {
+  if (!currentUser) return []
+  const { data, error } = await _supabase
+    .from('personal_files')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .eq('subject_id', subjectId)
+    .order('date', { ascending: false })
+  if (error) { console.error('getPersonalFiles error:', error); return [] }
+  return data || []
+}
+
+async function deletePersonalFile(id, storagePath) {
+  if (!currentUser) return
+  // Delete from storage
+  if (storagePath) {
+    await _supabase.storage.from('personal-files').remove([storagePath])
+  }
+  // Delete metadata from DB
+  await _supabase.from('personal_files').delete().eq('id', id).eq('user_id', currentUser.id)
+}
+
+async function openPersonalFile(id, storagePath) {
+  if (!storagePath) return
+  const { data, error } = await _supabase.storage
+    .from('personal-files')
+    .createSignedUrl(storagePath, 60) // 60-second signed URL
+  if (error) { console.error('createSignedUrl error:', error); return }
+  window.open(data.signedUrl, '_blank')
 }
 
 async function loadPersonalFiles(subjectId) {
   const list = document.getElementById('personal-files-list')
   if (!list) return
+  list.innerHTML = `<p style="color:var(--muted);font-size:12px">Cargando...</p>`
   try {
     const files = await getPersonalFiles(subjectId)
     if (!files.length) { list.innerHTML = ''; return }
@@ -3060,8 +3515,12 @@ async function loadPersonalFiles(subjectId) {
       ? (bytes/1024).toFixed(0) + ' KB'
       : (bytes/(1024*1024)).toFixed(1) + ' MB'
 
-    const fileTypeIcons = { 'application/pdf': '📄', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '📝', default: '📎' }
-    const fIcon = type => fileTypeIcons[type] || (type.startsWith('image') ? '🖼️' : fileTypeIcons.default)
+    const fileTypeIcons = {
+      'application/pdf': '📄',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '📝',
+      default: '📎'
+    }
+    const fIcon = type => fileTypeIcons[type] || (type && type.startsWith('image') ? '🖼️' : fileTypeIcons.default)
 
     list.innerHTML = files.map(f => `
       <div class="personal-file-item">
@@ -3073,8 +3532,8 @@ async function loadPersonalFiles(subjectId) {
           </div>
         </div>
         <div class="personal-file-actions">
-          <button class="file-open-btn" onclick="openPersonalFile(${f.id})">Abrir</button>
-          <button class="btn-delete" onclick="removePersonalFile(${f.id},'${subjectId}')">Eliminar</button>
+          <button class="file-open-btn" onclick="openPersonalFile('${f.id}','${f.storage_path}')">Abrir</button>
+          <button class="btn-delete" onclick="removePersonalFile('${f.id}','${f.storage_path}','${subjectId}')">Eliminar</button>
         </div>
       </div>
     `).join('')
@@ -3083,14 +3542,17 @@ async function loadPersonalFiles(subjectId) {
   }
 }
 
-async function removePersonalFile(id, subjectId) {
-  await deletePersonalFile(id)
+async function removePersonalFile(id, storagePath, subjectId) {
+  await deletePersonalFile(id, storagePath)
   loadPersonalFiles(subjectId)
 }
 
 async function handleFileSelect(event, subjectId) {
   const files = Array.from(event.target.files)
-  for (const file of files) await savePersonalFile(subjectId, file)
+  for (const file of files) {
+    try { await savePersonalFile(subjectId, file) }
+    catch(e) { console.error('Error saving file:', e) }
+  }
   event.target.value = ''
   loadPersonalFiles(subjectId)
 }
@@ -3103,7 +3565,10 @@ async function handleFileDrop(event, subjectId) {
   event.preventDefault()
   document.getElementById('upload-zone').style.borderColor = ''
   const files = Array.from(event.dataTransfer.files)
-  for (const file of files) await savePersonalFile(subjectId, file)
+  for (const file of files) {
+    try { await savePersonalFile(subjectId, file) }
+    catch(e) { console.error('Error saving file:', e) }
+  }
   loadPersonalFiles(subjectId)
 }
 </script>
