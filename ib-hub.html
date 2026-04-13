@@ -1830,6 +1830,12 @@ const PRUEBAS = {
       ],
       gradeBoundaries: [{ session: 'Nov 2025 · sobre 40 pts', 7:'30–40', 6:'25–29', 5:'20–24', 4:'15–19', 3:'10–14', 2:'5–9', 1:'0–4' }],
       papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ2 HL', url: F + encodeURIComponent('Spanish_A_Literature_paper_1_TZ2_HL_Spanish.pdf') },
+          { label: 'MS TZ2',    url: F + encodeURIComponent('Spanish_A_Literature_paper_1_TZ2_HLSL_markscheme_Spanish.pdf') },
+          { label: 'P1 TZ3 HL', url: F + encodeURIComponent('Spanish_A_Literature_paper_1_TZ3_HL_Spanish.pdf') },
+          { label: 'MS TZ3',    url: F + encodeURIComponent('Spanish_A_Literature_paper_1_TZ3_HLSL_markscheme_Spanish.pdf') },
+        ]},
         { s: 'Mayo 2024', ok: true },
         { s: 'Nov 2023',  ok: true },
         { s: 'Mayo 2023', ok: true },
@@ -1860,6 +1866,10 @@ const PRUEBAS = {
       ],
       gradeBoundaries: [{ session: 'Nov 2025 · sobre 30 pts', 7:'25–30', 6:'20–24', 5:'15–19', 4:'10–14', 3:'6–9', 2:'3–5', 1:'0–2' }],
       papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ2 HL', url: F2 + encodeURIComponent('Spanish_A_Literature_paper_2_TZ2_HLSL_Spanish.pdf') },
+          { label: 'P2 TZ3 HL', url: F2 + encodeURIComponent('Spanish_A_Literature_paper_2_TZ3_HLSL_Spanish.pdf') },
+        ]},
         { s: 'Mayo 2024', ok: true },
         { s: 'Nov 2023',  ok: true },
         { s: 'Mayo 2023', ok: true },
@@ -1879,7 +1889,6 @@ const PRUEBAS = {
       ],
     },
     {
-      {
       id: 'ensayo', name: 'Ensayo HL', icon: '📝', weight: '20%', duration: '~1200 palabras',
       desc: 'Ensayo formal sobre una obra o cuerpo de obras del programa de lecturas. Se desarrolla durante el curso.',
       tips: [
