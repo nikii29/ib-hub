@@ -1998,6 +1998,35 @@ const F2 = 'prueba2-espanol-a/'   // folder shorthand for Español A P2 files
 const FE = 'ensayo-ns/'           // folder shorthand for Ensayo HL files
 const FO = 'oral-individual/'     // folder shorthand for Oral Individual files
 
+// ── Carpetas Filosofía NM ──
+const FF00 = 'filosofia-nm/00_PRESENTACION_DEL_CURSO/'
+const FF01 = 'filosofia-nm/01_EL_SABER_FILOSOFICO/'
+const FF02 = 'filosofia-nm/02_SOBRE_LA_LIBERTAD_DE_STUART_MILL/'
+const FF03 = 'filosofia-nm/03_NATURALEZA_HUMANA/'
+const FF04 = 'filosofia-nm/04_CONCIENCIA/'
+const FF05 = 'filosofia-nm/05_METAETICA/'
+const FF07 = 'filosofia-nm/07_EL_PROBLEMA_DE_LA_LIBERTAD/'
+const FF08 = 'filosofia-nm/08_PERSONHOOD/'
+const FF09 = 'filosofia-nm/09_EL_YO_Y_EL_OTRO/'
+const FF10 = 'filosofia-nm/10_ETICA_APLICADA/'
+const FF11 = 'filosofia-nm/11_EVALUACION_INTERNA/'
+const FF12 = 'filosofia-nm/12_ETICA_NORMATIVA/'
+
+// ── Carpetas Computer Science NM ──
+const FCS01 = 'computer-science-nm/01_Topic_1_System_fundamentals/'
+const FCS02 = 'computer-science-nm/02_Databases/'
+const FCS03 = 'computer-science-nm/03_Topic_2_Computer_Organization/'
+const FCS04 = 'computer-science-nm/04_Internal_Assessment/'
+const FCS07 = 'computer-science-nm/07_Topic_4_Computational_thinking_programming/'
+const FCS08 = 'computer-science-nm/08_Topic_3_Networks/'
+const FCS09 = 'computer-science-nm/09_Basics_JAVA_Programming/'
+const FCS10 = 'computer-science-nm/10_Databases_2/'
+const FCS11 = 'computer-science-nm/11_Python_Basics/'
+const FCS12 = 'computer-science-nm/12_Past_Papers/'
+
+// ── Carpetas Matemáticas NM ──
+const FMAT00 = 'matematicas-nm/00_U0_Material_asignatura/'
+
 const PRUEBAS = {
 
   spa_a_ns: [
@@ -2437,6 +2466,100 @@ const PRUEBAS = {
           text: 'Elige un texto que genere preguntas filosóficas genuinamente interesantes, no el más fácil de analizar. Un buen texto source hace que el análisis fluya solo.' },
       ], gradeBoundaries: null, papers: [], files: [],
     },
+    { id: 'filo_00', name: 'Presentación del curso', icon: '📁', files: [
+      { type: 'recurso', name: '50 cosas que hay que saber sobre filosofía', folder: FF00, path: '50_cosas_que_hay_que_saber_sobre_filosofía.pdf' },
+      { type: 'recurso', name: 'Esquema asignatura filosofía Agora', folder: FF00, path: 'Esquema_asignatura_filosofía_Agora.docx' },
+      { type: 'recurso', name: 'Guia nueva filosofia', folder: FF00, path: 'Guia_nueva_filosofia.pdf' },
+      { type: 'recurso', name: 'Libro Oxford IB', folder: FF00, path: 'LIBRO_OXFORD_IB.pdf' },
+      { type: 'recurso', name: 'La argumentación y la evaluación en filosofía', folder: FF00, path: 'La_argumentación_y_la_evaluación_en_filosofía.pptx' },
+      { type: 'recurso', name: 'Presentación Filosofía IB', folder: FF00, path: 'PRESENTACION_FILOSOFIA_IB.pptx' },
+      { type: 'recurso', name: 'Puntos desarrollo examen Filosofía IB', folder: FF00, path: 'PUNTOS_DESARROLLO_EXAMEN_FILOSOFÍA_IB.docx' },
+    ]},
+    { id: 'filo_01', name: 'El saber filosófico', icon: '📁', files: [
+      { type: 'recurso', name: 'Introducción Libro Oxford — Parte I', folder: FF01, path: 'INTRODUCCIÓN_FILO_LIBRO_OXFORD_PARTE_I_-_copia.pdf' },
+    ]},
+    { id: 'filo_02', name: 'Sobre la libertad — Stuart Mill', icon: '📁', files: [
+      { type: 'recurso', name: 'Críticas a Mill', folder: FF02, path: 'CRÍTICAS_A_MILL.pptx' },
+      { type: 'recurso', name: 'J.S. Mill — La "espontaneidad" individual', folder: FF02, path: 'J._S._MILL_Y_LA_"ESPONTANEIDAD"_INDIVIDUAL.pdf' },
+      { type: 'recurso', name: 'John Stuart Mill — Interpretaciones tradicionales', folder: FF02, path: 'JOHN_STUART_MILL_INTERPRETACIONES_TRADICIONALES_Y.pdf' },
+      { type: 'recurso', name: 'J.S. Mill — Utilitarismo y liberalismo', folder: FF02, path: 'J_S_Mill_utilitarismo_y_liberalismo.pdf' },
+      { type: 'recurso', name: 'On Liberty — LitChart', folder: FF02, path: 'On-Liberty-LitChart.pdf' },
+      { type: 'recurso', name: 'Presentación On Liberty', folder: FF02, path: 'Presentación_On_liberty.pptx' },
+      { type: 'recurso', name: 'Prueba 2 NM y NS', folder: FF02, path: 'Prueba_2_Nivel_Medio_y_Nivel_Superior__1_.pdf' },
+    ]},
+    { id: 'filo_03', name: 'Naturaleza humana', icon: '📁', files: [
+      { type: 'recurso', name: 'Apuntes Freud', folder: FF03, path: 'APUNTES_FREUD.pdf' },
+      { type: 'recurso', name: 'Críticas al racionalismo — tábula rasa y conductismo', folder: FF03, path: 'Críticas_al_racionalismo__tábula_rasa_y_conductismo_.pdf' },
+      { type: 'recurso', name: 'La naturaleza humana — tábula rasa de Locke', folder: FF03, path: 'La_naturaleza_humana_según_la_teoría_de_la_tabula_rasa_de_John_Locke.docx' },
+      { type: 'recurso', name: 'Naturaleza humana v2.0', folder: FF03, path: 'NATURALEZA_HUMANA_version_2.0.pptx' },
+    ]},
+    { id: 'filo_04', name: 'Conciencia', icon: '📁', files: [
+      { type: 'recurso', name: 'Conciencia (libro)', folder: FF04, path: 'Conciencia__libro_.pdf' },
+      { type: 'recurso', name: 'Conductismo (libro)', folder: FF04, path: 'Conductismo__libro_.pdf' },
+      { type: 'recurso', name: 'Eliminativismo y fisicalismo (libro)', folder: FF04, path: 'Eliminativismo_y_fisicalismo__libro_.pdf' },
+      { type: 'recurso', name: 'Fisicalismo (libro)', folder: FF04, path: 'Fisicalismo__libro_.pdf' },
+      { type: 'recurso', name: 'Inmaterialismo y realismo en Berkeley', folder: FF04, path: 'Inmaterialismo_y_realismo_en_Berkeley.pdf' },
+      { type: 'recurso', name: 'Introducción al problema mente-cuerpo (libro)', folder: FF04, path: 'Introducción_al_problema_mente-cuerpo___dualismo__libro_.pdf' },
+      { type: 'recurso', name: 'Mente — Resumen Joan Avellaneda', folder: FF04, path: 'MENTE_RESUMEN_POR_JOAN_AVELLANEDA.pdf' },
+      { type: 'recurso', name: 'Mente — Resumen Joan Avellaneda (2)', folder: FF04, path: 'MENTE_RESUMEN_POR_JOAN_AVELLANEDA__1_.pdf' },
+    ]},
+    { id: 'filo_05', name: 'Metaética', icon: '📁', files: [
+      { type: 'recurso', name: 'Ética analítica', folder: FF05, path: 'Etica_analítica.pdf' },
+      { type: 'recurso', name: 'Nietzsche — Apuntes 2º Bachillerato', folder: FF05, path: 'Nietzsche_apuntes_2ndo_batx.pdf' },
+      { type: 'recurso', name: 'Presentación metaética', folder: FF05, path: 'Presentación_metaética.pptx' },
+      { type: 'recurso', name: 'Sobre el relativismo', folder: FF05, path: 'SOBRE_RELATIVISMO.docx' },
+      { type: 'recurso', name: 'Singer — Liberación animal cap. I', folder: FF05, path: 'Singer_Liberación_animal_cap_I.pdf' },
+      { type: 'recurso', name: 'Una introducción a Peter Singer', folder: FF05, path: 'Una_introducció_a_Peter_Singer.pdf' },
+      { type: 'recurso', name: '¿Son relativos el bien y el mal?', folder: FF05, path: '¿SON_RELATIVOS_EL_BIEN_Y_EL_MAL.docx' },
+    ]},
+    { id: 'filo_07', name: 'El problema de la libertad', icon: '📁', files: [
+      { type: 'recurso', name: 'Apuntes existencialismo', folder: FF07, path: 'Apuntes_existencialismo.pdf' },
+      { type: 'recurso', name: 'El problema de la libertad — Presentación', folder: FF07, path: 'El_problema_de_la_libertad-Presentación.pdf' },
+      { type: 'recurso', name: 'El problema de la libertad — Tema central', folder: FF07, path: 'El_problema_de_la_libertad-Tema_central__1_.pdf' },
+    ]},
+    { id: 'filo_08', name: 'Personhood', icon: '📁', files: [
+      { type: 'recurso', name: 'Personalitat', folder: FF08, path: 'PERSONALITAT.pptx' },
+    ]},
+    { id: 'filo_09', name: 'El yo y el otro', icon: '📁', files: [
+      { type: 'recurso', name: 'La mirada sartriana', folder: FF09, path: 'Dialnet-LaMiradaSartriana-5475997.pdf' },
+      { type: 'recurso', name: 'El yo y el otro (presentación)', folder: FF09, path: 'EL_YO_Y_EL_OTRO.pptx' },
+      { type: 'recurso', name: 'Entendiendo el concepto del yo — preguntas', folder: FF09, path: 'ENTENDIENDO_EL_CONCEPTO_DEL_YO__PREGUNTAS_.docx' },
+      { type: 'recurso', name: 'Interpretaciones del Yo', folder: FF09, path: 'InterpretacionesDelYo-6627890.pdf' },
+      { type: 'recurso', name: 'La invención del yo en Locke y Hobbes', folder: FF09, path: 'La_invención_del_yo_en_Locke_y_Hobbes.pdf' },
+      { type: 'recurso', name: 'Locke i la identitat personal', folder: FF09, path: 'Locke_i_la_identitat_personal.pdf' },
+      { type: 'recurso', name: 'Beauvoir — Sexo y género', folder: FF09, path: 'beauvoir-sexo-y-género.pdf' },
+      { type: 'recurso', name: 'Beauvoir y la invención de la feminidad', folder: FF09, path: 'beauvoir_y_la_invención_de_la_feminidad.pdf' },
+    ]},
+    { id: 'filo_10', name: 'Ética aplicada', icon: '📁', files: [
+      { type: 'recurso', name: 'Les capacitats segons Nussbaum', folder: FF10, path: 'Les_capacitats_segons_Nussbaum.pdf' },
+      { type: 'recurso', name: 'Nussbaum, Rawls y las fronteras de la justicia', folder: FF10, path: 'Nussbaum__Rawls_y_las_fronteras_de_la_justicia.pdf' },
+      { type: 'recurso', name: 'Bioética (presentación)', folder: FF10, path: 'POWER_BIOÉTICA.pptx' },
+      { type: 'recurso', name: 'Sandel I', folder: FF10, path: 'Sandel_I.pdf' },
+      { type: 'recurso', name: 'Sandel II', folder: FF10, path: 'Sandel_II.pdf' },
+      { type: 'recurso', name: 'Sandel III', folder: FF10, path: 'Sandel_III.pdf' },
+      { type: 'recurso', name: 'Sandel IV', folder: FF10, path: 'Sandel_IV.pdf' },
+      { type: 'recurso', name: 'Singer — Hambre, riqueza y moralidad', folder: FF10, path: 'Singer_Hambre_riqueza_moralidad.pdf' },
+      { type: 'recurso', name: 'Treball mòdul ètiques', folder: FF10, path: 'Treball_modul_ètiques_castella.docx' },
+      { type: 'recurso', name: '¿Qué es la ética aplicada? I', folder: FF10, path: '¿QUÉ_ES_LA_ETICA_APLICADA_I.pdf' },
+      { type: 'recurso', name: '¿Qué es la ética aplicada? II', folder: FF10, path: '¿QUÉ_ES_LA_ETICA_APLICADA_II.pdf' },
+      { type: 'recurso', name: '¿Qué es la ética aplicada? III', folder: FF10, path: '¿QUÉ_ES_LA_ÉTICA_APLICADA_III.pdf' },
+    ]},
+    { id: 'filo_11', name: 'Evaluación interna', icon: '📁', files: [
+      { type: 'recurso', name: 'Evaluación interna — Ejemplo 1', folder: FF11, path: '1.pdf' },
+      { type: 'recurso', name: 'Evaluación interna — Ejemplo 4', folder: FF11, path: '4.pdf' },
+      { type: 'recurso', name: 'Evaluación interna — Ejemplo 6', folder: FF11, path: '6.pdf' },
+      { type: 'recurso', name: 'Evaluación interna — Marcel (ejemplo)', folder: FF11, path: 'Evaluacion_interna_filosofia_Marcel_def.pdf' },
+      { type: 'recurso', name: 'Ensayo final Filo — Zwaantje (ejemplo)', folder: FF11, path: 'Filo_ensayo_final_Zwaantje_pdf.pdf' },
+    ]},
+    { id: 'filo_12', name: 'Ética normativa', icon: '📁', files: [
+      { type: 'recurso', name: 'Aristóteles — Antropología, ética y política', folder: FF12, path: 'ARISTÓTELES_ANTROPOLOGÍA__ÉTICA_Y_POLÍTICA__4_.docx' },
+      { type: 'recurso', name: 'Apuntes Kant — Sandel: Justicia', folder: FF12, path: 'Apuntes_Kant_de_Sandel__Justicia_Hacemos_lo_que_debemos_.pdf' },
+      { type: 'recurso', name: 'Ética BATX 1', folder: FF12, path: 'ETICA_BATX_1.pdf' },
+      { type: 'recurso', name: 'Intelectualismo moral', folder: FF12, path: 'Intelectualismo_moral.pdf' },
+      { type: 'recurso', name: 'Kant y la felicidad', folder: FF12, path: 'KANT_Y_LA_FELICIDAD.pdf' },
+      { type: 'recurso', name: 'Resumen ética kantiana', folder: FF12, path: 'RESÚMEN_ÉTICA_KANTIANA__4_.pdf' },
+      { type: 'recurso', name: 'Utilitarismo — Sandel: Justicia', folder: FF12, path: 'Utilitarismo_Sandel_Justicia_Hacemos_lo_que_debemos.pdf' },
+    ]},
   ],
 
   bm_nm: [
@@ -2625,6 +2748,87 @@ const PRUEBAS = {
           text: 'El criterio B (Design) es donde más puntos se pierden. Documenta cada decisión de diseño con capturas y justificaciones. "Hice X porque es mejor que Y" vale mucho más que solo mostrar que X funciona.' },
       ], gradeBoundaries: null, papers: [], files: [],
     },
+    { id: 'cs_t1', name: 'Topic 1 — System fundamentals', icon: '📁', files: [
+      { type: 'recurso', name: 'IB DP CS Topic 1 — System fundamentals', folder: FCS01, path: 'IB_DP_CS_Topic_1—System_fundamentals.pdf' },
+      { type: 'recurso', name: 'Practice 1.2.7', folder: FCS01, path: 'Practice_1.2.7.docx' },
+      { type: 'recurso', name: 'Practice 1.2.7 (2)', folder: FCS01, path: '2Practice_1.2.7.docx' },
+      { type: 'recurso', name: 'Practice 1.2.7 (3)', folder: FCS01, path: '3rdPractice1.2.7.docx' },
+    ]},
+    { id: 'cs_t2', name: 'Topic 2 — Computer Organization', icon: '📁', files: [
+      { type: 'recurso', name: 'IB DP CS Topic 2 — Computer Organization', folder: FCS03, path: 'IB_DP_CS_Topic_2_-_Computer_organization.pdf' },
+      { type: 'recurso', name: 'Computer Organization (2)', folder: FCS03, path: 'Computer_Organization_IB_DP_CS__2_.pdf' },
+      { type: 'recurso', name: 'Computer Organization (3)', folder: FCS03, path: 'Computer_Organization_IB_DP_CS__3_.pdf' },
+      { type: 'recurso', name: 'Binary Representation Activity', folder: FCS03, path: 'Binary_Representation_Activity.pdf' },
+      { type: 'recurso', name: 'Past Paper Questions — Logic Gates', folder: FCS03, path: 'Past_Paper_Questions_of_Logic_Gates.pdf' },
+      { type: 'recurso', name: '2.1.1', folder: FCS03, path: '2.1.1.pdf' },
+      { type: 'recurso', name: '2.1.2', folder: FCS03, path: '2.1.2.pdf' },
+      { type: 'recurso', name: '2.1.3', folder: FCS03, path: '2.1.3.pdf' },
+      { type: 'recurso', name: '2.1.4', folder: FCS03, path: '2.1.4.pdf' },
+      { type: 'recurso', name: '2.1.5', folder: FCS03, path: '2.1.5.pdf' },
+      { type: 'recurso', name: '2.1.6', folder: FCS03, path: '2.1.6.pdf' },
+      { type: 'recurso', name: '2.1.7', folder: FCS03, path: '2.1.7.pdf' },
+      { type: 'recurso', name: '2.1.8', folder: FCS03, path: '2.1.8.pdf' },
+      { type: 'recurso', name: '2.1.9', folder: FCS03, path: '2.1.9.pdf' },
+      { type: 'recurso', name: '2.1.10', folder: FCS03, path: '2.1.10.pdf' },
+      { type: 'recurso', name: '2.1.11', folder: FCS03, path: '2.1.11.pdf' },
+      { type: 'recurso', name: '2.1.12', folder: FCS03, path: '2.1.12.pdf' },
+      { type: 'recurso', name: '2.1.13', folder: FCS03, path: '2.1.13.pdf' },
+      { type: 'recurso', name: 'Practice 2.1.5', folder: FCS03, path: 'Practice_2.1.5.docx' },
+      { type: 'recurso', name: 'Practice 2.1.5 ManageBac', folder: FCS03, path: 'Practice_2.1.5_ManagBac.docx' },
+    ]},
+    { id: 'cs_t3', name: 'Topic 3 — Networks', icon: '📁', files: [
+      { type: 'recurso', name: 'IB DP CS Topic 3 — Networks', folder: FCS08, path: 'IB-DP-CS-Topic-3-Networks.pdf' },
+      { type: 'recurso', name: 'Topic 3 Network Past Paper Answers', folder: FCS08, path: 'Topic_3_Network_Past_Paper_Answers.pdf' },
+    ]},
+    { id: 'cs_t4', name: 'Topic 4 — Computational thinking & programming', icon: '📁', files: [
+      { type: 'recurso', name: 'IB DP CS Topic 4 — Computational thinking', folder: FCS07, path: 'IB-DP-CS-Topic-4-Computational-thinking--problem-solving-and-programming.pdf' },
+      { type: 'recurso', name: 'Approved notation for pseudocode', folder: FCS07, path: 'Approved_notation_for_developing_pseudocode.pdf' },
+      { type: 'recurso', name: 'IB Pseudocode rules', folder: FCS07, path: 'IB-Pseudocode-rules.pdf' },
+      { type: 'recurso', name: 'Tips for Writing Pseudocode', folder: FCS07, path: 'Tips_for_Writing_Pseudocode.pdf' },
+      { type: 'recurso', name: 'Topic 4 General Principals', folder: FCS07, path: 'Topic_4__General_Principals__1_.pptx' },
+      { type: 'recurso', name: 'Presentation (1)', folder: FCS07, path: 'Presentation.pdf' },
+      { type: 'recurso', name: 'Presentation (2)', folder: FCS07, path: 'Presentation2.pdf' },
+      { type: 'recurso', name: 'Presentation (3)', folder: FCS07, path: 'Presentation3.pdf' },
+      { type: 'recurso', name: 'Presentation PPTX', folder: FCS07, path: 'Presentation.pptx' },
+      { type: 'recurso', name: 'Practice 4.1.1', folder: FCS07, path: 'Practice_4.1.1.docx' },
+      { type: 'recurso', name: 'Practice 4.1.11 to 4.1.13', folder: FCS07, path: 'Practice_4.1.11_to_4.1.13.pdf' },
+      { type: 'recurso', name: 'Practice Pseudocode 5', folder: FCS07, path: 'Practice_Pseudocode5.docx' },
+    ]},
+    { id: 'cs_db', name: 'Databases', icon: '📁', files: [
+      { type: 'recurso', name: 'Databases Lecture 1', folder: FCS02, path: 'Databases_Lecture_1.pptx' },
+      { type: 'recurso', name: 'Databases Lecture 2 (1–8)', folder: FCS02, path: 'Databases_Lecture_2__1-8_.pptx' },
+      { type: 'recurso', name: 'Databases Lecture 2 (9–15)', folder: FCS02, path: 'Databases_Lecture_2__9_-15_.pptx' },
+      { type: 'recurso', name: 'Database Lecture 2 (16–20)', folder: FCS02, path: 'Database_Lecture_2__16-20_.pptx' },
+      { type: 'recurso', name: 'Database Lecture 3', folder: FCS02, path: 'Database_Lecture_3.pptx' },
+      { type: 'recurso', name: 'Normalization Examples', folder: FCS02, path: 'Normalization_Examples.pptx' },
+    ]},
+    { id: 'cs_java', name: 'Java Programming', icon: '📁', files: [
+      { type: 'recurso', name: 'Java Tasks — If/else', folder: FCS09, path: 'Java_Tasks_to_Practice_Ifelse__2_.pptx' },
+      { type: 'recurso', name: 'Java Tasks — Loops', folder: FCS09, path: 'Java_Tasks_to_practice_loops.pptx' },
+    ]},
+    { id: 'cs_py', name: 'Python Basics', icon: '📁', files: [
+      { type: 'recurso', name: 'Introduction to Python', folder: FCS11, path: 'Introduction_to_Python.pptx' },
+      { type: 'recurso', name: 'Python Variables', folder: FCS11, path: 'Python_Variables.pptx' },
+      { type: 'recurso', name: 'Python For Loop', folder: FCS11, path: 'Python_For_Loop.pptx' },
+      { type: 'recurso', name: 'Python Problems looping', folder: FCS11, path: 'Python_Problems_looping.pptx' },
+      { type: 'recurso', name: 'Python Libraries', folder: FCS11, path: 'PYTHON_LIBRARIES.pptx' },
+    ]},
+    { id: 'cs_ia_res', name: 'Internal Assessment — Recursos', icon: '📁', files: [
+      { type: 'recurso', name: 'Introduction to IA', folder: FCS04, path: 'Introduction_to_IA.pdf' },
+      { type: 'recurso', name: 'Computer Science IA Handbook', folder: FCS04, path: 'Computer_Science_IA_Handbook.pdf' },
+      { type: 'recurso', name: 'Appendix', folder: FCS04, path: 'Appendix.pdf' },
+      { type: 'recurso', name: 'Criterion A Planning — 3 Marks', folder: FCS04, path: 'Crit_A_Planning3MArks.pdf' },
+      { type: 'recurso', name: 'Criterion A Planning — 4 Marks', folder: FCS04, path: 'Crit_A_Planning4.pdf' },
+      { type: 'recurso', name: 'Criterion A Planning — 4 Marks (1)', folder: FCS04, path: 'Crit_A_Planning4Marks.pdf' },
+      { type: 'recurso', name: 'Criterion A Planning — 4 Marks (2)', folder: FCS04, path: 'Crit_A_Planning4marks1.pdf' },
+      { type: 'recurso', name: 'Criterion A Planning — 5 Marks', folder: FCS04, path: 'Crit_A_Planning5marks.pdf' },
+      { type: 'recurso', name: 'Criterion B Design — Max Marks', folder: FCS04, path: 'Crit_B_DesignMaxMarks.pdf' },
+      { type: 'recurso', name: 'Criterion B Record of Tasks — Max Marks', folder: FCS04, path: 'Crit_B_Record_of_tasksMax_Marks.pdf' },
+      { type: 'recurso', name: 'Full Marks in Criterion A', folder: FCS04, path: 'Full_Marks_in_Crit_A_Planning.pdf' },
+      { type: 'recurso', name: "Moderator's Comments", folder: FCS04, path: 'Moderators_Comments.pdf' },
+      { type: 'recurso', name: 'Record of Tasks (blank)', folder: FCS04, path: 'ROT_blank.rtf__1_.docx' },
+      { type: 'recurso', name: 'Record of Tasks (1)', folder: FCS04, path: 'ROT__1_.docx' },
+    ]},
   ],
 
   chem_nm: [
@@ -3007,6 +3211,13 @@ const PRUEBAS = {
       desc: 'Investigación matemática personal sobre un tema elegido.',
       tips: [], gradeBoundaries: null, papers: [], files: [],
     },
+    { id: 'mat_00', name: 'Material de la asignatura', icon: '📁', files: [
+      { type: 'recurso', name: 'Cuadernillo Matemáticas', folder: FMAT00, path: 'Cuadernillo_Matemáticas_version_4.pdf' },
+      { type: 'recurso', name: 'Mapa conceptual — Contenido común', folder: FMAT00, path: 'MAPA_CONCEPTUAL_CONTENIDO_COMÚN.pdf' },
+      { type: 'recurso', name: 'Mapa conceptual — NM', folder: FMAT00, path: 'MAPA_CONCEPTUAL_NM.pdf' },
+      { type: 'recurso', name: 'Primer día — Análisis', folder: FMAT00, path: 'Primer_dia_Análisis_def.pptx' },
+      { type: 'recurso', name: 'Programa análisis español', folder: FMAT00, path: 'Programa_analisis_esp.pdf' },
+    ]},
   ],
 
   mae_ns: [
