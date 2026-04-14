@@ -1995,6 +1995,8 @@ const CONTENT = {
 
 const F  = 'prueba1-espanol-a/'   // folder shorthand for Español A P1 files
 const F2 = 'prueba2-espanol-a/'   // folder shorthand for Español A P2 files
+const FE = 'ensayo-ns/'           // folder shorthand for Ensayo HL files
+const FO = 'oral-individual/'     // folder shorthand for Oral Individual files
 
 const PRUEBAS = {
 
@@ -2054,6 +2056,7 @@ const PRUEBAS = {
         { type: 'ejemplo', name: 'Ejemplo resuelto 2',                          folder: F, path: 'local (1).pdf' },
         { type: 'ejemplo', name: 'Ejemplo: ¿Tú no conoces aquel sitio?',        folder: F, path: '¿Tií no conoces aquel sitio.pdf' },
         { type: 'recurso', name: 'Apuntes: tópicos literarios',                  folder: F, path: 'r (1).pdf' },
+        { type: 'recurso', name: 'Comentario de texto',                          folder: F, path: 'comentario texto.pdf' },
       ],
     },
     {
@@ -2104,7 +2107,14 @@ const PRUEBAS = {
       ],
       gradeBoundaries: [{ session: 'Nov 2025 · sobre 20 pts', 7:'18–20', 6:'15–17', 5:'13–14', 4:'10–12', 3:'7–9', 2:'4–6', 1:'0–3' }],
       papers: [],
-      files: [],
+      files: [
+        { type: 'recurso', name: 'Presentación: Hamlet',              folder: FE, path: '1.Presentación_Hamlet.pdf' },
+        { type: 'recurso', name: 'Presentación: Madame Bovary',       folder: FE, path: '1.Presentación_Madame_Bovary.pdf' },
+        { type: 'recurso', name: 'Estudio: Hamlet',                   folder: FE, path: '2.HAMLET._Estudio.pdf' },
+        { type: 'recurso', name: 'Dosier: Madame Bovary',             folder: FE, path: '2.Madame_Bovary._Dosier.pdf' },
+        { type: 'guia',    name: 'Presentación general del Ensayo',   folder: FE, path: 'Presentación de PowerPoint.pdf' },
+        { type: 'recurso', name: 'Link descarga película',            folder: FE, path: '3.LINK_DESCARGA_PELÍCULA.docx' },
+      ],
     },
     {
       id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '20%', duration: '15 min + 5 min',
@@ -2117,7 +2127,11 @@ const PRUEBAS = {
       ],
       gradeBoundaries: [{ session: 'Nov 2025 · sobre 40 pts', 7:'34–40', 6:'29–33', 5:'24–28', 4:'19–23', 3:'13–18', 2:'7–12', 1:'0–6' }],
       papers: [],
-      files: [],
+      files: [
+        { type: 'recurso', name: 'Crónica de una muerte anunciada (texto)', folder: FO, path: 'Crónica de una muerte anunciada  Gabriel García Márquez.pdf' },
+        { type: 'recurso', name: 'San Manuel Bueno, mártir (texto)',        folder: FO, path: 'Miguel de Unamuno San Manuel Bueno, mártir.pdf' },
+        { type: 'recurso', name: 'Animated Chemistry Lesson',              folder: FO, path: 'ANIMATED CHEMISTRY LESSON.pdf' },
+      ],
     },
   ],
 
@@ -2129,7 +2143,33 @@ const PRUEBAS = {
         { author: 'Student IB · English A NS',
           text: 'Use TADPOLE: Theme, Audience, Diction, Purpose, Organization, Language, Effect. It stops you from summarizing and forces real analysis of how the writer achieves their purpose.' },
       ],
-      gradeBoundaries: null, papers: [], files: [],
+      gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HLSL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HLSL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__HLSL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HLSL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HLSL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ1_HLSL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_1__TZ2_HLSL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '35%', duration: '90 min',
@@ -2138,7 +2178,26 @@ const PRUEBAS = {
         { author: 'Student IB · English A NS',
           text: 'Integrate the comparison throughout — don\'t write about one work then the other. Use a clear, arguable thesis in your introduction, not a question.' },
       ],
-      gradeBoundaries: null, papers: [], files: [],
+      gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ1_HLSL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ2_HLSL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__HLSL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ1_HLSL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ2_HLSL.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ1_HLSL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Studies%20in%20language%20and%20literature/English_A_Literature_paper_2__TZ2_HLSL.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '30%', duration: '15 min + 5 min',
@@ -2151,12 +2210,47 @@ const PRUEBAS = {
     {
       id: 'p1', name: 'Paper 1', icon: '📖', weight: '25%', duration: '75 min',
       desc: 'Reading comprehension — three texts from different text types.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '90 min',
       desc: 'Written production — one text from a choice of three prompts.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/English_B_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/English_B_paper_2__HL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/English_B_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '25%', duration: '15 min',
@@ -2173,11 +2267,46 @@ const PRUEBAS = {
   spa_b_ns: [
     {
       id: 'p1', name: 'Prueba 1', icon: '📖', weight: '25%', duration: '75 min',
-      desc: 'Comprensión lectora — tres textos de distintos tipos.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Comprensión lectora — tres textos de distintos tipos.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_1__TZ1_HL_Spanish.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_1__TZ1_HL_markscheme_Spanish.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_1__TZ2_HL_Spanish.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_1__TZ2_HL_markscheme_Spanish.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__HL_Spanish.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__HL_markscheme_Spanish.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__TZ1_HL_Spanish.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__TZ1_HL_markscheme_Spanish.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__TZ2_HL_Spanish.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_1__TZ2_HL_markscheme_Spanish.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '25%', duration: '90 min',
-      desc: 'Producción escrita — un texto a partir de tres opciones.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Producción escrita — un texto a partir de tres opciones.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_2__TZ1_HL_Spanish.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/Spanish_B_paper_2__TZ2_HL_Spanish.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_2__HL_Spanish.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_2__TZ1_HL_Spanish.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/Spanish_B_paper_2__TZ2_HL_Spanish.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'oral', name: 'Oral Individual', icon: '🎙️', weight: '25%', duration: '15 min',
@@ -2192,11 +2321,46 @@ const PRUEBAS = {
   ger_b_ns: [
     {
       id: 'p1', name: 'Paper 1', icon: '📖', weight: '25%', duration: '75 min',
-      desc: 'Leseverstehen — drei Texte verschiedener Textsorten.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Leseverstehen — drei Texte verschiedener Textsorten.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '90 min',
-      desc: 'Schriftliche Produktion — ein Text aus drei Aufgaben.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Schriftliche Produktion — ein Text aus drei Aufgaben.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Language%20acquisition/German_B_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Language%20acquisition/German_B_paper_2__HL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Language%20acquisition/German_B_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2019 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'oral', name: 'Individual Oral', icon: '🎙️', weight: '25%', duration: '15 min',
@@ -2215,12 +2379,55 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Filosofía NM',
           text: 'Estructura: presenta la pregunta → expón la posición de un filósofo con argumentos → contraargumenta con otro → emite tu juicio razonado. Citar filósofos con nombre y obra concreta sube mucho la nota.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '30%', duration: '90 min',
       desc: 'Ensayo filosófico largo sobre un tema elegido.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Philosophy_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_2__SL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Philosophy_paper_2__TZ2_SL.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Philosophical Analysis', icon: '📋', weight: '30%', duration: '~2000 palabras',
@@ -2239,12 +2446,57 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · BM NM',
           text: 'Para preguntas de evaluación (6 pts) siempre: argumento a favor + evidencia del caso → argumento en contra + evidencia → conclusión justificada. Sin referencia al caso real, la respuesta no llega al nivel máximo.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '40%', duration: '90 min',
       desc: 'Preguntas basadas en datos de un estímulo no visto.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__SL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Mayo 2021 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA', icon: '📋', weight: '25%', duration: '~2000 palabras',
@@ -2260,7 +2512,20 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Historia NM',
           text: 'La "Limitation" de una fuente debe ser específica al contexto histórico, no genérica. "Es subjetivo" no da puntos. Di por qué su subjetividad concreta limita su valor para este tema específico.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_1__TZ1_HLSL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_1__TZ1_HLSL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_1__TZ2_HLSL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_1__TZ2_HLSL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+        { s: 'Mayo 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '45%', duration: '90 min',
@@ -2268,7 +2533,18 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Historia NM',
           text: 'Empieza con una tesis clara y defendible, no con una pregunta retórica ni con "A lo largo de la historia…". Los marcadores usan: P (Point) → E (Evidence) → E (Explanation) → L (Link).' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_2__TZ1_HLSL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Individuals%20and%20societies/History_paper_2__TZ2_HLSL.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+        { s: 'Mayo 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Investigación Histórica', icon: '📋', weight: '25%', duration: '~2200 palabras',
@@ -2284,12 +2560,62 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · CS NM',
           text: 'El pseudocódigo del IB tiene su propia sintaxis. Estúdiala desde el principio — los examinadores no aceptan Python, Java ni ningún otro lenguaje, aunque la lógica sea correcta.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '💻', weight: '25%', duration: '60 min',
       desc: 'Programación orientada a objetos y algoritmos en pseudocódigo IB.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Computer_science_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Dossier', icon: '📋', weight: '30%', duration: 'Proyecto completo',
@@ -2308,12 +2634,36 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Química NM',
           text: 'En la MCQ, lee todas las opciones antes de marcar. Las opciones incorrectas están diseñadas para confundir a quien no lee con atención. Proceso de eliminación funciona muy bien.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
       desc: 'Preguntas cortas y de respuesta extendida — cálculos y preguntas conceptuales.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Chemistry_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Experimento', icon: '🧪', weight: '20%', duration: '10 horas',
@@ -2329,12 +2679,36 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Física NM',
           text: 'Antes de aplicar una fórmula del data booklet, verifica que se cumplen sus condiciones (rozamiento despreciable, campo uniforme…). Aplicar la fórmula correcta en el contexto incorrecto es error conceptual.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
       desc: 'Preguntas cortas y de respuesta extendida — cálculos y explicaciones.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Experimento', icon: '🔩', weight: '20%', duration: '10 horas',
@@ -2347,17 +2721,53 @@ const PRUEBAS = {
     {
       id: 'p1', name: 'Prueba 1', icon: '⚡', weight: '36%', duration: '90 min',
       desc: 'Parte A: MCQ. Parte B: análisis de datos experimental.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
       desc: 'Preguntas cortas y de respuesta extendida.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ1_HL_markscheme.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_2__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p3', name: 'Prueba 3', icon: '🌌', weight: 'NS only',  duration: '60 min',
       desc: 'Opción NS elegida: Física de partículas, Astrofísica, Electromagnetismo, o Medicina.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_3__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_3__TZ1_HL_markscheme.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_3__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Physics_paper_3__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Experimento', icon: '🔩', weight: '20%', duration: '10 horas',
@@ -2368,11 +2778,54 @@ const PRUEBAS = {
   sports_nm: [
     {
       id: 'p1', name: 'Paper 1', icon: '🏃', weight: '30%', duration: '60 min',
-      desc: 'Short-answer questions on anatomy, physiology and psychology.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Short-answer questions on anatomy, physiology and psychology.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '30%', duration: '60 min',
-      desc: 'Extended response questions on training, nutrition and performance.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Extended response questions on training, nutrition and performance.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__SL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ2_SL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ1_SL.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Experimental%20sciences/Sports_exercise_and_health_science_paper_2__TZ2_SL.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Investigation', icon: '📋', weight: '40%', duration: '~2000 words',
@@ -2398,12 +2851,72 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · MAI NM',
           text: 'MAI usa calculadora en todos los papers. Aprende a usar la GDC para listas, regresión, distribuciones y resolver ecuaciones — puede ahorrarte 20 minutos en el examen.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '90 min',
       desc: 'Con calculadora (GDC). Preguntas largas con partes conectadas.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_applications_and_interpretation_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
@@ -2422,12 +2935,72 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · MAE NM',
           text: 'Paper 1 es sin calculadora. Practica aritmética exacta con fracciones, raíces y logaritmos regularmente — los errores de cálculo en P1 son el error más común.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '90 min',
       desc: 'Con calculadora (GDC). Problemas aplicados y preguntas largas.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
@@ -2443,12 +3016,72 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · MAE NS',
           text: 'En los "proofs" (demostraciones), justifica cada paso. Saltar pasos aunque sean obvios puede costar el punto de method. Escribe más de lo que crees necesario.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '📈', weight: '30%', duration: '120 min',
       desc: 'Con calculadora (GDC). Preguntas largas e interconectadas.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL_markscheme.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL_markscheme.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_HL_markscheme.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p3', name: 'Prueba 3', icon: '🔢', weight: '20%', duration: '60 min',
@@ -2456,7 +3089,37 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · MAE NS',
           text: 'En P3, si te bloqueas en una parte, continúa con la siguiente — muchas preguntas usan el resultado dado ("hence") aunque no lo hayas demostrado tú. No te quedes atascado.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL_markscheme.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P3 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL_markscheme.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2022', ok: true, links: [
+          { label: 'P3 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/November%202022%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ1_HL_markscheme.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_3__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Exploración', icon: '📋', weight: '20%', duration: '~12 páginas',
@@ -2471,11 +3134,63 @@ const PRUEBAS = {
       tips: [
         { author: 'Student IB · MAE (English) NM',
           text: '"Hence" means use the previous result. "Hence or otherwise" gives freedom of method. Read every instruction precisely — misreading command words is a very common mistake.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P1 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ1_SL_markscheme.pdf' },
+          { label: 'P1 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_1__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '📈', weight: '30%', duration: '90 min',
-      desc: 'GDC allowed — extended problems and applications.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'GDC allowed — extended problems and applications.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021', ok: true, links: [
+          { label: 'P2 TZ1 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ1_SL_markscheme.pdf' },
+          { label: 'P2 TZ2 SL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2021%20Examination%20Session/May%202021%20Examination%20Session/Mathematics/Mathematics_analysis_and_approaches_paper_2__TZ2_SL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2020 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Exploration', icon: '📋', weight: '20%', duration: '~12 pages',
@@ -2486,11 +3201,56 @@ const PRUEBAS = {
   bm_ns: [
     {
       id: 'p1', name: 'Paper 1', icon: '📊', weight: '25%', duration: '75 min',
-      desc: 'Structured questions based on a seen case study.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Structured questions based on a seen case study.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2021 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '25%', duration: '75 min',
-      desc: 'Extended responses based on an unseen stimulus.', tips: [], gradeBoundaries: null, papers: [], files: [],
+      desc: 'Extended responses based on an unseen stimulus.', tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__HL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2021 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p3', name: 'Paper 3', icon: '📁', weight: '25%', duration: '60 min',
@@ -2498,7 +3258,26 @@ const PRUEBAS = {
       tips: [
         { author: 'Student IB · Business Management NS',
           text: 'Read the pre-released case study weeks before the exam. Analyse the company deeply and prepare arguments for/against the strategic decisions it faces.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_3__TZ1_HL.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Business_management_paper_3__TZ2_HL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P3 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_3__HL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_3__TZ1_HL.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_3__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P3 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_3__TZ1_HL.pdf' },
+          { label: 'P3 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Business_management_paper_3__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2021 y anteriores', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA', icon: '📋', weight: '25%', duration: '~2000 words',
@@ -2537,12 +3316,36 @@ const PRUEBAS = {
       tips: [
         { author: 'Estudiante IB · Biología NS',
           text: 'El nuevo syllabus (2025) hace énfasis en el "inquiry toolkit". En la Parte B de P1, demuestra comprensión del proceso científico, no solo los resultados.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Prueba 2', icon: '✍️', weight: '44%', duration: '135 min',
       desc: 'Preguntas cortas y de respuesta extendida.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2025', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_2__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_2__TZ1_HL_markscheme.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_2__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2025%20Examination%20Session/May%202025%20Examination%20Session/PDFs/Experimental%20sciences/Biology_paper_2__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2024', ok: false },
+        { s: 'Mayo 2024', ok: false },
+        { s: 'Nov 2023', ok: false },
+      ],
+      files: [],
     },
     {
       id: 'ia', name: 'IA — Investigación', icon: '🧫', weight: '20%', duration: '10 horas',
@@ -2555,7 +3358,32 @@ const PRUEBAS = {
     {
       id: 'p1', name: 'Paper 1', icon: '🌍', weight: '30%', duration: '75 min',
       desc: 'Source-based questions on a global political issue.',
-      tips: [], gradeBoundaries: null, papers: [], files: [],
+      tips: [], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__HL.pdf' },
+          { label: 'MS',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P1 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL.pdf' },
+          { label: 'MS TZ1',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ1_HL_markscheme.pdf' },
+          { label: 'P1 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL.pdf' },
+          { label: 'MS TZ2',    url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_1__TZ2_HL_markscheme.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'p2', name: 'Paper 2', icon: '✍️', weight: '45%', duration: '90 min',
@@ -2563,7 +3391,25 @@ const PRUEBAS = {
       tips: [
         { author: 'Student IB · Global Politics NS',
           text: 'Use current, real-world case studies in your essays. Examiners reward the ability to apply political concepts to recent events — read international news regularly.' },
-      ], gradeBoundaries: null, papers: [], files: [],
+      ], gradeBoundaries: null,
+      papers: [
+        { s: 'Mayo 2024', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2024%20Examination%20Session/May%202024%20Examination%20Session/PDFs/Individuals%20and%20societies/Global_politics_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Nov 2023', ok: true, links: [
+          { label: 'P2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/November%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_2__HL.pdf' },
+        ]},
+        { s: 'Mayo 2023', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2023%20Examination%20Session/May%202023%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_2__TZ2_HL.pdf' },
+        ]},
+        { s: 'Mayo 2022', ok: true, links: [
+          { label: 'P2 TZ1 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_2__TZ1_HL.pdf' },
+          { label: 'P2 TZ2 HL', url: 'https://doxxib.pp.ua/IB%20PAST%20PAPERS%20-%20YEAR/2022%20Examination%20Session/May%202022%20Examination%20Session/Individuals%20and%20societies/Global_politics_paper_2__TZ2_HL.pdf' },
+        ]},
+      ],
+      files: [],
     },
     {
       id: 'ea', name: 'Engagement Activity', icon: '📋', weight: '25%', duration: '~2000 words',
