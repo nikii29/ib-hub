@@ -3,55 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nicole Maccari — Portfolio</title>
+  <title>IB Hub — Tu plataforma de estudio IB</title>
+  <meta name="description" content="Todo lo que necesitas para el IB en un solo lugar. Past papers, apuntes, flashcards y recursos organizados por asignatura." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #08080f;
-      --bg2: #0d0d1a;
-      --purple: #7c3aed;
-      --purple-light: #a855f7;
-      --cyan: #06b6d4;
-      --cyan-light: #67e8f9;
-      --white: #f0f0ff;
-      --gray: #8888aa;
-      --card-bg: rgba(255,255,255,0.03);
-      --card-border: rgba(255,255,255,0.07);
-      --glow-purple: 0 0 40px rgba(124,58,237,0.3);
-      --glow-cyan: 0 0 40px rgba(6,182,212,0.3);
+      --bg:      #080810;
+      --bg2:     #0f0f1e;
+      --bg3:     #15152a;
+      --border:  rgba(255,255,255,0.07);
+      --text:    #eeeef8;
+      --muted:   #7070a0;
+      --accent:  #6366f1;
+      --accent2: #818cf8;
+      --accent3: #a5b4fc;
+      --green:   #10b981;
+      --yellow:  #f59e0b;
+      --pink:    #ec4899;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
       overflow-x: hidden;
-      line-height: 1.6;
     }
 
-    /* ── CANVAS BACKGROUND ── */
-    #bg-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ── NOISE OVERLAY ── */
+    /* ── NOISE overlay ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
     }
 
     /* ── NAV ── */
@@ -62,1129 +54,658 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(8,8,15,0.7);
+      padding: 0 clamp(20px, 5vw, 80px);
+      height: 64px;
+      background: rgba(8,8,16,0.7);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.1rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.02em;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      align-items: center;
+      gap: 32px;
       list-style: none;
     }
 
     .nav-links a {
-      color: var(--gray);
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 14px;
       font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-      position: relative;
+      transition: color .2s;
     }
+    .nav-links a:hover { color: var(--text); }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--cyan);
-      transition: width 0.3s;
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background .2s, transform .15s !important;
     }
-
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-links a:hover::after { width: 100%; }
-
-    /* ── SECTIONS BASE ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .nav-cta:hover { background: var(--accent2) !important; transform: translateY(-1px); }
 
     /* ── HERO ── */
-    #hero {
+    .hero {
+      position: relative;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 8rem 2rem 4rem;
+      justify-content: center;
+      text-align: center;
+      padding: 100px clamp(20px, 5vw, 80px) 80px;
+      overflow: hidden;
     }
 
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 4rem;
+    /* glow blobs */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 400px; height: 400px; background: rgba(99,102,241,0.12); top: 10%; left: 5%; }
+    .blob-2 { width: 300px; height: 300px; background: rgba(236,72,153,0.08); top: 40%; right: 5%; }
+    .blob-3 { width: 250px; height: 250px; background: rgba(16,185,129,0.07); bottom: 10%; left: 30%; }
+
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(6,182,212,0.3);
-      background: rgba(6,182,212,0.05);
-      color: var(--cyan);
-      font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
+      gap: 8px;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent3);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
     }
 
-    .hero-badge-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-      animation: pulse-dot 2s infinite;
-    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero-name {
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 700;
+    .hero-title {
+      font-size: clamp(42px, 8vw, 82px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
       line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 24px;
     }
 
-    .hero-name .first { color: var(--white); }
-
-    .hero-name .last {
-      background: linear-gradient(135deg, var(--purple-light) 0%, var(--cyan) 100%);
+    .hero-title .grad {
+      background: linear-gradient(135deg, #818cf8 0%, #a5b4fc 40%, #c4b5fd 70%, #f0abfc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
-    .hero-role {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      color: var(--purple-light);
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.05em;
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto 40px;
     }
 
-    .hero-desc {
-      color: var(--gray);
-      font-size: 1.1rem;
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
 
-    .hero-tags {
+    .hero-actions {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .tag {
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      color: var(--gray);
-      transition: all 0.3s;
-    }
-
-    .tag:hover {
-      border-color: var(--purple);
-      color: var(--purple-light);
-      background: rgba(124,58,237,0.08);
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
     }
 
     .btn-primary {
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
       color: #fff;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
       text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: opacity 0.3s, transform 0.2s;
-      box-shadow: var(--glow-purple);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 12px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 0 30px rgba(99,102,241,0.3);
+    }
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(99,102,241,0.5);
     }
 
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    .btn-outline {
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--white);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
       text-decoration: none;
-      border: 1px solid var(--card-border);
-      cursor: pointer;
-      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      transition: background .2s, border-color .2s, transform .15s;
     }
-
-    .btn-outline:hover {
-      border-color: var(--cyan);
-      color: var(--cyan);
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.15);
       transform: translateY(-2px);
     }
 
-    /* Hero avatar */
-    .hero-avatar {
-      position: relative;
-      width: 220px; height: 220px;
-      flex-shrink: 0;
-    }
-
-    .avatar-ring {
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--purple), var(--cyan), var(--purple));
-      animation: spin 6s linear infinite;
-    }
-
-    .avatar-ring::before {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      border-radius: 50%;
-      background: var(--bg);
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .avatar-inner {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.2));
-      border: 2px solid rgba(255,255,255,0.05);
+    /* ── STATS ── */
+    .stats {
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 5rem;
+      gap: clamp(24px, 5vw, 64px);
+      flex-wrap: wrap;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      position: relative;
       z-index: 1;
     }
 
-    /* ── SECTION TITLES ── */
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { position: relative; z-index: 1; }
+
     .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.75rem;
+      color: var(--accent2);
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
 
-    .section-title span {
-      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-subtitle {
-      color: var(--gray);
-      font-size: 1.05rem;
-      max-width: 540px;
-      line-height: 1.7;
-      margin-bottom: 3.5rem;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, var(--purple), var(--cyan));
-      margin-bottom: 1rem;
-      border-radius: 2px;
-    }
-
-    /* ── EDUCATION SECTION ── */
-    #educacion {
-      padding: 7rem 2rem;
-    }
-
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .edu-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .edu-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--purple), var(--cyan));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .edu-card:hover {
-      border-color: rgba(124,58,237,0.3);
-      transform: translateY(-4px);
-      box-shadow: var(--glow-purple);
-    }
-
-    .edu-card:hover::before { opacity: 1; }
-
-    .edu-card.featured {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(6,182,212,0.04));
-      border-color: rgba(124,58,237,0.2);
-    }
-
-    .edu-card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .edu-card-school {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.25rem;
-    }
-
-    .edu-card-period {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--cyan);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-
-    .edu-card-desc {
-      color: var(--gray);
-      font-size: 0.9rem;
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 1.25rem;
+      max-width: 500px;
     }
 
-    .grade-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+    /* ── FEATURES ── */
+    .features {
+      padding: 100px clamp(20px, 5vw, 80px);
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .grade-badge {
-      padding: 0.3rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: 'Space Mono', monospace;
+    .features-header {
+      text-align: center;
+      margin-bottom: 64px;
     }
+    .features-header .section-sub { margin: 0 auto; }
 
-    .grade-badge.high {
-      background: rgba(16,185,129,0.1);
-      border: 1px solid rgba(16,185,129,0.3);
-      color: #34d399;
-    }
-
-    .grade-badge.mid {
-      background: rgba(124,58,237,0.1);
-      border: 1px solid rgba(124,58,237,0.3);
-      color: var(--purple-light);
-    }
-
-    .grade-badge.info {
-      background: rgba(6,182,212,0.1);
-      border: 1px solid rgba(6,182,212,0.3);
-      color: var(--cyan);
-    }
-
-    /* Notas visual */
-    .subject-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .subject-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .subject-name {
-      font-size: 0.85rem;
-      color: var(--gray);
-      width: 140px;
-      flex-shrink: 0;
-    }
-
-    .subject-bar-wrap {
-      flex: 1;
-      height: 6px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .subject-bar {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--purple), var(--cyan));
-      animation: bar-grow 1.2s cubic-bezier(.4,0,.2,1) both;
-      animation-play-state: paused;
-    }
-
-    .subject-bar.animated { animation-play-state: running; }
-
-    @keyframes bar-grow {
-      from { width: 0; }
-    }
-
-    .subject-score {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--white);
-      width: 36px;
-      text-align: right;
-    }
-
-    /* ── COURSES ── */
-    #cursos {
-      padding: 7rem 2rem;
-      background: linear-gradient(180deg, transparent, rgba(124,58,237,0.03), transparent);
-    }
-
-    .courses-grid {
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    .course-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    .feature-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s;
+      padding: 28px;
+      transition: border-color .25s, transform .2s, box-shadow .25s;
       position: relative;
       overflow: hidden;
     }
-
-    .course-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%);
-      pointer-events: none;
-      transition: all 0.5s;
-    }
-
-    .course-card:hover {
-      border-color: rgba(6,182,212,0.3);
-      transform: translateY(-5px);
-      box-shadow: var(--glow-cyan);
-    }
-
-    .course-card:hover::after {
-      width: 180px; height: 180px;
-      background: radial-gradient(circle, rgba(6,182,212,0.12), transparent 70%);
-    }
-
-    .course-platform {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.5rem;
-    }
-
-    .course-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.75rem;
-    }
-
-    .course-desc {
-      color: var(--gray);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tech-tag {
-      padding: 0.25rem 0.7rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      background: rgba(124,58,237,0.12);
-      border: 1px solid rgba(124,58,237,0.25);
-      color: var(--purple-light);
-    }
-
-    .course-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .course-year {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.2);
-    }
-
-    /* ── UNIVERSITY ── */
-    #universidad {
-      padding: 7rem 2rem;
-    }
-
-    .uni-hero {
-      background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
-      border: 1px solid rgba(124,58,237,0.2);
-      border-radius: 24px;
-      padding: 3.5rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .uni-hero::before {
+    .feature-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at top left, rgba(124,58,237,0.15), transparent 60%);
-      pointer-events: none;
+      background: radial-gradient(circle at 50% 0%, var(--card-glow, rgba(99,102,241,0.08)) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
     }
-
-    .uni-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; right: -40px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(6,182,212,0.15), transparent 70%);
-      pointer-events: none;
+    .feature-card:hover {
+      border-color: rgba(99,102,241,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
+    .feature-card:hover::before { opacity: 1; }
 
-    .uni-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
     }
-
-    .uni-label::before {
-      content: '';
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-      animation: pulse-dot 2s infinite;
-    }
-
-    .uni-name {
-      font-size: 2rem;
+    .feature-name {
+      font-size: 17px;
       font-weight: 700;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .uni-degree {
-      font-size: 1.1rem;
-      color: var(--purple-light);
-      font-weight: 500;
-      margin-bottom: 1.5rem;
+    /* feature card accent colors */
+    .fc-indigo { --card-glow: rgba(99,102,241,0.1); }
+    .fc-green  { --card-glow: rgba(16,185,129,0.1); }
+    .fc-yellow { --card-glow: rgba(245,158,11,0.1); }
+    .fc-pink   { --card-glow: rgba(236,72,153,0.1); }
+    .fc-blue   { --card-glow: rgba(59,130,246,0.1); }
+    .fc-purple { --card-glow: rgba(139,92,246,0.1); }
+
+    /* ── SUBJECTS ── */
+    .subjects-section {
+      padding: 100px clamp(20px, 5vw, 80px);
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
-    .uni-detail {
-      color: var(--gray);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .uni-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .uni-stat {
-      text-align: center;
-      padding: 1.25rem 1.75rem;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--card-border);
-      min-width: 140px;
-    }
-
-    .uni-stat-value {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .uni-stat-label {
-      font-size: 0.75rem;
-      color: var(--gray);
-      margin-top: 0.25rem;
-    }
-
-    /* ── CONTACT ── */
-    #contacto {
-      padding: 7rem 2rem 5rem;
-    }
-
-    .contact-grid {
+    .subjects-inner {
+      max-width: 1200px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 64px;
+      align-items: center;
     }
 
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    @media (max-width: 768px) {
+      .subjects-inner { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+    }
+
+    .subjects-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: border-color .2s, background .2s;
+    }
+    .chip:hover {
+      border-color: rgba(99,102,241,0.4);
+      background: rgba(99,102,241,0.08);
+    }
+    .chip-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 100px clamp(20px, 5vw, 80px);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-header { text-align: center; margin-bottom: 64px; }
+    .how-header .section-sub { margin: 0 auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      position: relative;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent3);
+      font-size: 18px;
+      font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 120px clamp(20px, 5vw, 80px);
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .contact-card:hover {
-      border-color: rgba(124,58,237,0.4);
-      transform: translateY(-3px);
-      box-shadow: var(--glow-purple);
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .contact-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
+    .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+    .cta-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
     }
 
-    .contact-icon.email { background: rgba(124,58,237,0.15); }
-    .contact-icon.github { background: rgba(255,255,255,0.05); }
-
-    .contact-info-label {
-      font-size: 0.75rem;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.25rem;
-    }
-
-    .contact-info-value {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--white);
-    }
-
-    .contact-arrow {
-      margin-left: auto;
-      font-size: 1.25rem;
-      color: var(--gray);
-      transition: color 0.3s, transform 0.3s;
-    }
-
-    .contact-card:hover .contact-arrow {
-      color: var(--cyan);
-      transform: translateX(4px);
+    .cta-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 40px;
     }
 
     /* ── FOOTER ── */
     footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--card-border);
-      color: rgba(255,255,255,0.2);
-      font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
+      border-top: 1px solid var(--border);
+      padding: 32px clamp(20px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    footer span {
-      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ── CURSOR GLOW ── */
-    .cursor-glow {
-      position: fixed;
-      width: 400px; height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.06), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      transform: translate(-50%, -50%);
-      transition: left 0.15s, top 0.15s;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-avatar { display: none; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .edu-card.featured { grid-column: 1; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .uni-hero { grid-template-columns: 1fr; }
-      .uni-stats { flex-direction: row; }
+    .footer-text {
+      font-size: 13px;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
-  <canvas id="bg-canvas"></canvas>
-  <div class="cursor-glow" id="cursor-glow"></div>
-
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">NM_</div>
+    <div class="nav-logo">IB Hub</div>
     <ul class="nav-links">
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#educacion">Educación</a></li>
-      <li><a href="#cursos">Cursos</a></li>
-      <li><a href="#universidad">Universidad</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#features">Funciones</a></li>
+      <li><a href="#subjects">Asignaturas</a></li>
+      <li><a href="#how">Cómo funciona</a></li>
+      <li><a href="ib-hub.html" class="nav-cta">Entrar a la app →</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span></span>
+        Hecho por estudiantes IB, para estudiantes IB
+      </div>
+
+      <h1 class="hero-title">
+        Todo el IB<br>
+        en un solo<br>
+        <span class="grad">lugar.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Past papers, apuntes organizados, flashcards y recursos de profesor — todo clasificado por asignatura y listo para estudiar. <strong>Sin buscar en mil carpetas.</strong>
+      </p>
+
+      <div class="hero-actions">
+        <a href="ib-hub.html" class="btn-primary">
+          Empezar ahora →
+        </a>
+        <a href="#features" class="btn-secondary">
+          Ver qué incluye
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Asignaturas cubiertas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Archivos de recursos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Past papers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Herramientas integradas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-header">
+      <div class="section-label">Funcionalidades</div>
+      <h2 class="section-title">Todo lo que necesitas<br>para estudiar mejor</h2>
+      <p class="section-sub">Cuatro herramientas diseñadas para que pases menos tiempo buscando y más tiempo aprendiendo.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fc-indigo">
+        <span class="feature-icon">📄</span>
+        <div class="feature-name">Past Papers</div>
+        <div class="feature-desc">Accede a los exámenes oficiales de los últimos años, organizados por sesión. Comprueba qué papers son válidos para tu syllabus actual.</div>
+      </div>
+
+      <div class="feature-card fc-green">
+        <span class="feature-icon">📁</span>
+        <div class="feature-name">Apuntes y recursos</div>
+        <div class="feature-desc">Descarga directamente los materiales del profesor, organizados por unidad temática. Presentaciones, apuntes, lecturas y plantillas en un clic.</div>
+      </div>
+
+      <div class="feature-card fc-yellow">
+        <span class="feature-icon">🃏</span>
+        <div class="feature-name">Flashcards</div>
+        <div class="feature-desc">Repasa los conceptos clave de cada asignatura con tarjetas de memoria interactivas. Haz clic para ver la respuesta y navega al ritmo que quieras.</div>
+      </div>
+
+      <div class="feature-card fc-pink">
+        <span class="feature-icon">📋</span>
+        <div class="feature-name">Guías de prueba</div>
+        <div class="feature-desc">Información detallada de cada prueba: ponderación, duración, criterios y consejos reales de estudiantes IB que ya han pasado por ello.</div>
+      </div>
+
+      <div class="feature-card fc-blue">
+        <span class="feature-icon">📊</span>
+        <div class="feature-name">Grade Boundaries</div>
+        <div class="feature-desc">Consulta las notas de corte por componente para saber exactamente cuántos puntos necesitas en cada prueba para alcanzar tu objetivo.</div>
+      </div>
+
+      <div class="feature-card fc-purple">
+        <span class="feature-icon">💡</span>
+        <div class="feature-name">Consejos de estudiantes</div>
+        <div class="feature-desc">Tips reales de estudiantes que ya hicieron el IB, específicos por asignatura. Estrategias probadas para el Paper 1, el IA, el oral y más.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section class="subjects-section" id="subjects">
+    <div class="subjects-inner">
       <div>
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Disponible · Barcelona, España
-        </div>
-        <h1 class="hero-name">
-          <span class="first">Nicole</span><br>
-          <span class="last">Maccari</span>
-        </h1>
-        <p class="hero-role">// Future Computer Scientist</p>
-        <p class="hero-desc">
-          Tengo 18 años y me apasiona la programación, los videojuegos y el deporte.
-          Combino disciplina de la pista de voleibol con curiosidad infinita frente al teclado —
-          siempre buscando aprender, construir y mejorar.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">🏐 Voleibol</span>
-          <span class="tag">🎮 Videojuegos</span>
-          <span class="tag">💻 Programación</span>
-          <span class="tag">🌍 Bilingüe</span>
-          <span class="tag">🚀 En formación</span>
-        </div>
-        <div class="hero-cta">
-          <a href="#educacion" class="btn-primary">Ver mi trayectoria</a>
-          <a href="#contacto" class="btn-outline">Contactar</a>
-        </div>
+        <div class="section-label">Asignaturas</div>
+        <h2 class="section-title">Cubre todas las<br>materias del IB</h2>
+        <p class="section-sub">Desde lenguas y humanidades hasta ciencias y matemáticas. Recursos disponibles tanto para Nivel Medio como Nivel Superior.</p>
       </div>
-      <div class="hero-avatar">
-        <div class="avatar-ring"></div>
-        <div class="avatar-inner">🧑‍💻</div>
+      <div class="subjects-chips">
+        <span class="chip"><span class="chip-dot" style="background:#f59e0b"></span>Español A NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#10b981"></span>Inglés A NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#3b82f6"></span>Inglés B NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#8b5cf6"></span>Español B NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#ec4899"></span>Alemán B NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#6366f1"></span>Filosofía NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#f59e0b"></span>Gestión Empresarial NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#10b981"></span>Historia NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#3b82f6"></span>Computer Science NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#8b5cf6"></span>Química NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#ef4444"></span>Física NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#6366f1"></span>Matemáticas AI NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#ec4899"></span>Matemáticas AE NM</span>
+        <span class="chip"><span class="chip-dot" style="background:#f59e0b"></span>Matemáticas AE NS</span>
+        <span class="chip"><span class="chip-dot" style="background:#10b981"></span>Sports NM</span>
+        <span class="chip" style="border-style:dashed; color: var(--muted)">+ más próximamente</span>
       </div>
     </div>
   </section>
 
-  <!-- EDUCACIÓN -->
-  <section id="educacion">
-    <div class="container">
-      <p class="section-label reveal">/ Formación académica</p>
-      <div class="divider reveal"></div>
-      <h2 class="section-title reveal">Mi <span>educación</span></h2>
-      <p class="section-subtitle reveal">Bachillerato internacional con notas medias-altas, en un entorno multicultural y exigente.</p>
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="how-header">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">En marcha en segundos</h2>
+      <p class="section-sub">Sin instalaciones ni configuraciones. Solo entra, elige tu asignatura y empieza.</p>
+    </div>
 
-      <div class="edu-grid">
-        <!-- Main school card -->
-        <div class="edu-card featured reveal">
-          <div class="edu-card-icon">🏫</div>
-          <div class="edu-card-school">Àgora Sant Cugat International School</div>
-          <div class="edu-card-period">SANT CUGAT DEL VALLÈS · 2006 – 2026</div>
-          <p class="edu-card-desc">
-            Escuela internacional con currículum bilingüe (español / inglés).
-            Formación integral con enfoque en ciencias, tecnología y comunicación intercultural.
-            Bachillerato con notas medias-altas de forma consistente.
-          </p>
-          <div class="grade-badges">
-            <span class="grade-badge high">Nota media alta</span>
-            <span class="grade-badge info">Bilingüe EN/ES</span>
-            <span class="grade-badge mid">Internacional</span>
-          </div>
-        </div>
-
-        <!-- Materias destacadas -->
-        <div class="edu-card reveal reveal-delay-1">
-          <div class="edu-card-icon">📊</div>
-          <div class="edu-card-school">Materias destacadas</div>
-          <div class="edu-card-period">RENDIMIENTO POR ASIGNATURA</div>
-          <div class="subject-list">
-            <div class="subject-item">
-              <span class="subject-name">Tecnología</span>
-              <div class="subject-bar-wrap">
-                <div class="subject-bar" style="width:92%"></div>
-              </div>
-              <span class="subject-score">9.2</span>
-            </div>
-            <div class="subject-item">
-              <span class="subject-name">Matemáticas</span>
-              <div class="subject-bar-wrap">
-                <div class="subject-bar" style="width:87%"></div>
-              </div>
-              <span class="subject-score">8.7</span>
-            </div>
-            <div class="subject-item">
-              <span class="subject-name">Inglés</span>
-              <div class="subject-bar-wrap">
-                <div class="subject-bar" style="width:90%"></div>
-              </div>
-              <span class="subject-score">9.0</span>
-            </div>
-            <div class="subject-item">
-              <span class="subject-name">Informática</span>
-              <div class="subject-bar-wrap">
-                <div class="subject-bar" style="width:95%"></div>
-              </div>
-              <span class="subject-score">9.5</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Logros -->
-        <div class="edu-card reveal reveal-delay-2">
-          <div class="edu-card-icon">🏅</div>
-          <div class="edu-card-school">Perfil académico</div>
-          <div class="edu-card-period">DESTACADOS</div>
-          <p class="edu-card-desc">Trayectoria sólida y constante en un entorno internacional de alta exigencia.</p>
-          <div class="grade-badges">
-            <span class="grade-badge high">Constancia</span>
-            <span class="grade-badge mid">Trabajo en equipo</span>
-            <span class="grade-badge info">Pensamiento crítico</span>
-            <span class="grade-badge high">Proactividad</span>
-          </div>
-        </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Accede a la app</div>
+        <div class="step-desc">Entra con tu cuenta y selecciona las asignaturas que estás cursando este año.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Elige tu asignatura</div>
+        <div class="step-desc">Cada asignatura tiene su propia sección con todos sus recursos organizados y accesibles.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Explora y descarga</div>
+        <div class="step-desc">Abre past papers, descarga apuntes por unidad, repasa con flashcards o consulta las guías de prueba.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Prepara el examen</div>
+        <div class="step-desc">Con todo en un solo lugar, organiza tu estudio y llega al examen con confianza.</div>
       </div>
     </div>
   </section>
 
-  <!-- CURSOS -->
-  <section id="cursos">
-    <div class="container">
-      <p class="section-label reveal">/ Formación técnica</p>
-      <div class="divider reveal"></div>
-      <h2 class="section-title reveal">Cursos de <span>programación</span></h2>
-      <p class="section-subtitle reveal">Aprendizaje práctico a través de plataformas especializadas — del juego al código, y del código a la web.</p>
-
-      <div class="courses-grid">
-        <!-- Curso videojuegos -->
-        <div class="course-card reveal reveal-delay-1">
-          <span class="course-year">2024</span>
-          <span class="course-icon">🎮</span>
-          <div class="course-platform">Kodland</div>
-          <div class="course-title">Desarrollo de Videojuegos</div>
-          <p class="course-desc">
-            Curso intensivo de creación de videojuegos desde cero. Lógica de juego,
-            física básica, diseño de niveles y mecánicas de interacción.
-            Proyectos propios desarrollados durante el curso.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Pygame</span>
-            <span class="tech-tag">Game Design</span>
-            <span class="tech-tag">Lógica de programación</span>
-          </div>
-        </div>
-
-        <!-- Curso web -->
-        <div class="course-card reveal reveal-delay-2">
-          <span class="course-year">2024</span>
-          <span class="course-icon">🌐</span>
-          <div class="course-platform">Kodland</div>
-          <div class="course-title">Desarrollo Web</div>
-          <p class="course-desc">
-            Fundamentos del desarrollo web moderno. Estructura, estilo e interactividad
-            en páginas web. Desde maquetación hasta lógica del lado del cliente.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Diseño Web</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- UNIVERSIDAD -->
-  <section id="universidad">
-    <div class="container">
-      <p class="section-label reveal">/ Próximos pasos</p>
-      <div class="divider reveal"></div>
-      <h2 class="section-title reveal">Mi <span>futuro</span> académico</h2>
-      <p class="section-subtitle reveal">El siguiente capítulo de mi formación, donde convergen la tecnología y la visión global.</p>
-
-      <div class="uni-hero reveal">
-        <div>
-          <div class="uni-label">Matrícula confirmada · 2026</div>
-          <div class="uni-name">La Salle — URL</div>
-          <div class="uni-degree">Grado en Computer Science Internacional</div>
-          <p class="uni-detail">
-            Empiezo en La Salle (Universitat Ramon Llull) el grado de Computer Science
-            con enfoque internacional — un programa que combina ingeniería del software,
-            inteligencia artificial, redes y visión global del sector tecnológico.
-            El siguiente paso natural después de años aprendiendo a programar por iniciativa propia.
-          </p>
-        </div>
-        <div class="uni-stats">
-          <div class="uni-stat">
-            <div class="uni-stat-value">2026</div>
-            <div class="uni-stat-label">Año de inicio</div>
-          </div>
-          <div class="uni-stat">
-            <div class="uni-stat-value">4y</div>
-            <div class="uni-stat-label">Duración</div>
-          </div>
-          <div class="uni-stat">
-            <div class="uni-stat-value">BCN</div>
-            <div class="uni-stat-label">Barcelona</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="container">
-      <p class="section-label reveal">/ Conectemos</p>
-      <div class="divider reveal"></div>
-      <h2 class="section-title reveal">¿Hablamos?</h2>
-      <p class="section-subtitle reveal">Siempre abierta a colaboraciones, proyectos y nuevas oportunidades. No dudes en escribirme.</p>
-
-      <div class="contact-grid">
-        <a href="mailto:nicole291208@gmail.com" class="contact-card reveal reveal-delay-1">
-          <div class="contact-icon email">✉️</div>
-          <div>
-            <div class="contact-info-label">Email</div>
-            <div class="contact-info-value">nicole291208@gmail.com</div>
-          </div>
-          <span class="contact-arrow">→</span>
-        </a>
-
-        <a href="#" class="contact-card reveal reveal-delay-2">
-          <div class="contact-icon github">💻</div>
-          <div>
-            <div class="contact-info-label">Proyectos</div>
-            <div class="contact-info-value">Ver mis proyectos web</div>
-          </div>
-          <span class="contact-arrow">→</span>
-        </a>
-      </div>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-title">¿Listo para<br>estudiar mejor?</h2>
+      <p class="cta-sub">Únete a IB Hub y accede a todos los recursos que necesitas para el IB, organizados y siempre disponibles.</p>
+      <a href="ib-hub.html" class="btn-primary" style="font-size:17px; padding: 16px 40px;">
+        Entrar a IB Hub →
+      </a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Diseñado & construido por <span>Nicole Maccari</span> · 2026</p>
+    <div class="footer-logo">IB Hub</div>
+    <div class="footer-text">Hecho con ❤️ por estudiantes IB · ibhub.es</div>
   </footer>
 
-  <script>
-    // ── PARTICLE CANVAS BACKGROUND ──
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
-
-    function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    function randomBetween(a, b) { return a + Math.random() * (b - a); }
-
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = randomBetween(0, W);
-        this.y = randomBetween(0, H);
-        this.size = randomBetween(0.5, 1.5);
-        this.speedX = randomBetween(-0.15, 0.15);
-        this.speedY = randomBetween(-0.2, -0.05);
-        this.alpha = randomBetween(0.1, 0.5);
-        this.color = Math.random() > 0.5 ? '124,58,237' : '6,182,212';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.y < 0 || this.x < 0 || this.x > W) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-    // Draw grid
-    function drawGrid() {
-      ctx.strokeStyle = 'rgba(124,58,237,0.04)';
-      ctx.lineWidth = 1;
-      const spacing = 60;
-      for (let x = 0; x < W; x += spacing) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-      }
-      for (let y = 0; y < H; y += spacing) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, W, H);
-      drawGrid();
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // ── CURSOR GLOW ──
-    const glow = document.getElementById('cursor-glow');
-    document.addEventListener('mousemove', e => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-
-    // ── SCROLL REVEAL ──
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // animate bars too
-          entry.target.querySelectorAll('.subject-bar').forEach(bar => {
-            bar.classList.add('animated');
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Also check initially visible elements
-    reveals.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.9) {
-        el.classList.add('visible');
-      }
-    });
-  </script>
 </body>
 </html>
