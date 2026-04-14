@@ -4174,7 +4174,7 @@ function renderNotes(subjectId) {
 // ── Pruebas ──
 function renderPruebas(subjectId, info) {
   const panel = document.getElementById('tab-pruebas')
-  const pruebas = PRUEBAS[subjectId] || []
+  const pruebas = (PRUEBAS[subjectId] || []).filter(p => p.desc !== undefined)
 
   if (!pruebas.length) {
     panel.innerHTML = `<div class="empty-state"><h3>Pruebas próximamente</h3><p>Estamos preparando la información de las pruebas para esta asignatura.</p></div>`
