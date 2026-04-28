@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#b53a1f" />
+
+  <title>Sabor Kebabish | Cocina pakistaní e india halal en El Raval, Barcelona</title>
+  <meta name="description" content="Sabor Kebabish · Auténtica cocina pakistaní e india halal en el corazón del Raval. Tandoori, biryanis, currys, naans y especialidades de la casa. Carrer de Sant Pau 103, Barcelona." />
+  <meta name="keywords" content="comida pakistaní, comida india, halal, Raval, Barcelona, tandoori, biryani, karahi, naan, curry, Sant Pau, restaurante halal Barcelona" />
+  <meta name="author" content="Sabor Kebabish" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:title" content="Sabor Kebabish | Cocina pakistaní e india halal en El Raval" />
+  <meta property="og:description" content="Tandoori, biryanis, currys y especialidades pakistaníes e indias halal en el corazón del Raval." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=1200&q=80" />
+  <meta property="og:url" content="" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sabor Kebabish | Cocina pakistaní e india halal" />
+  <meta name="twitter:description" content="Tandoori, biryanis y currys halal en el corazón del Raval, Barcelona." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=1200&q=80" />
+
+  <!-- Favicon emoji -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥙</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Sabor Kebabish",
+    "image": "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=1200&q=80",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Carrer de Sant Pau, 103",
+      "addressLocality": "Barcelona",
+      "postalCode": "08001",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.3757342,
+      "longitude": 2.1687697
+    },
+    "telephone": "+34673123741",
+    "servesCuisine": ["Pakistaní", "India", "Halal", "Tandoori", "Biryani"],
+    "priceRange": "€"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Barra de progreso del scroll -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="Sabor Kebabish · Inicio">
+        <svg class="logo-mark" viewBox="0 0 40 40" width="32" height="32" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="19" fill="var(--color-primary)"/>
+          <path d="M11 24 C 11 18, 16 14, 20 14 C 24 14, 29 18, 29 24 L 27 24 C 27 22.5, 26 21, 24.5 21 C 24 22, 23 22.5, 22 22.5 C 21 22.5, 20 22, 19.5 21 C 19 22, 18 22.5, 17 22.5 C 16 22.5, 15 22, 14.5 21 C 13 21, 12 22.5, 12 24 Z" fill="#fdf6ec"/>
+          <path d="M13 25 L 27 25 L 26 28 L 14 28 Z" fill="#f39c4d"/>
+          <circle cx="16" cy="17" r="0.8" fill="#fdf6ec"/>
+          <circle cx="20" cy="16" r="0.8" fill="#fdf6ec"/>
+          <circle cx="24" cy="17" r="0.8" fill="#fdf6ec"/>
+        </svg>
+        <span class="logo-text">Sabor <span class="accent">Kebabish</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link">Inicio</a></li>
+        <li><a href="#about" class="nav-link">Sobre nosotros</a></li>
+        <li><a href="#menu" class="nav-link">Menú</a></li>
+        <li><a href="#contact" class="nav-link">Contacto</a></li>
+        <li><a href="tel:+34673123741" class="nav-link nav-cta"><i class="fa-solid fa-phone"></i> Llamar</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="hero">
+    <!-- Single decorative element (uipro skill: excessive-motion) -->
+    <span class="float-deco deco-1" aria-hidden="true">🌶️</span>
+
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="halal-badge">
+          <i class="fa-solid fa-certificate"></i> 100% Halal
+        </div>
+        <h1 class="hero-title">Cocina pakistaní e india en el <span class="accent">Raval</span></h1>
+        <p class="hero-slogan">Tandoori, biryanis y currys halal recién hechos. Carrer de Sant Pau 103, Barcelona.</p>
+        <div class="hero-buttons">
+          <a href="tel:+34673123741" class="btn btn-primary">
+            <i class="fa-solid fa-phone"></i> Llamar ahora
+          </a>
+          <a href="#menu" class="btn btn-secondary">
+            <i class="fa-solid fa-utensils"></i> Ver menú
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><i class="fa-solid fa-location-dot"></i> Carrer de Sant Pau, 103</span>
+          <span><i class="fa-solid fa-clock"></i> Abierto todos los días</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-wrap">
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=900&q=80&fm=webp" alt="Pollo tandoori recién hecho" width="900" height="1125" />
+            <div class="hero-card-tag">
+              <i class="fa-solid fa-fire"></i>
+              <span>Recién hecho</span>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num">4.8<span>★</span></div>
+            <div class="stat-text">Clientes contentos<br/>cada día</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-down" aria-label="Bajar">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </header>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">🍗 Pollo a la Brasa</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🔥 Tandoori</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🍛 Biryanis</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🌶️ Karahi</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🫓 Naans Recién Hechos</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🚚 Domicilio Gratis</span>
+      <span class="marquee-dot">•</span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">🍗 Pollo a la Brasa</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🔥 Tandoori</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🍛 Biryanis</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🌶️ Karahi</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🫓 Naans Recién Hechos</span>
+      <span class="marquee-dot">•</span>
+      <span class="marquee-item">🚚 Domicilio Gratis</span>
+      <span class="marquee-dot">•</span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about reveal" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Sobre nosotros</span>
+        <h2>Sabor auténtico de Pakistán e India</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p>
+            En <strong>Sabor Kebabish</strong> traemos al Raval la <strong>auténtica cocina pakistaní e india</strong>:
+            currys, biryanis, especialidades al horno tandoori y nuestro famoso <strong>pollo a la brasa</strong>.
+            Todo <strong>100% halal</strong>, recién hecho con especias e ingredientes tradicionales.
+          </p>
+          <p>
+            Estamos en <strong>Carrer de Sant Pau 103</strong>, a pocos minutos de Las Ramblas y del Paral·lel.
+            Servicio a domicilio gratis y un ambiente cercano para comer rico, abundante y por buen precio.
+          </p>
+          <div class="features">
+            <div class="feature"><i class="fa-solid fa-fire"></i><span>Horno tandoori</span></div>
+            <div class="feature"><i class="fa-solid fa-certificate"></i><span>100% halal</span></div>
+            <div class="feature"><i class="fa-solid fa-truck"></i><span>Domicilio gratis</span></div>
+            <div class="feature"><i class="fa-solid fa-bowl-rice"></i><span>Biryanis y currys</span></div>
+          </div>
+        </div>
+        <div class="about-image reveal-right">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80&fm=webp" alt="Currys y especialidades pakistaníes e indias" loading="lazy" width="800" height="500" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE 2 ============ -->
+  <div class="marquee marquee-alt" aria-hidden="true">
+    <div class="marquee-track marquee-track-reverse">
+      <span class="marquee-item-big">Made with Love</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Halal Certified</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Fresh Every Day</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Auténtico Sabor</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Made with Love</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Halal Certified</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Fresh Every Day</span>
+      <span class="marquee-star">✦</span>
+      <span class="marquee-item-big">Auténtico Sabor</span>
+      <span class="marquee-star">✦</span>
+    </div>
+  </div>
+
+  <!-- ============ MENU ============ -->
+  <section class="menu reveal" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nuestra carta</span>
+        <h2>Menú</h2>
+        <p class="section-sub">Cocina pakistaní e india halal preparada al momento. Tandoori, biryanis, currys y mucho más.</p>
+      </div>
+
+      <!-- Filtro de categorías -->
+      <div class="menu-filter" role="tablist" aria-label="Filtrar menú por categoría">
+        <button class="filter-pill active" data-filter="especialidades" role="tab" aria-selected="true">
+          <i class="fa-solid fa-fire"></i> Especialidades
+        </button>
+        <button class="filter-pill" data-filter="pollo" role="tab" aria-selected="false">
+          <i class="fa-solid fa-drumstick-bite"></i> Pollo
+        </button>
+        <button class="filter-pill" data-filter="carne" role="tab" aria-selected="false">
+          <i class="fa-solid fa-bone"></i> Carne
+        </button>
+        <button class="filter-pill" data-filter="pescado" role="tab" aria-selected="false">
+          <i class="fa-solid fa-fish"></i> Pescado
+        </button>
+        <button class="filter-pill" data-filter="vegetales" role="tab" aria-selected="false">
+          <i class="fa-solid fa-leaf"></i> Vegetales
+        </button>
+        <button class="filter-pill" data-filter="biryani" role="tab" aria-selected="false">
+          <i class="fa-solid fa-bowl-rice"></i> Biryani
+        </button>
+        <button class="filter-pill" data-filter="sopas" role="tab" aria-selected="false">
+          <i class="fa-solid fa-mug-hot"></i> Sopas
+        </button>
+        <button class="filter-pill" data-filter="naans" role="tab" aria-selected="false">
+          <i class="fa-solid fa-bread-slice"></i> Naans
+        </button>
+        <button class="filter-pill" data-filter="bebidas" role="tab" aria-selected="false">
+          <i class="fa-solid fa-mug-saucer"></i> Bebidas
+        </button>
+      </div>
+
+      <!-- ESPECIALIDADES DE LA CASA -->
+      <div class="menu-category" data-cat="especialidades">
+        <h3 class="cat-title"><i class="fa-solid fa-fire"></i> Especialidades de la casa</h3>
+        <div class="menu-grid">
+          <article class="menu-card highlight">
+            <div class="card-head"><h4>Pollo a la Brasa</h4><span class="price">9€</span></div>
+            <p>Nuestra súper oferta. Pollo entero asado al estilo tandoori.</p>
+          </article>
+          <article class="menu-card highlight">
+            <div class="card-head"><h4>Village Mix Grill</h4><span class="price">14€</span></div>
+            <p>Parrillada mixta de la casa: variedad de carnes a la brasa.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Karahi</h4><span class="price">9€</span></div>
+            <p>Karahi de cordero al estilo tradicional pakistaní.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Karahi</h4><span class="price">6€</span></div>
+            <p>Karahi de pollo en wok con tomate, jengibre y especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Tikka</h4><span class="price">14€</span></div>
+            <p>Pinchos de pollo marinados al tandoori.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Tandoori</h4><span class="price">5€</span></div>
+            <p>Pollo asado al horno tandoori con marinado tradicional.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Champs</h4><span class="price">11€ / 22€</span></div>
+            <p>Costillas de cordero a la parrilla. Media o ración entera.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Seekh Kebab</h4><span class="price">5€ <small>(2 uds)</small></span></div>
+            <p>Pinchos de carne picada especiada al tandoori.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Fish Tandoori</h4><span class="price">9€</span></div>
+            <p>Pescado marinado y asado al horno tandoori.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Korma</h4><span class="price">7€</span></div>
+            <p>Qorma de pollo: salsa cremosa con frutos secos y especias suaves.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- POLLO -->
+      <div class="menu-category" data-cat="pollo">
+        <h3 class="cat-title"><i class="fa-solid fa-drumstick-bite"></i> Pollo (Chicken)</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Palak</h4><span class="price">6€</span></div>
+            <p>Pollo guisado con espinacas y especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Bhindi</h4><span class="price">6€</span></div>
+            <p>Pollo con okras (quingombó).</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Saag</h4><span class="price">6€</span></div>
+            <p>Pollo con hojas verdes (saag) y especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Tinday</h4><span class="price">6€</span></div>
+            <p>Pollo con tinday, calabaza tradicional pakistaní.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Karelay</h4><span class="price">6€</span></div>
+            <p>Pollo con melones amargos (karela).</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Daal Chicken</h4><span class="price">6€</span></div>
+            <p>Pollo con legumbres en salsa especiada.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Tikka Masala</h4><span class="price">7€</span></div>
+            <p>Estofado de pollo (masala) en salsa cremosa de tomate.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Jalfrezi</h4><span class="price">7€</span></div>
+            <p>Pollo salteado con pimientos, cebolla y especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Achari Tikka</h4><span class="price">7€</span></div>
+            <p>Pollo con encurtidos mixtos (achari).</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- CARNE -->
+      <div class="menu-category" data-cat="carne">
+        <h3 class="cat-title"><i class="fa-solid fa-bone"></i> Carne (Cordero, Ternera y Pollo)</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Palak</h4><span class="price">7€</span></div>
+            <p>Cordero con espinacas.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Bhindi</h4><span class="price">7€</span></div>
+            <p>Cordero con okras.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Saag</h4><span class="price">7€</span></div>
+            <p>Cordero con saag (hojas verdes).</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Tinday</h4><span class="price">7€</span></div>
+            <p>Cordero con tinday.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Karelay</h4><span class="price">7€</span></div>
+            <p>Cordero con melones amargos.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Daal</h4><span class="price">7€</span></div>
+            <p>Cordero con legumbres.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Geema</h4><span class="price">7€</span></div>
+            <p>Carne picada especiada.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Geema Karelay</h4><span class="price">7€</span></div>
+            <p>Carne picada con melones amargos.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Koftay</h4><span class="price">7€</span></div>
+            <p>Albóndigas con garbanzos en salsa.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chaney Koftay</h4><span class="price">7€</span></div>
+            <p>Albóndigas con garbanzos.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Haleem</h4><span class="price">7€</span></div>
+            <p>Carne molida con legumbres, cocinada a fuego lento.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Choppal Kebab</h4><span class="price">7€ <small>(2 uds)</small></span></div>
+            <p>Kebab tradicional al estilo Choppal.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- PESCADO -->
+      <div class="menu-category" data-cat="pescado">
+        <h3 class="cat-title"><i class="fa-solid fa-fish"></i> Pescado y Marisco</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Fish Masala</h4><span class="price">7€</span></div>
+            <p>Pescado en salsa masala con especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Prawns Shahi Qorma</h4><span class="price">consultar</span></div>
+            <p>Gambas en salsa qorma cremosa.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- VEGETALES -->
+      <div class="menu-category" data-cat="vegetales">
+        <h3 class="cat-title"><i class="fa-solid fa-leaf"></i> Vegetales (Vegetables)</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Palak Paneer</h4><span class="price">6€</span></div>
+            <p>Espinacas con queso paneer fresco.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Bhindi</h4><span class="price">6€</span></div>
+            <p>Okras (quingombó) salteadas con especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Saag</h4><span class="price">6€</span></div>
+            <p>Hojas verdes guisadas estilo punjabí.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Tinday</h4><span class="price">6€</span></div>
+            <p>Calabaza tinday con especias.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mattar Aalu</h4><span class="price">6€</span></div>
+            <p>Patatas con guisantes en salsa especiada.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mix Achari Vegetables</h4><span class="price">6€</span></div>
+            <p>Vegetales con encurtidos mixtos (achari).</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mix Vegetables</h4><span class="price">6€</span></div>
+            <p>Variedad de vegetales mixtos al curry.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Karelay</h4><span class="price">6€</span></div>
+            <p>Melones amargos al curry.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Daal Karelay</h4><span class="price">6€</span></div>
+            <p>Legumbres con melones amargos.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chana Masala</h4><span class="price">5€</span></div>
+            <p>Garbanzos en salsa masala. Vegetariano.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Daal Tarka</h4><span class="price">5€</span></div>
+            <p>Lentejas tarka con especias temperadas.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- BIRYANI -->
+      <div class="menu-category" data-cat="biryani">
+        <h3 class="cat-title"><i class="fa-solid fa-bowl-rice"></i> Biryani &amp; Arroces</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Shahi Biryani</h4><span class="price">8€</span></div>
+            <p>Arroz basmati con pollo, especias y hierbas. Estilo shahi.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Mutton Biryani</h4><span class="price">8€</span></div>
+            <p>Arroz basmati con cordero al estilo tradicional.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Biryani</h4><span class="price">6€</span></div>
+            <p>Arroz basmati con pollo y especias aromáticas.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Fish Biryani</h4><span class="price">8€</span></div>
+            <p>Arroz basmati con pescado.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Vegetable Biryani</h4><span class="price">8€</span></div>
+            <p>Arroz basmati con vegetales mixtos.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>White Rice</h4><span class="price">4€</span></div>
+            <p>Arroz basmati blanco al vapor.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- SOPAS Y ENTRANTES -->
+      <div class="menu-category" data-cat="sopas">
+        <h3 class="cat-title"><i class="fa-solid fa-mug-hot"></i> Sopas y Entrantes</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Paey</h4><span class="price">4€</span></div>
+            <p>Pata de ternera guisada lentamente. Tradicional.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Chicken Soup</h4><span class="price">4€</span></div>
+            <p>Sopa de pollo casera con especias suaves.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- NAANS Y PANES -->
+      <div class="menu-category" data-cat="naans">
+        <h3 class="cat-title"><i class="fa-solid fa-bread-slice"></i> Naans &amp; Panes (Pan con levadura)</h3>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-head"><h4>Naan</h4><span class="price">0,70€</span></div>
+            <p>Pan tradicional al horno tandoori.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Tandoori Roti</h4><span class="price">0,60€</span></div>
+            <p>Pan integral cocido en horno tandoori.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Roghni Naan</h4><span class="price">consultar</span></div>
+            <p>Naan con sésamo (Tili Wala).</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Garlic Naan</h4><span class="price">consultar</span></div>
+            <p>Naan con ajo fresco y cilantro.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Cheese Naan</h4><span class="price">consultar</span></div>
+            <p>Naan relleno de queso.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Aalu Naan</h4><span class="price">consultar</span></div>
+            <p>Naan relleno de patatas especiadas.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Keema Naan</h4><span class="price">consultar</span></div>
+            <p>Naan relleno de carne picada.</p>
+          </article>
+          <article class="menu-card">
+            <div class="card-head"><h4>Butter Naan</h4><span class="price">consultar</span></div>
+            <p>Naan con mantequilla.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- BEBIDAS Y POSTRES -->
+      <div class="menu-row" data-cat="bebidas">
+        <div class="menu-category small">
+          <h3 class="cat-title"><i class="fa-solid fa-mug-saucer"></i> Bebidas</h3>
+          <ul class="simple-list">
+            <li>Tea (Té con leche) — 1,50€</li>
+            <li>Lassi (Batido de yogur) — 1,50€</li>
+            <li>Mango Lassi (Batido de mango)</li>
+            <li>Refrescos y agua</li>
+          </ul>
+        </div>
+        <div class="menu-category small">
+          <h3 class="cat-title"><i class="fa-solid fa-ice-cream"></i> Postres</h3>
+          <ul class="simple-list">
+            <li>Kheer (Arroz con leche) — 1,50€</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="menu-disclaimer">
+        <i class="fa-solid fa-circle-info"></i>
+        Todos los platos son <strong>halal</strong>. Pregúntanos sin problema sobre alérgenos o niveles de picante.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact reveal" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contacto</span>
+        <h2>Visítanos o llámanos</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <h4>Teléfono</h4>
+            <a href="tel:+34673123741" class="big-link">673 12 37 41</a>
+            <small>Llama y haz tu pedido</small>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <h4>Dirección</h4>
+            <p>Carrer de Sant Pau, 103<br/>08001 Barcelona<br/><span class="muted">El Raval · Ciutat Vella</span></p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=41.3757342,2.1687697&destination_place_id=Sabor+Kebabish" target="_blank" rel="noopener" class="btn btn-outline">
+              <i class="fa-solid fa-diamond-turn-right"></i> Cómo llegar
+            </a>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+            <h4>Horario</h4>
+            <table class="hours">
+              <tr><td>Lunes</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Martes</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Miércoles</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Jueves</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Viernes</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Sábado</td><td>12:00 – 00:00</td></tr>
+              <tr><td>Domingo</td><td>12:00 – 00:00</td></tr>
+            </table>
+            <small class="muted">* Horario orientativo, confirma por teléfono.</small>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-train-subway"></i></div>
+            <h4>Cómo llegar en metro</h4>
+            <p>
+              <strong>Paral·lel</strong> (L2, L3) – 5 min andando<br/>
+              <strong>Liceu</strong> (L3) – 6 min andando
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-map reveal-right">
+          <iframe
+            src="https://www.google.com/maps?q=Carrer+de+Sant+Pau+103,+08001+Barcelona&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa de Sabor Kebabish">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <h3>
+          <svg class="logo-mark logo-mark-light" viewBox="0 0 40 40" width="28" height="28" fill="none" aria-hidden="true">
+            <circle cx="20" cy="20" r="19" fill="var(--color-accent)"/>
+            <path d="M11 24 C 11 18, 16 14, 20 14 C 24 14, 29 18, 29 24 L 27 24 C 27 22.5, 26 21, 24.5 21 C 24 22, 23 22.5, 22 22.5 C 21 22.5, 20 22, 19.5 21 C 19 22, 18 22.5, 17 22.5 C 16 22.5, 15 22, 14.5 21 C 13 21, 12 22.5, 12 24 Z" fill="#5c3a21"/>
+            <path d="M13 25 L 27 25 L 26 28 L 14 28 Z" fill="var(--color-primary)"/>
+            <circle cx="16" cy="17" r="0.8" fill="#5c3a21"/>
+            <circle cx="20" cy="16" r="0.8" fill="#5c3a21"/>
+            <circle cx="24" cy="17" r="0.8" fill="#5c3a21"/>
+          </svg>
+          Sabor <span class="accent">Kebabish</span>
+        </h3>
+        <p>Cocina pakistaní e india halal en El Raval, Barcelona.</p>
+      </div>
+
+      <div class="footer-info">
+        <h4>Contacto</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Carrer de Sant Pau, 103, 08001 Barcelona</p>
+        <p><i class="fa-solid fa-phone"></i> <a href="tel:+34673123741">+34 673 12 37 41</a></p>
+      </div>
+
+      <div class="footer-social">
+        <h4>Síguenos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/34673123741" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Sabor Kebabish · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- ============ FLOATING BUTTONS ============ -->
+  <a href="https://wa.me/34673123741?text=Hola,%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+     target="_blank" rel="noopener"
+     class="floating-btn whatsapp" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <a href="tel:+34673123741" class="floating-btn call mobile-only" aria-label="Llamar">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
