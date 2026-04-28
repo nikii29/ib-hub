@@ -927,7 +927,7 @@ section { padding: 5rem 0; }
 }
 .footer-container {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 2.5rem;
   padding-bottom: 2.5rem;
 }
