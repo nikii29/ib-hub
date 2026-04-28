@@ -47,7 +47,11 @@
   outline-offset: 4px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  width: 100%;
+}
 
 /* Scroll progress bar */
 .scroll-progress {
@@ -66,7 +70,9 @@ body {
   color: var(--text);
   background: var(--cream);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
 }
 
 img { max-width: 100%; display: block; }
